@@ -8,18 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
-import { AdminLTENavTopComponent } from './shells/adminLTE/admin-lte-nav-top/admin-lte-nav-top.component';
-import { AdminLTESidebarComponent } from './shells/adminLTE/admin-lte-sidebar/admin-lte-sidebar.component';
 import { AdminLteUserAccountMenuComponent } from './shells/adminLTE/admin-lte-user-account-menu/admin-lte-user-account-menu.component';
 import { AdminLteFooterComponent } from './shells/adminLTE/admin-lte-footer/admin-lte-footer.component';
+import { AdminLteNavTopLayoutComponent } from './shells/adminLTE/admin-lte-nav-top-layout/admin-lte-nav-top-layout.component';
+import { AdminLteSidebarLayoutComponent } from './shells/adminLTE/admin-lte-sidebar-layout/admin-lte-sidebar-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLTENavTopComponent,
-    AdminLTESidebarComponent,
     AdminLteUserAccountMenuComponent,
-    AdminLteFooterComponent
+    AdminLteFooterComponent,
+    AdminLteNavTopLayoutComponent,
+    AdminLteSidebarLayoutComponent
   ],
   imports: [
     BrowserModule,
