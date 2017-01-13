@@ -1,4 +1,29 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<app-admin-lte-sidebar>
+  <router-outlet>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Top Navigation
+        <small>Example 2.0</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Layout</a></li>
+        <li class="active">Top Navigation</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="callout callout-info">
+        <h4>Tip!</h4>
+
+        <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a sidebar! So use
+          this class if you want to remove the custom dropdown menus from the navbar and use regular links instead.</p>
+      </div>
+    
+    </section>
+    <!-- /.content -->
+  </router-outlet>
+</app-admin-lte-sidebar>
