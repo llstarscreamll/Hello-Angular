@@ -1,4 +1,4 @@
-<app-admin-lte-sidebar-layout>
+<app-admin-lte-sidebar-layout [openSidebar]="showSidenav$ | async" [openControlSidebar]="showControlSidebar$ | async">
   <router-outlet>
     <!-- Content Header (Page header) -->
     <section class="content-header">

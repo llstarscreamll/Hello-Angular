@@ -1,4 +1,4 @@
-<body class="sidebar-mini skin-blue" [ngClass]="mainSidebarClass">
+<body class="sidebar-mini skin-blue" [ngClass]="{'sidebar-collapse': !openSidebar}">
   <div class="wrapper">
 
     <!-- Main Header -->
@@ -47,7 +47,7 @@
     <footer app-admin-lte-footer class="main-footer"></footer>
 
     <!-- Control Sidebar -->
-    <aside app-admin-lte-control-sidebar class="control-sidebar control-sidebar-dark" [ngClass]="controlSidebarClass"></aside>
+    <aside app-admin-lte-control-sidebar class="control-sidebar control-sidebar-dark" [ngClass]="{'control-sidebar-open': openControlSidebar}"></aside>
 
     <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->

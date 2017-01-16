@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import * as fromRoot from './../../../core/reducers';
+import * as layout from './../../../core/actions/layout';
 
 @Component({
   selector: 'app-admin-lte-sidebar-layout',
@@ -7,23 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLteSidebarLayoutComponent implements OnInit {
 
-  public mainSidebarClass = {'sidebar-open': true, 'sidebar-collapse': false};
-  public controlSidebarClass = {'control-sidebar-open': false};
+  @Input() openSidebar: boolean = true;
+  @Input() openControlSidebar: boolean = false;
 
-  constructor() { }
+  constructor(private store: Store<fromRoot.State>) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  /**
+   * Expands or shrinks the sidebar.
+   */
+  public toggleNavigation() {
+    this.openSidebar
+      ? this.store.dispatch(new layout.CloseSidenavAction())
+      : this.store.dispatch(new layout.OpenSidenavAction());
   }
 
-  toggleNavigation() {
-    let state = !this.mainSidebarClass['sidebar-open'];
-    this.mainSidebarClass = {'sidebar-open': state, 'sidebar-collapse': !state};
+  /**
+   * Expands or shrinks the control sidebar.
+   */
+  public toggleControlSidebar() {
+    this.openControlSidebar
+      ? this.store.dispatch(new layout.CloseControlSidebarAction())
+      : this.store.dispatch(new layout.OpenControlSidenavAction());
   }
-
-  toggleControlSidebar() {
-    let state = !this.controlSidebarClass['control-sidebar-open'];
-    console.log(state);
-    this.controlSidebarClass = {'control-sidebar-open': state};
-  }
-
 }
