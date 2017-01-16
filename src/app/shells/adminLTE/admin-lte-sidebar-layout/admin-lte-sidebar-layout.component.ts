@@ -6,7 +6,7 @@ import * as fromRoot from './../../../core/reducers';
 import * as layout from './../../../core/actions/layout';
 
 @Component({
-  selector: 'app-admin-lte-sidebar-layout',
+  selector: 'app-sidebar-layout',
   templateUrl: './admin-lte-sidebar-layout.component.html',
   styleUrls: ['./admin-lte-sidebar-layout.component.css']
 })
