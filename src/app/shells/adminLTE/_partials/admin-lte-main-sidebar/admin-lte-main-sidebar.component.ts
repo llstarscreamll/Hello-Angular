@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-export class MenuItem {
-  label: string;
-  url: string;
-  icon: string;
-  childs: MenuItem[];
-  isHeader: boolean;
-}
+import { MenuItem } from './../../../../core/models/MenuItem'; 
 
 @Component({
   selector: '[app-admin-lte-main-sidebar]',
