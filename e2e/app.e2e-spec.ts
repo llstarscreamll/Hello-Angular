@@ -1,10 +1,10 @@
-import { Angular2AdminLTEPage } from './app.po';
+import { Angular2AdminLtePage } from './app.po';
 
 describe('angular2-admin-lte App', function() {
-  let page: Angular2AdminLTEPage;
+  let page: Angular2AdminLtePage;
 
   beforeEach(() => {
-    page = new Angular2AdminLTEPage();
+    page = new Angular2AdminLtePage();
   });
 
   it('should display message saying app works', () => {
