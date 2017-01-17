@@ -1,7 +1,5 @@
-<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-
-<body class="hold-transition fixed skin-blue layout-top-nav">
-  <div class="wrapper">
+<div class="hold-transition fixed skin-blue layout-top-nav">
+  <div class="wrapper" [ngStyle]="{'height.px': viewPortHeight}">
 
     <header class="main-header">
       <nav class="navbar navbar-static-top">
@@ -62,4 +60,4 @@
   </div>
   <!-- ./wrapper -->
 
-</body>
+</div>

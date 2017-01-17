@@ -1,9 +1,11 @@
-<body class="sidebar-mini skin-blue" [ngClass]="{'sidebar-collapse': !openSidebar}">
+<div class="sidebar-mini skin-blue" [ngClass]="{'sidebar-collapse': !(showSidenav$ | async)}">
   <div class="wrapper">
 
     <!-- Main Header -->
-    <header class="main-header">
-
+    <header #header
+            [attr.is-sidebar-opened]="showSidenav$ | async"
+            [attr.is-control-sidebar-opened]="showControlSidebar$ | async"
+            class="main-header">
       <!-- Logo -->
       <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -15,7 +17,7 @@
       <!-- Header Navbar -->
       <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
-        <a href="#" (click)="toggleNavigation()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <a (click)="toggleNavigation()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
         <!-- Navbar Right Menu -->
@@ -27,7 +29,9 @@
           <ul class="nav navbar-nav">
             <!-- Control Sidebar Toggle Button -->
             <li>
-              <a href="#" (click)="toggleControlSidebar()" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              <a (click)="toggleControlSidebar()"
+                 data-toggle="control-sidebar"
+                 role="button"><i class="fa fa-gears"></i></a>
             </li>
           </ul>
         </div>
@@ -38,7 +42,7 @@
     <aside app-admin-lte-main-sidebar class="main-sidebar"></aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" [ngStyle]="{'height.px': viewPortHeight}">
       <ng-content></ng-content>
     </div>
     <!-- /.content-wrapper -->
@@ -47,11 +51,13 @@
     <footer app-admin-lte-footer class="main-footer"></footer>
 
     <!-- Control Sidebar -->
-    <aside app-admin-lte-control-sidebar class="control-sidebar control-sidebar-dark" [ngClass]="{'control-sidebar-open': openControlSidebar}"></aside>
+    <aside app-admin-lte-control-sidebar
+           class="control-sidebar control-sidebar-dark"
+           [ngClass]="{'control-sidebar-open': showControlSidebar$ | async}"></aside>
 
     <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
   </div>
   <!-- ./wrapper -->
-</body>
+</div>

@@ -5,11 +5,8 @@ import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-// ng2-bootstrap
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
-
-// AdminLTE Shell
-import { AdminLTEShellModule as Shell } from './shells/adminLTE/admin-lte.module';
+// modules
+import { FrontModule } from './modules/front/front.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,9 +20,8 @@ import { reducer } from './core/reducers';
     BrowserModule,
     FormsModule,
     HttpModule,
-    DropdownModule.forRoot(),
     AppRoutingModule,
-    Shell
+    FrontModule
   ],
   declarations: [
     AppComponent
