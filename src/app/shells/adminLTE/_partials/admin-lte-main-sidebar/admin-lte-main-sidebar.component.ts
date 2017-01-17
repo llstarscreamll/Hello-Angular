@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from './../../../../core/models/MenuItem';
+import { MenuItem } from './../../../../modules/core/models/MenuItem';
 
 @Component({
   selector: '[app-admin-lte-main-sidebar]',

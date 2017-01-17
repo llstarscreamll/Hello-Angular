@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import * as fromRoot from './../../../core/reducers';
-import * as layout from './../../../core/actions/layout';
+import * as fromRoot from './../../../modules/core/reducers';
+import * as layout from './../../../modules/core/actions/layout';
 
 @Component({
   selector: 'app-sidebar-layout',

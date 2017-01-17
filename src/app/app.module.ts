@@ -13,7 +13,7 @@ import { WelcomeModule } from './modules/welcome/welcome.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { reducer } from './core/reducers';
+import { reducer } from './modules/core/reducers';
 
 @NgModule({
   declarations: [
