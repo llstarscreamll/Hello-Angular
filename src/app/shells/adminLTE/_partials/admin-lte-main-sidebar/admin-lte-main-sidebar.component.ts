@@ -4,7 +4,8 @@ export class MenuItem {
   label: string;
   url: string;
   icon: string;
-  childs: MenuItem[]
+  childs: MenuItem[];
+  isHeader: boolean;
 }
 
 @Component({
@@ -15,17 +16,18 @@ export class MenuItem {
 export class AdminLteMainSidebarComponent implements OnInit {
 
   public menuItems: MenuItem[] = [
-    { label: 'menu 1', icon:'fa fa-link', url: '/foo/foo', childs: [] },
-    { label: 'menu 2', icon:'fa fa-link', url: '/foo/foo', childs: [] },
-    { label: 'tree 1', icon:'fa fa-link', url: '/foo/foo', childs: [
-      { label: 'sub-menu 1', icon:'fa fa-link', url: '/foo/foo', childs: [] },
-      { label: 'sub-menu 2', icon:'fa fa-link', url: '/foo/foo', childs: [] },
-      { label: 'sub-menu 3', icon:'fa fa-link', url: '/foo/foo', childs: [] },
+    { label: 'Header', icon:'', url: '', isHeader: true, childs: [] },
+    { label: 'menu 1', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
+    { label: 'menu 2', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
+    { label: 'tree 1', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [
+      { label: 'sub-menu 1', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
+      { label: 'sub-menu 2', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
+      { label: 'sub-menu 3', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
     ] },
-    { label: 'tree 2', icon:'fa fa-home', url: '/foo/foo', childs: [
-      { label: 'sub-menu 1', icon:'fa fa-link', url: '/foo/foo', childs: [] },
-      { label: 'sub-menu 2', icon:'fa fa-link', url: '/foo/foo', childs: [] },
-      { label: 'sub-menu 3', icon:'fa fa-link', url: '/foo/foo', childs: [] },
+    { label: 'tree 2', icon:'fa fa-home', url: '/foo/foo', isHeader: false, childs: [
+      { label: 'sub-menu 1', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
+      { label: 'sub-menu 2', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
+      { label: 'sub-menu 3', icon:'fa fa-link', url: '/foo/foo', isHeader: false, childs: [] },
     ] }
   ];
 

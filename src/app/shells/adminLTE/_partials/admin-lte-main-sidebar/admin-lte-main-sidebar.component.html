@@ -27,22 +27,26 @@
 
   <!-- Sidebar Menu -->
   <ul class="sidebar-menu">
-    <li class="header">HEADER</li>
 
+    <!-- Dynamic menú generation -->
     <li *ngFor="let menu of menuItems; let i = index"
         routerLinkActive="active"
         routerLinkActiveOptions="{exact: true}"
         [class.treeview]="menu.childs"
-        [class.active]="selectedItemIndex == i">
+        [class.active]="selectedItemIndex == i"
+        [class.header]="menu.isHeader">
+
+      <!-- If item is header -->
+      <span class="text-uppercase" *ngIf="menu.isHeader">{{ menu.label }}</span>
 
       <!-- If has not childs -->
-      <a *ngIf="menu.childs.length == 0"
+      <a *ngIf="menu.childs.length == 0 && menu.isHeader === false"
          routerLink="{{ menu.url }}">
          <i class="{{ menu.icon }}"></i> <span>{{ menu.label }}</span>
       </a>
 
       <!-- If has childs -->
-      <a *ngIf="menu.childs.length > 0" role="button" (click)="selectedMenuItem(i)">
+      <a *ngIf="menu.childs.length > 0 && menu.isHeader === false" role="button" (click)="selectedMenuItem(i)">
         <i class="{{ menu.icon }}"></i> <span>{{ menu.label }}</span>
         <span *ngIf="menu.childs.length > 0" class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
