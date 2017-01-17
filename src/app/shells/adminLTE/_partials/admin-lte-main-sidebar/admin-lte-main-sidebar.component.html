@@ -28,7 +28,6 @@
   <!-- Sidebar Menu -->
   <ul class="sidebar-menu">
     <li class="header">HEADER</li>
-    <li class="header">Dynamic menús</li>
 
     <li *ngFor="let menu of menuItems; let i = index"
         routerLinkActive="active"
@@ -59,20 +58,6 @@
         </li>
       </ul>
 
-    </li>
-
-    <li class="header">Static menús</li>
-
-    <li class="treeview" routerLinkActive="active">
-      <a role="button"><i class="fa fa-link"></i> <span>Multilevel</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a routerLink="/front/landing">Landing</a></li>
-        <li><a routerLink="/welcome">Welcome</a></li>
-      </ul>
     </li>
 
   </ul>
