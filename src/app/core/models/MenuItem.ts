@@ -4,4 +4,5 @@ export class MenuItem {
   icon: string;
   childs: MenuItem[];
   isHeader: boolean;
+  visivility: string;
 }
