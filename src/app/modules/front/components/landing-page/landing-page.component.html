@@ -2,7 +2,7 @@
 <app-page-header>
   <h1>
     Welcome to Angular 2 App
-    <small>Angular 2.3.1</small>
+    <small>Angular 2.4.3</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Landing</a></li>
@@ -11,7 +11,78 @@
 </app-page-header>
 
 <!-- Main content -->
-<section class="content">
+<app-page-content>
+
+  <!-- Widgets traducidos a componentes en Angular -->
+  <div class="row">
+    <div class="col-md-4">
+      <app-box #box>
+        <app-box-header>
+          <h3 class="box-title">
+            Foo title
+          </h3>
+          <app-box-tools (collapseBox)="box.toggleCollapse($event)" (hideBox)="box.hideBox($event)">
+
+            <div class="btn-group" dropdown>
+              <button id="single-button" type="button" class="btn" dropdownToggle>
+                <i class="fa fa-wrench"></i>
+              </button>
+              <ul dropdownMenu role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+            </div>
+
+          </app-box-tools>
+        </app-box-header>
+
+        <app-box-body>
+          <p>Content!!</p>
+        </app-box-body>
+
+        <app-box-footer>
+          Some footer text!!
+        </app-box-footer>
+      </app-box>
+    </div>
+
+    <div class="col-md-4">
+      <app-box #box>
+        <app-box-header>
+          <h3 class="box-title">
+            Without header tools
+          </h3>
+        </app-box-header>
+
+        <app-box-body>
+          <p>Content!!</p>
+        </app-box-body>
+      </app-box>
+    </div>
+
+    <div class="col-md-4">
+      <app-box #box [isLoading]="true">
+        <app-box-header>
+          <h3 class="box-title">
+            Without header tools
+          </h3>
+          <app-box-tools (collapseBox)="box.toggleCollapse($event)" (hideBox)="box.hideBox($event)" [showCollapseBtn]="false">
+          </app-box-tools>
+        </app-box-header>
+
+        <app-box-body>
+          <p>Content!!</p>
+        </app-box-body>
+      </app-box>
+    </div>
+  </div>
+  <!-- Fin de Widgets traducidos a componentes en Angular -->
+
+  <!-- Los siguientes widgets no han sido traducidos a componentes de Angular -->
+
   <div class="callout callout-info">
     <h4>Tip!</h4>
     <p>
@@ -25,10 +96,6 @@
     </p>
   </div>
 
-  <app-page-header>
-    <h2>Widgets</h2>
-  </app-page-header>
-  
   <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
@@ -223,72 +290,118 @@
 </div>
 
 <div class="row">
-
   <div class="col-md-4">
-    <app-box #box>
-      <app-box-header>
-        <h3 class="box-title">
-          Foo title
-        </h3>
-        <app-box-tools (collapseBox)="box.toggleCollapse($event)" (hideBox)="box.hideBox($event)">
-
-          <div class="btn-group" dropdown>
-            <button id="single-button" type="button" class="btn" dropdownToggle>
-              <i class="fa fa-wrench"></i>
-            </button>
-            <ul dropdownMenu role="menu" aria-labelledby="single-button">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
+    <!-- Widget: user widget style 1 -->
+    <div class="box box-widget widget-user-2">
+      <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="widget-user-header bg-yellow">
+        <div class="widget-user-image">
+          <img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user7-128x128.jpg" alt="User Avatar">
+        </div>
+        <!-- /.widget-user-image -->
+        <h3 class="widget-user-username">Nadia Carmichael</h3>
+        <h5 class="widget-user-desc">Lead Developer</h5>
+      </div>
+      <div class="box-footer no-padding">
+        <ul class="nav nav-stacked">
+          <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+          <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+          <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+          <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- /.widget-user -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-4">
+    <!-- Widget: user widget style 1 -->
+    <div class="box box-widget widget-user">
+      <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="widget-user-header bg-aqua-active">
+        <h3 class="widget-user-username">Alexander Pierce</h3>
+        <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Avatar">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header">3,200</h5>
+              <span class="description-text">SALES</span>
+            </div>
+            <!-- /.description-block -->
           </div>
-
-        </app-box-tools>
-      </app-box-header>
-
-      <app-box-body>
-        <p>Content!!</p>
-      </app-box-body>
-
-      <app-box-footer>
-        Some footer text!!
-      </app-box-footer>
-    </app-box>
+          <!-- /.col -->
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header">13,000</h5>
+              <span class="description-text">FOLLOWERS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4">
+            <div class="description-block">
+              <h5 class="description-header">35</h5>
+              <span class="description-text">PRODUCTS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+    </div>
+    <!-- /.widget-user -->
   </div>
-
+  <!-- /.col -->
   <div class="col-md-4">
-    <app-box #box>
-      <app-box-header>
-        <h3 class="box-title">
-          Without header tools
-        </h3>
-      </app-box-header>
-
-      <app-box-body>
-        <p>Content!!</p>
-      </app-box-body>
-    </app-box>
-  </div>
-
-  <div class="col-md-4">
-    <app-box #box [isLoading]="true">
-      <app-box-header>
-        <h3 class="box-title">
-          Without header tools
-        </h3>
-        <app-box-tools (collapseBox)="box.toggleCollapse($event)"
-                       (hideBox)="box.hideBox($event)"
-                       [showCollapseBtn]="false">
-        </app-box-tools>
-      </app-box-header>
-
-      <app-box-body>
-        <p>Content!!</p>
-      </app-box-body>
-    </app-box>
-  </div>
+    <!-- Widget: user widget style 1 -->
+    <div class="box box-widget widget-user">
+      <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="widget-user-header bg-black" style="background: url('https://almsaeedstudio.com/themes/AdminLTE/dist/photo1.png') center center;">
+<h3 class="widget-user-username">Elizabeth Pierce</h3>
+<h5 class="widget-user-desc">Web Designer</h5>
 </div>
-</section>
+<div class="widget-user-image">
+  <img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user3-128x128.jpg" alt="User Avatar">
+</div>
+<div class="box-footer">
+  <div class="row">
+    <div class="col-sm-4 border-right">
+      <div class="description-block">
+        <h5 class="description-header">3,200</h5>
+        <span class="description-text">SALES</span>
+      </div>
+      <!-- /.description-block -->
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4 border-right">
+      <div class="description-block">
+        <h5 class="description-header">13,000</h5>
+        <span class="description-text">FOLLOWERS</span>
+      </div>
+      <!-- /.description-block -->
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4">
+      <div class="description-block">
+        <h5 class="description-header">35</h5>
+        <span class="description-text">PRODUCTS</span>
+      </div>
+      <!-- /.description-block -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+</div>
+<!-- /.widget-user -->
+</div>
+<!-- /.col -->
+</div>
+</app-page-content>
 <!-- /.content -->
