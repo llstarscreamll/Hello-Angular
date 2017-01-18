@@ -8,6 +8,7 @@ import { DropdownModule } from 'ng2-bootstrap/dropdown';
 // Layouts
 import { NavTopLayoutComponent } from './layouts/nav-top-layout/nav-top-layout.component';
 import { SidebarLayoutComponent } from './layouts/sidebar-layout/sidebar-layout.component';
+import { MiddleBoxLayoutComponent } from './layouts/middle-box-layout/middle-box-layout.component';
 
 // Layouts Partials
 import { FooterComponent } from './layouts/_partials/footer/footer.component';
@@ -30,6 +31,7 @@ export const COMPONENTS = [
   // Layouts
   NavTopLayoutComponent,
   SidebarLayoutComponent,
+  MiddleBoxLayoutComponent,
   // Partials
   FooterComponent,
   MainSidebarComponent,
