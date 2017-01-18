@@ -24,6 +24,7 @@ import { BoxToolsComponent } from './components/box-tools/box-tools.component';
 
 // Page Components
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { PageContentComponent } from './components/page-content/page-content.component';
 
 export const COMPONENTS = [
   // Layouts
@@ -42,6 +43,7 @@ export const COMPONENTS = [
   BoxToolsComponent,
   // Page Components
   PageHeaderComponent,
+  PageContentComponent
 ];
 
 @NgModule({
