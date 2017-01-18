@@ -22,6 +22,9 @@ import { BoxBodyComponent } from './components/box-body/box-body.component';
 import { BoxFooterComponent } from './components/box-footer/box-footer.component';
 import { BoxToolsComponent } from './components/box-tools/box-tools.component';
 
+// Page Components
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+
 export const COMPONENTS = [
   // Layouts
   NavTopLayoutComponent,
@@ -37,6 +40,8 @@ export const COMPONENTS = [
   BoxBodyComponent,
   BoxFooterComponent,
   BoxToolsComponent,
+  // Page Components
+  PageHeaderComponent,
 ];
 
 @NgModule({
