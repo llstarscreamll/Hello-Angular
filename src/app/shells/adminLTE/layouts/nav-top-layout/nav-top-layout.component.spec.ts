@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AdminLteNavTopLayoutComponent } from './admin-lte-nav-top-layout.component';
+import { NavTopLayoutComponent } from './admin-lte-nav-top-layout.component';
 
-describe('AdminLteNavTopLayoutComponent', () => {
-  let component: AdminLteNavTopLayoutComponent;
-  let fixture: ComponentFixture<AdminLteNavTopLayoutComponent>;
+describe('NavTopLayoutComponent', () => {
+  let component: NavTopLayoutComponent;
+  let fixture: ComponentFixture<NavTopLayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminLteNavTopLayoutComponent ]
+      declarations: [ NavTopLayoutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminLteNavTopLayoutComponent);
+    fixture = TestBed.createComponent(NavTopLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

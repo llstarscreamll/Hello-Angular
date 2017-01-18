@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   templateUrl: './nav-top-layout.component.html',
   styleUrls: ['./nav-top-layout.component.css'],
 })
-export class AdminLteNavTopLayoutComponent implements OnInit {
+export class NavTopLayoutComponent implements OnInit {
 
   private viewPortHeight: number = window.innerHeight;
 

@@ -12,7 +12,7 @@ import * as layout from './../../../../modules/core/actions/layout';
   styleUrls: ['./sidebar-layout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminLteSidebarLayoutComponent implements OnInit {
+export class SidebarLayoutComponent implements OnInit {
 
   @ViewChild('header') header: ElementRef;
 

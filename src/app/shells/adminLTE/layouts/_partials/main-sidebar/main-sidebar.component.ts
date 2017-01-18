@@ -6,7 +6,7 @@ import { MenuItem } from './../../../../../modules/core/models/MenuItem';
   templateUrl: './main-sidebar.component.html',
   styleUrls: ['./main-sidebar.component.css']
 })
-export class AdminLteMainSidebarComponent implements OnInit {
+export class MainSidebarComponent implements OnInit {
 
   public menuItems: MenuItem[] = [
     { label: 'Header', icon: '', url: '', visivility: 'private', isHeader: true, childs: [] },

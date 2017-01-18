@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AdminLteSidebarLayoutComponent } from './admin-lte-sidebar-layout.component';
+import { SidebarLayoutComponent } from './admin-lte-sidebar-layout.component';
 
-describe('AdminLteSidebarLayoutComponent', () => {
-  let component: AdminLteSidebarLayoutComponent;
-  let fixture: ComponentFixture<AdminLteSidebarLayoutComponent>;
+describe('SidebarLayoutComponent', () => {
+  let component: SidebarLayoutComponent;
+  let fixture: ComponentFixture<SidebarLayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminLteSidebarLayoutComponent ]
+      declarations: [ SidebarLayoutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminLteSidebarLayoutComponent);
+    fixture = TestBed.createComponent(SidebarLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

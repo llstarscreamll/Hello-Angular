@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-account-menu.component.html',
   styleUrls: ['./user-account-menu.component.css']
 })
-export class AdminLteUserAccountMenuComponent implements OnInit {
+export class UserAccountMenuComponent implements OnInit {
 
   constructor() { }
 

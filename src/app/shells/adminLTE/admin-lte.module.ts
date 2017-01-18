@@ -6,14 +6,14 @@ import { RouterModule } from '@angular/router';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 // Layouts
-import { AdminLteNavTopLayoutComponent } from './layouts/nav-top-layout/nav-top-layout.component';
-import { AdminLteSidebarLayoutComponent } from './layouts/sidebar-layout/sidebar-layout.component';
+import { NavTopLayoutComponent } from './layouts/nav-top-layout/nav-top-layout.component';
+import { SidebarLayoutComponent } from './layouts/sidebar-layout/sidebar-layout.component';
 
 // Layouts Partials
-import { AdminLteFooterComponent } from './layouts/_partials/footer/footer.component';
-import { AdminLteMainSidebarComponent } from './layouts/_partials/main-sidebar/main-sidebar.component';
-import { AdminLteControlSidebarComponent } from './layouts/_partials/control-sidebar/control-sidebar.component';
-import { AdminLteUserAccountMenuComponent } from './layouts/_partials/user-account-menu/user-account-menu.component';
+import { FooterComponent } from './layouts/_partials/footer/footer.component';
+import { MainSidebarComponent } from './layouts/_partials/main-sidebar/main-sidebar.component';
+import { ControlSidebarComponent } from './layouts/_partials/control-sidebar/control-sidebar.component';
+import { UserAccountMenuComponent } from './layouts/_partials/user-account-menu/user-account-menu.component';
 
 // Box Widget
 import { BoxComponent } from './components/box/box.component';
@@ -23,12 +23,12 @@ import { BoxFooterComponent } from './components/box-footer/box-footer.component
 import { BoxToolsComponent } from './components/box-tools/box-tools.component';
 
 export const COMPONENTS = [
-  AdminLteFooterComponent,
-  AdminLteMainSidebarComponent,
-  AdminLteNavTopLayoutComponent,
-  AdminLteSidebarLayoutComponent,
-  AdminLteControlSidebarComponent,
-  AdminLteUserAccountMenuComponent,
+  FooterComponent,
+  MainSidebarComponent,
+  NavTopLayoutComponent,
+  SidebarLayoutComponent,
+  ControlSidebarComponent,
+  UserAccountMenuComponent,
   // Box Widget
   BoxComponent,
   BoxHeaderComponent,
