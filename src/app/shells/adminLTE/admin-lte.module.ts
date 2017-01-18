@@ -12,6 +12,13 @@ import { AdminLteUserAccountMenuComponent } from './_partials/admin-lte-user-acc
 import { AdminLteNavTopLayoutComponent } from './admin-lte-nav-top-layout/admin-lte-nav-top-layout.component';
 import { AdminLteSidebarLayoutComponent } from './admin-lte-sidebar-layout/admin-lte-sidebar-layout.component';
 
+// Box Widget
+import { BoxComponent } from './components/box/box.component';
+import { BoxHeaderComponent } from './components/box-header/box-header.component';
+import { BoxBodyComponent } from './components/box-body/box-body.component';
+import { BoxFooterComponent } from './components/box-footer/box-footer.component';
+import { BoxToolsComponent } from './components/box-tools/box-tools.component';
+
 export const COMPONENTS = [
   AdminLteFooterComponent,
   AdminLteMainSidebarComponent,
@@ -19,6 +26,12 @@ export const COMPONENTS = [
   AdminLteSidebarLayoutComponent,
   AdminLteControlSidebarComponent,
   AdminLteUserAccountMenuComponent,
+  // Box Widget
+  BoxComponent,
+  BoxHeaderComponent,
+  BoxBodyComponent,
+  BoxFooterComponent,
+  BoxToolsComponent,
 ];
 
 @NgModule({
