@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NavTopLayoutComponent } from './admin-lte-nav-top-layout.component';
+import { NavTopLayoutComponent } from './nav-top-layout.component';
 
 describe('NavTopLayoutComponent', () => {
   let component: NavTopLayoutComponent;
