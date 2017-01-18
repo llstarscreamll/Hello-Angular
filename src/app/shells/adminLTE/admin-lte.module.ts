@@ -23,10 +23,12 @@ import { BoxFooterComponent } from './components/box-footer/box-footer.component
 import { BoxToolsComponent } from './components/box-tools/box-tools.component';
 
 export const COMPONENTS = [
-  FooterComponent,
-  MainSidebarComponent,
+  // Layouts
   NavTopLayoutComponent,
   SidebarLayoutComponent,
+  // Partials
+  FooterComponent,
+  MainSidebarComponent,
   ControlSidebarComponent,
   UserAccountMenuComponent,
   // Box Widget
