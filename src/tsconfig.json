@@ -1,4 +1,5 @@
 {
+  "exclude": [ "test.ts" ],
   "compilerOptions": {
     "baseUrl": "",
     "declaration": false,
@@ -10,7 +11,7 @@
     "moduleResolution": "node",
     "outDir": "../dist/out-tsc",
     "sourceMap": true,
-    "target": "es5",
+    "target": "es6",
     "typeRoots": [
       "../node_modules/@types"
     ]
