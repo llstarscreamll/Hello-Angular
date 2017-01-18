@@ -3,13 +3,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import * as fromRoot from './../../../modules/core/reducers';
-import * as layout from './../../../modules/core/actions/layout';
+import * as fromRoot from './../../../../modules/core/reducers';
+import * as layout from './../../../../modules/core/actions/layout';
 
 @Component({
   selector: 'app-sidebar-layout',
-  templateUrl: './admin-lte-sidebar-layout.component.html',
-  styleUrls: ['./admin-lte-sidebar-layout.component.css'],
+  templateUrl: './sidebar-layout.component.html',
+  styleUrls: ['./sidebar-layout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminLteSidebarLayoutComponent implements OnInit {
@@ -23,7 +23,7 @@ export class AdminLteSidebarLayoutComponent implements OnInit {
 
   public constructor(private store: Store<fromRoot.State>) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
     this.showControlSidebar$ = this.store.select(fromRoot.getShowControlSidebar);
   }

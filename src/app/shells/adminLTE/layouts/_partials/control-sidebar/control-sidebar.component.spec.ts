@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AdminLteControlSidebarComponent } from './admin-lte-control-sidebar.component';
+import { AdminLteControlSidebarComponent } from './control-sidebar.component';
 
 describe('AdminLteControlSidebarComponent', () => {
   let component: AdminLteControlSidebarComponent;

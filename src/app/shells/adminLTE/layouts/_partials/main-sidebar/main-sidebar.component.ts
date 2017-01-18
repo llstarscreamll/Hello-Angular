@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from './../../../../modules/core/models/MenuItem';
+import { MenuItem } from './../../../../../modules/core/models/MenuItem';
 
 @Component({
   selector: '[app-admin-lte-main-sidebar]',
-  templateUrl: './admin-lte-main-sidebar.component.html',
-  styleUrls: ['./admin-lte-main-sidebar.component.css']
+  templateUrl: './main-sidebar.component.html',
+  styleUrls: ['./main-sidebar.component.css']
 })
 export class AdminLteMainSidebarComponent implements OnInit {
 

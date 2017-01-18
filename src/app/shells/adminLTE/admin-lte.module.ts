@@ -5,12 +5,15 @@ import { RouterModule } from '@angular/router';
 // ng2-bootstrap
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
-import { AdminLteControlSidebarComponent } from './_partials/admin-lte-control-sidebar/admin-lte-control-sidebar.component';
-import { AdminLteFooterComponent } from './_partials/admin-lte-footer/admin-lte-footer.component';
-import { AdminLteMainSidebarComponent } from './_partials/admin-lte-main-sidebar/admin-lte-main-sidebar.component';
-import { AdminLteUserAccountMenuComponent } from './_partials/admin-lte-user-account-menu/admin-lte-user-account-menu.component';
-import { AdminLteNavTopLayoutComponent } from './admin-lte-nav-top-layout/admin-lte-nav-top-layout.component';
-import { AdminLteSidebarLayoutComponent } from './admin-lte-sidebar-layout/admin-lte-sidebar-layout.component';
+// Layouts
+import { AdminLteNavTopLayoutComponent } from './layouts/nav-top-layout/nav-top-layout.component';
+import { AdminLteSidebarLayoutComponent } from './layouts/sidebar-layout/sidebar-layout.component';
+
+// Layouts Partials
+import { AdminLteFooterComponent } from './layouts/_partials/footer/footer.component';
+import { AdminLteMainSidebarComponent } from './layouts/_partials/main-sidebar/main-sidebar.component';
+import { AdminLteControlSidebarComponent } from './layouts/_partials/control-sidebar/control-sidebar.component';
+import { AdminLteUserAccountMenuComponent } from './layouts/_partials/user-account-menu/user-account-menu.component';
 
 // Box Widget
 import { BoxComponent } from './components/box/box.component';

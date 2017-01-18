@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AdminLteMainSidebarComponent } from './admin-lte-main-sidebar.component';
+import { AdminLteUserAccountMenuComponent } from './user-account-menu.component';
 
-describe('AdminLteMainSidebarComponent', () => {
-  let component: AdminLteMainSidebarComponent;
-  let fixture: ComponentFixture<AdminLteMainSidebarComponent>;
+describe('AdminLteUserAccountMenuComponent', () => {
+  let component: AdminLteUserAccountMenuComponent;
+  let fixture: ComponentFixture<AdminLteUserAccountMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminLteMainSidebarComponent ]
+      declarations: [ AdminLteUserAccountMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminLteMainSidebarComponent);
+    fixture = TestBed.createComponent(AdminLteUserAccountMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
