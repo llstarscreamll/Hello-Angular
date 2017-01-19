@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TranslateService} from 'ng2-translate';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() {
-  }
+  public ngOnInit() { }
 
 }

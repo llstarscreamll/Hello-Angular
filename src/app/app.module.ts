@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+// ng2 Translate
+import {TranslateModule, TranslateService} from 'ng2-translate';
+
 // Shell
 import { AdminLTEShellModule } from './shells/adminLTE/admin-lte.module';
 // Modules
@@ -25,6 +28,7 @@ import { reducer } from './modules/core/reducers';
   imports: [
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    TranslateModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -37,4 +41,11 @@ import { reducer } from './modules/core/reducers';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(translate: TranslateService) {
+	  	translate.setDefaultLang('es');
+	    translate.use('es');
+	}
+  
+}
