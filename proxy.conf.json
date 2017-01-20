@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+    "target": "http://api.hello.dev",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {"^/api" : ""}
+  }
+}
