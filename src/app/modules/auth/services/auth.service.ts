@@ -3,8 +3,10 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { tokenNotExpired } from 'angular2-jwt';
 
 import { AuthUser } from '../models/authUser';
+import { LocalStorageService } from './../../core/services/localStorage';
 
 @Injectable()
 export class AuthService {
@@ -13,8 +15,14 @@ export class AuthService {
   private headers: Headers;
   private API_ENDPOINT: string = "/api/user/login";
 
-  public constructor(private http: Http) {
+  public constructor(private http: Http, private localStorageService: LocalStorageService) {
     this.headers = new Headers({ 'Accept': 'application/json' });
+  }
+
+  public loggedIn(): boolean {
+    // are there a token and is a valid token?
+    console.log(tokenNotExpired('token'));
+    return tokenNotExpired('token');
   }
 
   /**
@@ -30,7 +38,7 @@ export class AuthService {
   /**
    * Handle the error responses.
    */
-  public handleError(error: Response | any) {
+  private handleError(error: Response | any) {
     let errorMsg: string;
     let body: string | any;
 

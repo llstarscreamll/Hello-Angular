@@ -29,14 +29,32 @@ export class AuthEffects {
    */
   @Effect() logIn$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN)
-    .map(action => action.payload as LoginCredentials)
+    .map((action: Action) => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => this.authService.login(credentials.email, credentials.password))
     .do((user: AuthUser) => this.localStorageService.setUser(user))
     .map((user: AuthUser) => new auth.LoginSuccessAction(user))
-    .catch((error) => of(new auth.FlasErrors(error)));
+    .catch((error) => of(new auth.FlashErrors(error)));
   
   /**
-   * LOGIN_SUCCESS Effect, redirect to backoffice when the login process is succes.
+   * LOGIN_FROM_LOCALSTORAGE Effect, tries to setup the user session based on the
+   * token saved on localStorage, if the token is invalid, performs the LOGOUT_SUCCESS Action/@Effect.
+   */
+  @Effect() loginFromLocalStorage$: Observable<Action> = this.actions$
+    .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
+    .startWith(new auth.ToggleLoadingAction(true))
+    .map(() => {
+        return this.authService.loggedIn()
+          ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)
+          : new auth.LogoutSuccessAction(null);
+      });
+    
+  @Effect() logoutSuccess$: Observable<Action> = this.actions$
+    .ofType(auth.ActionTypes.LOGOUT_SUCCESS)
+    .map(() => this.localStorageService.removeUser())
+    .map(() => new auth.ToggleLoadingAction(false));
+  
+  /**
+   * LOGIN_SUCCESS Effect, redirect to back office when the login process is success.
    */
   @Effect() loginSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_SUCCESS)

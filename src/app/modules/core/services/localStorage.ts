@@ -17,11 +17,27 @@ export class LocalStorageService {
     }
 
     /**
+     * Remove item from localStorage.
+     */
+    public removeItem(key: string) {
+        return localStorage.removeItem(key);
+    }
+
+    /**
      * Set user data on localStorage.
      */
     public setUser(user: AuthUser) {
         this.setItem('token', user.token);
         this.setItem('user', user);
+    }
+
+    /**
+     * Remove the user data from localStorage.
+     */
+    public removeUser() {
+        this.removeItem('token');
+        this.removeItem('user');
+        return true;
     }
 
 }
