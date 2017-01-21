@@ -37,6 +37,8 @@ import { combineReducers } from '@ngrx/store';
  * notation packages up all of the exports into a single object.
  */
 import * as fromLayout from './layout';
+// import here the reducers from other modules
+import * as fromAuth from './../../auth/reducers/auth';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -44,6 +46,8 @@ import * as fromLayout from './layout';
  */
 export interface State {
   layout: fromLayout.State;
+  auth: fromAuth.State;
+  router: fromRouter.RouterState;
 }
 
 /**
@@ -55,6 +59,8 @@ export interface State {
  */
 const reducers = {
   layout: fromLayout.reducer,
+  auth: fromAuth.reducer,
+  router: fromRouter.routerReducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -72,5 +78,15 @@ export function reducer(state: any, action: any) {
  * Layout Selectors
  */
 export const getLayoutState = (state: State) => state.layout;
+
 export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowSidenav);
 export const getShowControlSidebar = createSelector(getLayoutState, fromLayout.getShowControlSidebar);
+
+/**
+ * Auth Selectors
+ */
+export const getAuthState = (state: State) => state.auth;
+
+export const getAuthLoading = createSelector(getAuthState, fromAuth.getAuthLoading);
+export const getAuthApiMsg = createSelector(getAuthState, fromAuth.getAuthApiMsg);
+export const getAuthApiErrors = createSelector(getAuthState, fromAuth.getAuthApiErrors);

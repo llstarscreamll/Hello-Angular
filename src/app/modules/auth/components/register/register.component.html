@@ -1,6 +1,7 @@
 <app-middle-box-layout>
   <h3 class="text-center" translate>AUTH.Register</h3>
-  <form>
+  
+  <form [formGroup]="account">
     <div class="form-group has-feedback">
       <input type="text" class="form-control" placeholder="{{ 'AUTH.Full name' | translate}}">
       <span class="glyphicon glyphicon-user form-control-feedback"></span>

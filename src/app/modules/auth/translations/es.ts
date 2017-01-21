@@ -16,5 +16,7 @@ export const ES = {
 		// buttons
 		'Sign In': 'Entrar',
 		'Create Account': 'Crear',
+		// Validation Messages
+		'required field': 'Este campo es obligatorio.'
 	}
 }

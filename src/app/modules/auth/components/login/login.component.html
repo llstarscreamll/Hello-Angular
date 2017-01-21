@@ -1,33 +1,66 @@
 <app-middle-box-layout>
   <h3 class="text-center" translate>AUTH.Login</h3>
+
+  <div *ngIf="serverMsg$ | async"
+       class="alert alert-danger">
+    {{ serverMsg$ | async }}
+  </div>
   
- <form>
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="{{ 'AUTH.Email' | translate }}">
+   <form novalidate
+         [formGroup]="loginForm"
+         (ngSubmit)="onSubmit()">
+
+      <div class="form-group has-feedback"
+           [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || (serverErrors$ | async)?.email">
+        <input type="email"
+               class="form-control"
+               placeholder="{{ 'AUTH.Email' | translate }}"
+               formControlName="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="{{ 'AUTH.Password' | translate }}">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox">
-            <label>
-                  <input type="checkbox"> {{ 'AUTH.Remember Me' | translate }}
-            </label>
-          </div>
+        <div class="text-danger"
+             *ngIf="(!loginForm.get('email').valid && loginForm.get('email').touched) || (serverErrors$ | async )?.email">
+             <span *ngIf="loginForm.get('email').hasError('required')">
+               {{ 'AUTH.required field' | translate }}
+             </span>
+             <span>{{ (serverErrors$ | async)?.email }}</span>
         </div>
+      </div>
+
+      <div class="form-group has-feedback"
+           [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || serverErrors?.password">
+        <input type="password"
+               class="form-control"
+               placeholder="{{ 'AUTH.Password' | translate }}"
+               formControlName="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div class="text-danger"
+             *ngIf="(!loginForm.get('password').valid && loginForm.get('password').touched) || (serverErrors$ | async)?.password">
+             <span *ngIf="loginForm.get('password').hasError('required')">
+               {{ 'AUTH.required field' | translate }}
+             </span>
+             <span>{{ (serverErrors$ | async)?.password }}</span>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-8"></div>
+
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" translate>AUTH.Sign In</button>
+          <button type="submit"
+                  class="btn btn-primary btn-block btn-flat"
+                  [disabled]="loginForm.invalid || (loading$ | async)"
+                  translate>AUTH.Sign In</button>
         </div>
         <!-- /.col -->
+
       </div>
+
     </form>
 
-  <a routerLink="/auth/register" translate>AUTH.Register</a>
-  <div class="clearfix"></div>
-  <a routerLink="/front/landing" translate>AUTH.Go to Lading Page</a>
+    <a routerLink="/auth/register" translate>AUTH.Register</a>
+    <div class="clearfix"></div>
+    <a routerLink="/front/landing" translate>AUTH.Go to Lading Page</a>
   
 </app-middle-box-layout>

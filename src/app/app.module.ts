@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { StoreModule } from '@ngrx/store';
+import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // ng2 Translate
@@ -19,15 +20,16 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { reducer } from './modules/core/reducers';
+import { reducer as coreReducer } from './modules/core/reducers';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    StoreModule.provideStore(reducer),
+    StoreModule.provideStore(coreReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    RouterStoreModule.connectRouter(),
     TranslateModule.forRoot(),
     BrowserModule,
     FormsModule,
