@@ -5,6 +5,7 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 import { of } from 'rxjs/observable/of';
 
 import { AuthService } from './../services/auth.service';
@@ -28,6 +29,7 @@ export class AuthEffects {
     .ofType(auth.ActionTypes.LOGIN)
     .map(action => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => this.authService.login(credentials.email, credentials.password))
+    .do(user => localStorage.setItem('user', JSON.stringify(user)))
     .map((user: AuthUser) => new auth.LoginSuccessAction(user))
     .catch((error) => of(new auth.FlasErrors(error)));
   
