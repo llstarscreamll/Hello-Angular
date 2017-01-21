@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import * as layout from '../actions/layout';
 
-
 export interface State {
   showSidenav: boolean;
   showControlSidebar: boolean;
