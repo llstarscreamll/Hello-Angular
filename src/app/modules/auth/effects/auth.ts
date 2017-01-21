@@ -12,6 +12,7 @@ import { AuthService } from './../services/auth.service';
 import { LoginCredentials } from './../models/loginCredentials';
 import { AuthUser } from './../models/authUser';
 import * as auth from './../actions/auth';
+import { LocalStorageService } from './../.././core/services/localStorage';
 
 @Injectable()
 export class AuthEffects {
@@ -19,6 +20,7 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
+    private localStorageService: LocalStorageService
   ) { }
   
   /**
@@ -29,7 +31,7 @@ export class AuthEffects {
     .ofType(auth.ActionTypes.LOGIN)
     .map(action => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => this.authService.login(credentials.email, credentials.password))
-    .do(user => localStorage.setItem('user', JSON.stringify(user)))
+    .do((user: AuthUser) => this.localStorageService.setUser(user))
     .map((user: AuthUser) => new auth.LoginSuccessAction(user))
     .catch((error) => of(new auth.FlasErrors(error)));
   
