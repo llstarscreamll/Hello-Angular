@@ -8,11 +8,11 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import { of } from 'rxjs/observable/of';
 
+import { LocalStorageService } from './../.././core/services/localStorage';
 import { AuthService } from './../services/auth.service';
 import { LoginCredentials } from './../models/loginCredentials';
 import { AuthUser } from './../models/authUser';
 import * as auth from './../actions/auth';
-import { LocalStorageService } from './../.././core/services/localStorage';
 
 @Injectable()
 export class AuthEffects {
@@ -36,8 +36,9 @@ export class AuthEffects {
     .catch((error) => of(new auth.FlashErrors(error)));
   
   /**
-   * LOGIN_FROM_LOCALSTORAGE Effect, tries to setup the user session based on the
-   * token saved on localStorage, if the token is invalid, performs the LOGOUT_SUCCESS Action/@Effect.
+   * LOGIN_FROM_LOCALSTORAGE Effect, tries to setup the user session based on
+   * the token saved on localStorage, if the token is invalid, performs the
+   * LOGOUT_SUCCESS Action/@Effect.
    */
   @Effect() loginFromLocalStorage$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
@@ -58,7 +59,8 @@ export class AuthEffects {
     .map(() => new auth.LogoutSuccessAction(null));
   
   /**
-   * LOGOUT_SUCCESS Effect, remove the user data from localStorage and redirects to login page.
+   * LOGOUT_SUCCESS Effect, remove the user data from localStorage and
+   * redirects to login page.
    */
   @Effect() logoutSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGOUT_SUCCESS)
@@ -67,7 +69,8 @@ export class AuthEffects {
     .map(() => go(['/auth/login']));
   
   /**
-   * LOGIN_SUCCESS Effect, redirect to back office when the login process is success.
+   * LOGIN_SUCCESS Effect, redirect to back office when the login process is
+   * success.
    */
   @Effect() loginSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_SUCCESS)
@@ -75,4 +78,4 @@ export class AuthEffects {
     .map((user: AuthUser) => console.info('welcome ' + user.name))
     .map(() => go(['/welcome']));
 
-    }
+}

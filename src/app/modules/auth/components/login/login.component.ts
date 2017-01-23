@@ -64,12 +64,4 @@ export class LoginComponent implements OnInit {
       }));
   }
 
-  /**
-   * Handles the error response from API.
-   */
-  private handelApiErrors(error) {
-    // this.serverErrors = error.errors;
-    // this.serverMsg = error.message;
-  }
-
 }

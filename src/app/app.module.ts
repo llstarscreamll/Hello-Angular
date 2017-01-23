@@ -22,14 +22,14 @@ import { LocalStorageService } from './modules/core/services/localStorage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { reducer as coreReducer } from './modules/core/reducers';
+import { reducer } from './modules/core/reducers';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    StoreModule.provideStore(coreReducer),
+    StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterStoreModule.connectRouter(),
     TranslateModule.forRoot(),

@@ -3,11 +3,12 @@ import * as auth from '../actions/auth';
 import { AuthUser } from './../models/authUser';
 
 /**
- * Los reducers no puede ser importados desde módulos hijos, sólo desde el módulo principal:
+ * Los reducers no puede ser importados desde módulos hijos, sólo desde el
+ * módulo principal:
  * https://github.com/ngrx/store/issues/211
  * 
- * Esta caracteristica ha sido muy peidia en la comunidad pero aun no ha sido implementada,
- * al parecer se implementará en la versión 3 de @ngrx/store:
+ * Esta caracteristica ha sido muy peidia en la comunidad pero aun no ha sido
+ * implementada, al parecer se implementará en la versión 3 de @ngrx/store:
  * https://gist.github.com/MikeRyan52/5d361681ed0c81e38775dd2db15ae202
  */
 
@@ -31,7 +32,7 @@ export function reducer(state = initialState, action: auth.Actions): State {
   switch (action.type) {
 
     /**
-     * This is for set loading = true, the LOGIN actions ia handled on @Effects
+     * This is for set loading = true, the LOGIN action is handled on @Effects
      */
     case auth.ActionTypes.LOGIN: {
       return {

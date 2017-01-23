@@ -15,7 +15,10 @@ export class AuthService {
   private headers: Headers;
   private API_ENDPOINT: string = "/api/user/";
 
-  public constructor(private http: Http, private localStorageService: LocalStorageService) {
+  public constructor(
+    private http: Http,
+    private localStorageService: LocalStorageService
+    ) {
     this.headers = new Headers({ 'Accept': 'application/json' });
   }
 
@@ -34,9 +37,8 @@ export class AuthService {
    */
   public loggedIn(): boolean {
     // are there a token and is a valid token?
-    console.info('are there a valid token? ' + tokenNotExpired(null, this.localStorageService.getItem('token')));
-
-    return tokenNotExpired(null, this.localStorageService.getItem('token'));
+    console.info('are there a valid token? ' + tokenNotExpired('token'));
+    return tokenNotExpired('token');
   }
 
   /**
