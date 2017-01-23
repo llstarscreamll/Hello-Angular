@@ -1,3 +1,4 @@
 {
-    "typescript.check.workspaceVersion": false
+    "typescript.check.workspaceVersion": false,
+    "editor.rulers": [80,120]
 }
