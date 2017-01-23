@@ -55,8 +55,6 @@ export function reducer(state = initialState, action: auth.Actions): State {
     };
 
     case auth.ActionTypes.LOGOUT_SUCCESS: {
-      console.log('from logout');
-      console.log(action);
       return {
         loggedIn: false,
         loading: false,

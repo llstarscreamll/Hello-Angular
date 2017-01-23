@@ -24,17 +24,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { reducer as coreReducer } from './modules/core/reducers';
 
-// angular2-JWT
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-// Setup for angular2-JWT
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
-        tokenGetter: (() => localStorage.getItem('token')),
-        globalHeaders: [{'Content-Type':'application/json'}],
-     }), http, options);
-}
-
 @NgModule({
   declarations: [
     AppComponent
@@ -55,11 +44,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
   providers: [
     LocalStorageService,
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
-    }
   ],
   bootstrap: [AppComponent]
 })

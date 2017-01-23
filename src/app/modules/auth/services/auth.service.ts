@@ -13,16 +13,10 @@ export class AuthService {
 
   // requests options
   private headers: Headers;
-  private API_ENDPOINT: string = "/api/user/login";
+  private API_ENDPOINT: string = "/api/user/";
 
   public constructor(private http: Http, private localStorageService: LocalStorageService) {
     this.headers = new Headers({ 'Accept': 'application/json' });
-  }
-
-  public loggedIn(): boolean {
-    // are there a token and is a valid token?
-    console.log(tokenNotExpired('token'));
-    return tokenNotExpired('token');
   }
 
   /**
@@ -30,8 +24,30 @@ export class AuthService {
    */
   public login(email: string, password: string): Observable<AuthUser> {
     return this.http
-      .post(this.API_ENDPOINT, { 'email': email, 'password': password }, this.headers)
+      .post(this.API_ENDPOINT + 'login', { 'email': email, 'password': password }, this.headers)
       .map(res => res.json().data as AuthUser)
+      .catch(this.handleError);
+  }
+
+  /**
+   * Checks if there is a valid token.
+   */
+  public loggedIn(): boolean {
+    // are there a token and is a valid token?
+    console.info('are there a valid token? ' + tokenNotExpired(null, this.localStorageService.getItem('token')));
+
+    return tokenNotExpired(null, this.localStorageService.getItem('token'));
+  }
+
+  /**
+   * Logs out the user from the API.
+   */
+  public logout(): Observable<any> {
+    this.headers.set('authorization', 'Bearer ' + this.localStorageService.getItem('token'));
+
+    return this.http
+      .post(this.API_ENDPOINT + 'logout', {}, { headers: this.headers })
+      .map(res => res.json().message)
       .catch(this.handleError);
   }
 

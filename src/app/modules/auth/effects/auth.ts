@@ -47,17 +47,32 @@ export class AuthEffects {
           ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)
           : new auth.LogoutSuccessAction(null);
       });
-    
+  
+  /**
+   * LOGOUT Effect, logs out the user from the app and the API.
+   */
+  @Effect() logout$: Observable<Action> = this.actions$
+    .ofType(auth.ActionTypes.LOGOUT)
+    .switchMap(() => this.authService.logout())
+    .map(() => console.info('bye user!!'))
+    .map(() => new auth.LogoutSuccessAction(null));
+  
+  /**
+   * LOGOUT_SUCCESS Effect, remove the user data from localStorage and redirects to login page.
+   */
   @Effect() logoutSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGOUT_SUCCESS)
     .map(() => this.localStorageService.removeUser())
-    .map(() => new auth.ToggleLoadingAction(false));
+    .map(() => new auth.ToggleLoadingAction(false))
+    .map(() => go(['/auth/login']));
   
   /**
    * LOGIN_SUCCESS Effect, redirect to back office when the login process is success.
    */
   @Effect() loginSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_SUCCESS)
+    .map((action) => action.payload as AuthUser)
+    .map((user: AuthUser) => console.info('welcome ' + user.name))
     .map(() => go(['/welcome']));
 
     }
