@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { WelcomeComponent } from './welcome.component';
+import { IMPORTS } from './../core/tests/util';
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
@@ -11,7 +12,8 @@ describe('WelcomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeComponent ]
+      declarations: [ WelcomeComponent ],
+      imports: [ IMPORTS ]
     })
     .compileComponents();
   }));

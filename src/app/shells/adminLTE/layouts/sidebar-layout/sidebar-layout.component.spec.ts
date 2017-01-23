@@ -5,13 +5,16 @@ import { DebugElement } from '@angular/core';
 
 import { SidebarLayoutComponent } from './sidebar-layout.component';
 
+import { IMPORTS } from './../../utils';
+
 describe('SidebarLayoutComponent', () => {
   let component: SidebarLayoutComponent;
   let fixture: ComponentFixture<SidebarLayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarLayoutComponent ]
+      declarations: [ SidebarLayoutComponent ],
+      imports: [ IMPORTS ]
     })
     .compileComponents();
   }));

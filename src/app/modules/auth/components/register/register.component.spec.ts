@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { RegisterComponent } from './register.component';
+import { IMPORTS } from './../../../../modules/core/tests/util';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -11,7 +12,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      declarations: [ RegisterComponent ],
+      imports: [IMPORTS]
     })
     .compileComponents();
   }));

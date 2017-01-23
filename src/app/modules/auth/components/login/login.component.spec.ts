@@ -5,13 +5,18 @@ import { DebugElement } from '@angular/core';
 
 import { LoginComponent } from './login.component';
 
+import { IMPORTS } from './../../../../modules/core/tests/util';
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      imports: [
+        ...IMPORTS
+      ],
     })
     .compileComponents();
   }));

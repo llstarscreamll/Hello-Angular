@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { UserAccountMenuComponent } from './user-account-menu.component';
+import { IMPORTS } from './../../../utils';
 
 describe('UserAccountMenuComponent', () => {
   let component: UserAccountMenuComponent;
@@ -11,7 +12,8 @@ describe('UserAccountMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserAccountMenuComponent ]
+      declarations: [ UserAccountMenuComponent ],
+      imports: [ IMPORTS ]
     })
     .compileComponents();
   }));

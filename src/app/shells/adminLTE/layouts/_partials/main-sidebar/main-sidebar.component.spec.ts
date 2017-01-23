@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { MainSidebarComponent } from './main-sidebar.component';
+import { IMPORTS } from './../../../utils';
 
 describe('MainSidebarComponent', () => {
   let component: MainSidebarComponent;
@@ -11,7 +12,8 @@ describe('MainSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainSidebarComponent ]
+      declarations: [ MainSidebarComponent ],
+      imports: [ IMPORTS ]
     })
     .compileComponents();
   }));

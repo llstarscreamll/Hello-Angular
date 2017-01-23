@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { FrontComponent } from './front.component';
+import { IMPORTS } from './../core/tests/util';
 
 describe('FrontComponent', () => {
   let component: FrontComponent;
@@ -11,7 +12,8 @@ describe('FrontComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FrontComponent ]
+      declarations: [ FrontComponent ],
+      imports: [ IMPORTS ]
     })
     .compileComponents();
   }));

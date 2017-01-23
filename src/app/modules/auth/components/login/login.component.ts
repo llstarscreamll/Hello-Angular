@@ -9,10 +9,8 @@ import 'rxjs/add/operator/catch';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from './../../services/auth.service';
 import { AuthUser } from './../../models/authUser';
 
-// import * as fromAuth from './../../reducers/auth';
 import * as authActions from './../../actions/auth';
 import * as fromRoot from './../../../core/reducers';
 
@@ -31,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   public constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
     private store: Store<fromRoot.State>
   ) { }
 
