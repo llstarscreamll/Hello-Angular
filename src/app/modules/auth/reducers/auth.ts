@@ -80,9 +80,9 @@ export function reducer(state = initialState, action: auth.Actions): State {
       let apiErros = action.payload as auth.ApiErrors;
 
       return {
-        loggedIn: false,
-        loading: false,
-        user: null,
+        loggedIn: state.loggedIn,
+        loading: state.loading,
+        user: state.user,
         errors: apiErros.errors || {},
         APImsg: apiErros.message || ''
       };

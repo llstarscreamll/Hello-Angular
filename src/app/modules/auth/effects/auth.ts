@@ -31,7 +31,6 @@ export class AuthEffects {
     .ofType(auth.ActionTypes.LOGIN)
     .map((action: Action) => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => this.authService.login(credentials.email, credentials.password))
-    .do((user: AuthUser) => this.localStorageService.setUser(user))
     .map((user: AuthUser) => new auth.LoginSuccessAction(user))
     .catch((error) => of(new auth.FlashErrors(error)));
   
@@ -75,7 +74,8 @@ export class AuthEffects {
   @Effect() loginSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_SUCCESS)
     .map((action) => action.payload as AuthUser)
-    .map((user: AuthUser) => console.info('welcome ' + user.name))
+    .do((user: AuthUser) => this.localStorageService.setUser(user))
+    .do((user: AuthUser) => console.info('welcome ' + user.name))
     .map(() => go(['/welcome']));
 
 }

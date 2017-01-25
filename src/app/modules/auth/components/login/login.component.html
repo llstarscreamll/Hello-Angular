@@ -13,6 +13,7 @@
       <div class="form-group has-feedback"
            [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || (serverErrors$ | async)?.email">
         <input type="email"
+               name="email"
                class="form-control"
                placeholder="{{ 'AUTH.Email' | translate }}"
                formControlName="email">
@@ -29,6 +30,7 @@
       <div class="form-group has-feedback"
            [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || serverErrors?.password">
         <input type="password"
+               name="password"
                class="form-control"
                placeholder="{{ 'AUTH.Password' | translate }}"
                formControlName="password">
