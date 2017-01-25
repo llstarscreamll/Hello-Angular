@@ -69,7 +69,6 @@ export class AuthService {
     }
 
     console.error(`${error.status} - ` + errorMsg);
-    console.error(body);
 
     return Observable.throw(body);
   }

@@ -74,6 +74,7 @@ describe('Auth reducer', () => {
 
         expect(actual.errors).toEqual(APIerror.errors);
         expect(actual.APImsg).toEqual(APIerror.message);
+        expect(actual.loading).toEqual(false);
     });
 
 });

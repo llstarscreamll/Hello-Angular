@@ -53,7 +53,7 @@ export class LogoutSuccessAction implements Action {
 
 export class ToggleLoadingAction implements Action {
   type = ActionTypes.TOGGLE_LOADING;
-  constructor(public payload: boolean = true) {}
+  constructor(public payload: boolean) {}
 }
 
 export class FlashErrors implements Action {

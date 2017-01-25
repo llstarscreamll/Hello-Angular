@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/from';
 import { of } from 'rxjs/observable/of';
 
 import { LocalStorageService } from './../.././core/services/localStorage';
@@ -41,7 +42,7 @@ export class AuthEffects {
    */
   @Effect() loginFromLocalStorage$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
-    .startWith(new auth.ToggleLoadingAction(true))
+    .startWith(new auth.LoginFromLocalStorageAction(null))
     .map(() => {
         return this.authService.loggedIn()
           ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)

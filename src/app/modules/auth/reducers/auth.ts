@@ -81,7 +81,7 @@ export function reducer(state = initialState, action: auth.Actions): State {
 
       return {
         loggedIn: state.loggedIn,
-        loading: state.loading,
+        loading: false,
         user: state.user,
         errors: apiErros.errors || {},
         APImsg: apiErros.message || ''
