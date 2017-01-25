@@ -31,9 +31,11 @@ export class AuthEffects {
   @Effect() logIn$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN)
     .map((action: Action) => action.payload as LoginCredentials)
-    .switchMap((credentials: LoginCredentials) => this.authService.login(credentials.email, credentials.password))
-    .map((user: AuthUser) => new auth.LoginSuccessAction(user))
-    .catch((error) => of(new auth.FlashErrors(error)));
+    .switchMap((credentials: LoginCredentials) => {
+      return this.authService.login(credentials.email, credentials.password)
+        .map((user: AuthUser) => new auth.LoginSuccessAction(user))
+        .catch((error) => of(new auth.FlashErrors(error)))
+    });
   
   /**
    * LOGIN_FROM_LOCALSTORAGE Effect, tries to setup the user session based on
@@ -54,9 +56,11 @@ export class AuthEffects {
    */
   @Effect() logout$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGOUT)
-    .switchMap(() => this.authService.logout())
-    .map(() => console.info('bye user!!'))
-    .map(() => new auth.LogoutSuccessAction(null));
+    .switchMap(() => {
+      return this.authService.logout()
+        .map(() => console.info('bye user!!'))
+        .map(() => new auth.LogoutSuccessAction(null));
+    });
   
   /**
    * LOGOUT_SUCCESS Effect, remove the user data from localStorage and
