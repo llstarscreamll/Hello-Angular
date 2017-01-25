@@ -1,14 +1,20 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { TestBed, getTestBed, async, inject } from '@angular/core/testing';
+import { Http, BaseRequestOptions, Headers, Response, ResponseOptions, RequestMethod, XHRBackend } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 import { AuthService } from './auth.service';
+import { LocalStorageService } from './../../core/services/localStorage';
 
-describe('AuthService', () => {
-  let service: AuthService = null;
-  let backend: MockBackend = null;
+describe('Auth Service', () => {
+  let testbet: TestBed;
+  let service: AuthService;
+  let backend: MockBackend;
+  let userData;
+  let http: Http;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -20,37 +26,68 @@ describe('AuthService', () => {
           useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backendInstance, defaultOptions);
           },
-          deps: [ MockBackend, BaseRequestOptions ]
+          deps: [MockBackend, BaseRequestOptions]
         },
+        { provide: XHRBackend, useClass: MockBackend },
         AuthService,
+        LocalStorageService,
       ]
     });
+
+    testbet = getTestBed();
+    service = testbet.get(AuthService);
+    backend = testbet.get(MockBackend);
+    http = testbet.get(Http);
+    userData = {
+      name: 'John Doe',
+      email: 'john@doe.com',
+    };
   });
 
-  beforeEach(inject([AuthService, MockBackend], (authService: AuthService, mockBackend: MockBackend) => {
-    service = authService;
-    backend = mockBackend;
-  }));
-
-  let userData = {
-    name: 'John Doe',
-    email: 'john@doe.com',
-  };
-/*
-  it('should call the api to log in the user', (done) => {
+  // helper function to MockBackend responses
+  function setupConnections(backend: MockBackend, options: any, mockError: boolean = false) {
     backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
-        body: JSON.stringify(userData)
-      });
-      connection.mockRespond(new Response(options));
-      expect(connection.request.method).toEqual(RequestMethod.Get);
+      let responseOptions = new ResponseOptions(options);
+      if (mockError === true) {
+        let response = new Error('foo server error');
+        connection.mockError(response);
+      } else {
+        let response = new Response(responseOptions);
+        connection.mockRespond(response);
+      }
     });
+  }
+
+  it('should call the API to log in the user on server', () => {
+    let response = {
+      body: { data: userData },
+      status: 200
+    };
+    setupConnections(backend, response);
 
     service
       .login('john@doe.com', '123456')
       .subscribe((res) => {
         expect(res).toEqual(userData);
-        done();
       });
-  });*/
+  });
+
+  it('should handle errors from API', () => {
+    let response = {
+      message: 'Credentials Incorrect.',
+      status_code: 401
+    };
+
+    spyOn(service, 'login').and.returnValue(Observable.throw(response));
+    spyOn(service, 'handleError').and.returnValue(Observable.throw(response));
+
+    service.login('john@doe.com', '123456')
+      .subscribe(
+      res => { },
+      error => {
+        expect(error.status_code).toEqual(401);
+        expect(error.message).toEqual(response.message);
+      });
+  });
+
 });

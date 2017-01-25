@@ -65,7 +65,7 @@ export class AuthService {
       const err = body.message || JSON.stringify(body);
       errorMsg = `${error.statusText || ''}, ${err}`;
     } else {
-      errorMsg = error.message ? error.message : error.toString();
+      errorMsg = error.statusText ? error.statusText : error.toString();
     }
 
     console.error(`${error.status} - ` + errorMsg);
