@@ -12,7 +12,7 @@ import { Service } from './../../core/abstracts/service';
 @Injectable()
 export class AuthService extends Service {
 
-  protected API_ENDPOINT: string = "/api/user/";
+  protected API_ENDPOINT: string = "user";
 
   public constructor(
     private http: Http,
@@ -26,7 +26,7 @@ export class AuthService extends Service {
    */
   public login(email: string, password: string): Observable<AuthUser> {
     return this.http
-      .post(this.API_ENDPOINT + 'login', { 'email': email, 'password': password }, this.headers)
+      .post(this.apiEndpoint('login'), { 'email': email, 'password': password }, this.headers)
       .map(res => res.json().data as AuthUser)
       .catch(this.handleError);
   }
@@ -47,7 +47,7 @@ export class AuthService extends Service {
     this.headers.set('authorization', 'Bearer ' + this.localStorageService.getItem('token'));
 
     return this.http
-      .post(this.API_ENDPOINT + 'logout', {}, { headers: this.headers })
+      .post(this.apiEndpoint('logout'), {}, { headers: this.headers })
       .map(res => res.json().message)
       .catch(this.handleError);
   }

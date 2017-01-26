@@ -1,6 +1,7 @@
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+import { ENV } from './../../../../environments/env';
 
 /**
  * Abstract Class Service.
@@ -9,9 +10,17 @@ export abstract class Service {
 
   protected headers: Headers;
   protected abstract API_ENDPOINT: string;
+  private DOMAIN: string = ENV.API_URL;
 
   public constructor() {
     this.headers = new Headers({ 'Accept': 'application/json' });
+  }
+
+  /**
+   * Returns full API endpoint.
+   */
+  protected apiEndpoint(path: string = ''): string {
+    return this.DOMAIN + '/' +this.API_ENDPOINT + '/' + path;
   }
 
   /**

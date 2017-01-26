@@ -9,7 +9,7 @@ import { Service } from './../abstracts/service';
 @Injectable()
 export class AppService extends Service {
 
-  protected API_ENDPOINT: string = "/api/company-info";
+  protected API_ENDPOINT: string = "company-info";
 
   public constructor(private http: Http) {
     super();
@@ -20,7 +20,7 @@ export class AppService extends Service {
    */
   public getData() {
     return this.http
-      .get(this.API_ENDPOINT, this.headers)
+      .get(this.apiEndpoint(), this.headers)
       .map(res => res.json().data)
       .catch(this.handleError);
   }
