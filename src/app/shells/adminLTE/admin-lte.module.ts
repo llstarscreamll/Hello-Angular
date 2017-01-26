@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+// ng2 Translate
+import { TranslateService, TranslateModule } from 'ng2-translate';
+
 // ng2-bootstrap
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
@@ -31,6 +34,9 @@ import { BoxToolsComponent } from './components/box-tools/box-tools.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PageContentComponent } from './components/page-content/page-content.component';
 
+// Language files
+import { ES } from './../translations/es';
+
 export const COMPONENTS = [
   // Layouts
   NavTopLayoutComponent,
@@ -53,9 +59,15 @@ export const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, DropdownModule.forRoot()],
+  imports: [CommonModule, RouterModule, TranslateModule, DropdownModule.forRoot()],
   providers: [],
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
-export class AdminLTEShellModule { }
+export class AdminLTEShellModule {
+
+  public constructor(translate: TranslateService) {
+    translate.setTranslation('es', ES, true);
+  }
+  
+}
