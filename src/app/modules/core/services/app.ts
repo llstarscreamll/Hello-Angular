@@ -6,13 +6,13 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class AppService {
-    // requests options
+  // requests options
   private headers: Headers;
   private API_ENDPOINT: string = "/api/company-info";
 
   public constructor(
     private http: Http
-    ) {
+  ) {
     this.headers = new Headers({ 'Accept': 'application/json' });
   }
 
@@ -20,10 +20,10 @@ export class AppService {
    * Retrieve the app data from the API.
    */
   public getData() {
-      return this.http
-        .get(this.API_ENDPOINT, this.headers)
-        .map(res => res.json().data)
-        .catch(this.handleError);
+    return this.http
+      .get(this.API_ENDPOINT, this.headers)
+      .map(res => res.json().data)
+      .catch(this.handleError);
   }
 
   /**
