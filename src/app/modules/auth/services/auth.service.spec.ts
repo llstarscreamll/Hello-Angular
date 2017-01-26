@@ -8,14 +8,13 @@ import 'rxjs/add/observable/throw';
 
 import { AuthService } from './auth.service';
 import { LocalStorageService } from './../../core/services/localStorage';
-import { TEST_USER } from './../../core/tests/util';
+import { TEST_USER, setupConnections } from './../../core/tests/util';
 
 describe('Auth Service', () => {
   let testbet: TestBed;
   let service: AuthService;
   let backend: MockBackend;
   let userData;
-  let http: Http;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,23 +37,8 @@ describe('Auth Service', () => {
     testbet = getTestBed();
     service = testbet.get(AuthService);
     backend = testbet.get(MockBackend);
-    http = testbet.get(Http);
     userData = TEST_USER;
   });
-
-  // helper function to MockBackend responses
-  function setupConnections(backend: MockBackend, options: any, mockError: boolean = false) {
-    backend.connections.subscribe((connection: MockConnection) => {
-      let responseOptions = new ResponseOptions(options);
-      if (mockError === true) {
-        let response = new Error('foo server error');
-        connection.mockError(response);
-      } else {
-        let response = new Response(responseOptions);
-        connection.mockRespond(response);
-      }
-    });
-  }
 
   it('should call the API to log in the user on server', () => {
     let response = {
