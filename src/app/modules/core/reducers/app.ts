@@ -8,8 +8,8 @@ export class State {
 
 const initialState: State = {
     companyInfo: {
-        name: 'webApp',
-        cc_year: Date().toString(),
+        name: 'WebApp',
+        cc_year: '2017',
         website: 'www.google.com'
     }
 }
