@@ -33,7 +33,15 @@
           <div class="navbar-custom-menu">
               
               <!-- User Account Menu -->
-              <ul app-admin-lte-user-account-menu class="nav navbar-nav"></ul>
+              <ul app-admin-lte-user-account-menu
+                  *ngIf="(authState$ | async)?.loggedIn"
+                  [user]="(authState$ | async)?.user"
+                  class="nav navbar-nav"></ul>
+            
+            <ul *ngIf="!(authState$ | async)?.loggedIn" class="nav navbar-nav">
+              <li><a class="login-link" routerLink="/auth/login">Login</a></li>
+              <li><a class="sign-up-link" routerLink="/auth/register">Create Account</a></li>
+            </ul>
 
           </div>
           <!-- /.navbar-custom-menu -->

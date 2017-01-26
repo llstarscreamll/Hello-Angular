@@ -57,3 +57,4 @@ export const getAuthState = (state: State) => state.auth;
 export const getAuthLoading = createSelector(getAuthState, fromAuth.getAuthLoading);
 export const getAuthApiMsg = createSelector(getAuthState, fromAuth.getAuthApiMsg);
 export const getAuthApiErrors = createSelector(getAuthState, fromAuth.getAuthApiErrors);
+export const getAuthUser = createSelector(getAuthState, fromAuth.getAuthUser);

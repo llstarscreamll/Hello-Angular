@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from './../../../../../modules/core/models/MenuItem';
+import { AuthUser } from './../../../../../modules/auth/models/authUser';
 
 @Component({
   selector: '[app-admin-lte-main-sidebar]',
@@ -29,6 +30,7 @@ export class MainSidebarComponent implements OnInit {
   ];
 
   public selectedItemIndex: number = 0;
+  @Input() user: AuthUser;
 
   public constructor() { }
 

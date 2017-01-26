@@ -14,8 +14,12 @@ import { MiddleBoxLayoutComponent } from './layouts/middle-box-layout/middle-box
 import { FooterComponent } from './layouts/_partials/footer/footer.component';
 import { MainSidebarComponent } from './layouts/_partials/main-sidebar/main-sidebar.component';
 import { ControlSidebarComponent } from './layouts/_partials/control-sidebar/control-sidebar.component';
-import { UserAccountMenuComponent } from './layouts/_partials/user-account-menu/user-account-menu.component';
 
+/**
+ * Components
+ */
+// User menu component
+import { UserAccountMenuComponent } from './components/user-account-menu/user-account-menu.component';
 // Box Widget
 import { BoxComponent } from './components/box/box.component';
 import { BoxHeaderComponent } from './components/box-header/box-header.component';

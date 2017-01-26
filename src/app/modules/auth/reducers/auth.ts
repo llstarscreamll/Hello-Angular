@@ -98,3 +98,4 @@ export function reducer(state = initialState, action: auth.Actions): State {
 export const getAuthLoading = (state: State) => state.loading;
 export const getAuthApiMsg = (state: State) => state.APImsg;
 export const getAuthApiErrors = (state: State) => state.errors;
+export const getAuthUser = (state: State) => state.user;

@@ -1,16 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+
+import { State as AuthState }  from './../../../../modules/auth/reducers/auth';
+import * as fromRoot from './../../../../modules/core/reducers';
 
 @Component({
   selector: 'app-nav-top-layout',
   templateUrl: './nav-top-layout.component.html',
   styleUrls: ['./nav-top-layout.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavTopLayoutComponent implements OnInit {
 
   private viewPortHeight: number = window.innerHeight;
+  public authState$: Observable<AuthState>;
 
-  constructor() { }
+  constructor(private store: Store<fromRoot.State>) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.authState$ = this.store.select(fromRoot.getAuthState);
+  }
 
 }

@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 
 import { AuthService } from './auth.service';
 import { LocalStorageService } from './../../core/services/localStorage';
+import { TEST_USER } from './../../core/tests/util';
 
 describe('Auth Service', () => {
   let testbet: TestBed;
@@ -38,10 +39,7 @@ describe('Auth Service', () => {
     service = testbet.get(AuthService);
     backend = testbet.get(MockBackend);
     http = testbet.get(Http);
-    userData = {
-      name: 'John Doe',
-      email: 'john@doe.com',
-    };
+    userData = TEST_USER;
   });
 
   // helper function to MockBackend responses

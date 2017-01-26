@@ -24,7 +24,10 @@
         <div class="navbar-custom-menu">
 
           <!-- User Account Menu -->
-          <ul app-admin-lte-user-account-menu class="nav navbar-nav"></ul>
+          <ul app-admin-lte-user-account-menu
+              *ngIf="(authState$ | async)?.loggedIn"
+              [user]="(authState$ | async)?.user"
+              class="nav navbar-nav"></ul>
 
           <ul class="nav navbar-nav">
             <!-- Control Sidebar Toggle Button -->
@@ -39,7 +42,9 @@
     </header>
 
     <!-- Left side column. contains the logo and main sidebar -->
-    <aside app-admin-lte-main-sidebar class="main-sidebar"></aside>
+    <aside app-admin-lte-main-sidebar
+           class="main-sidebar"
+           [user]="(authState$ | async)?.user"></aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" [ngStyle]="{'height.px': viewPortHeight}">

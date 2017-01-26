@@ -1,5 +1,6 @@
 import { reducer } from './auth';
 import * as actions from './../actions/auth';
+import { TEST_USER } from './../../core/tests/util';
 
 describe('Auth reducer', () => {
 
@@ -16,22 +17,7 @@ describe('Auth reducer', () => {
     });
 
     it('should handle LOGIN_SUCCESS action', () => {
-        let user = {
-            id: 1,
-            visitor_id: 1,
-            social_id: 'social_id',
-            token: 'auth-token',
-            name: 'John Doe',
-            nickname: 'john-doe',
-            gender: 'm',
-            email: 'john@doe.com',
-            roles: {},
-            birth: 1,
-            confirmed: true,
-            created_at: {},
-            social_auth_provider: '',
-            social_avatar: {},
-        };
+        let user = TEST_USER;
         let actual = reducer(undefined, new actions.LoginSuccessAction(user));
         let expected = {
             loggedIn: true,
