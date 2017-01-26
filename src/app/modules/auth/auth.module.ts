@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 // @ngrx
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 // ng2 Translate
 import { TranslateService, TranslateModule } from 'ng2-translate';

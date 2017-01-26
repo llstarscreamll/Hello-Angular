@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as auth from '../actions/auth';
 import { AuthUser } from './../models/authUser';
 

@@ -1,6 +1,5 @@
 import { reducer } from './app';
 import * as actions from './../actions/app';
-import { TEST_USER } from './../tests/util';
 
 describe('App Reducers', () => {
 

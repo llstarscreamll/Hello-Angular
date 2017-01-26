@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { type } from '../util';
 import { Company } from './../models/company';
 

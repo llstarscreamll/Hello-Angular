@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as app from './../actions/app';
 import { Company } from './../models/company';
 
