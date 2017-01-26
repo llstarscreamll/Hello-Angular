@@ -7,19 +7,18 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 import { AuthUser } from '../models/authUser';
 import { LocalStorageService } from './../../core/services/localStorage';
+import { Service } from './../../core/abstracts/service';
 
 @Injectable()
-export class AuthService {
+export class AuthService extends Service {
 
-  // requests options
-  private headers: Headers;
-  private API_ENDPOINT: string = "/api/user/";
+  protected API_ENDPOINT: string = "/api/user/";
 
   public constructor(
     private http: Http,
     private localStorageService: LocalStorageService
     ) {
-    this.headers = new Headers({ 'Accept': 'application/json' });
+    super();
   }
 
   /**
@@ -51,26 +50,6 @@ export class AuthService {
       .post(this.API_ENDPOINT + 'logout', {}, { headers: this.headers })
       .map(res => res.json().message)
       .catch(this.handleError);
-  }
-
-  /**
-   * Handle the error responses.
-   */
-  private handleError(error: Response | any) {
-    let errorMsg: string;
-    let body: string | any;
-
-    if (error instanceof Response) {
-      body = error.json() || '';
-      const err = body.message || JSON.stringify(body);
-      errorMsg = `${error.statusText || ''}, ${err}`;
-    } else {
-      errorMsg = error.statusText ? error.statusText : error.toString();
-    }
-
-    console.error(`${error.status} - ` + errorMsg);
-
-    return Observable.throw(body);
   }
 
 }

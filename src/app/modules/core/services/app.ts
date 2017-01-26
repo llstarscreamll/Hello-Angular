@@ -4,16 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-@Injectable()
-export class AppService {
-  // requests options
-  private headers: Headers;
-  private API_ENDPOINT: string = "/api/company-info";
+import { Service } from './../abstracts/service';
 
-  public constructor(
-    private http: Http
-  ) {
-    this.headers = new Headers({ 'Accept': 'application/json' });
+@Injectable()
+export class AppService extends Service {
+
+  protected API_ENDPOINT: string = "/api/company-info";
+
+  public constructor(private http: Http) {
+    super();
   }
 
   /**
@@ -26,23 +25,4 @@ export class AppService {
       .catch(this.handleError);
   }
 
-  /**
-   * Handle the error responses.
-   */
-  private handleError(error: Response | any) {
-    let errorMsg: string;
-    let body: string | any;
-
-    if (error instanceof Response) {
-      body = error.json() || '';
-      const err = body.message || JSON.stringify(body);
-      errorMsg = `${error.statusText || ''}, ${err}`;
-    } else {
-      errorMsg = error.statusText ? error.statusText : error.toString();
-    }
-
-    console.error(`${error.status} - ` + errorMsg);
-
-    return Observable.throw(body);
-  }
 }
