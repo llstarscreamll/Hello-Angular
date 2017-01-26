@@ -10,12 +10,14 @@ import { combineReducers } from '@ngrx/store';
  * Importing reducers from other modules.
  */ 
 import * as fromLayout from './layout';
+import * as fromApp from './app';
 import * as fromAuth from './../../auth/reducers/auth';
 
 /**
  * The app state interface.
  */
 export interface State {
+  app: fromApp.State;
   layout: fromLayout.State;
   auth: fromAuth.State;
   router: fromRouter.RouterState;
@@ -25,6 +27,7 @@ export interface State {
  * Declares the router and modules reducers.
  */
 const reducers = {
+  app: fromApp.reducer,
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
@@ -58,3 +61,8 @@ export const getAuthLoading = createSelector(getAuthState, fromAuth.getAuthLoadi
 export const getAuthApiMsg = createSelector(getAuthState, fromAuth.getAuthApiMsg);
 export const getAuthApiErrors = createSelector(getAuthState, fromAuth.getAuthApiErrors);
 export const getAuthUser = createSelector(getAuthState, fromAuth.getAuthUser);
+
+/**
+ * Core Selectors
+ */
+export const getAppState = (state: State) => state.app;

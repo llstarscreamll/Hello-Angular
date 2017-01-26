@@ -6,6 +6,7 @@ import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 // ng2 Translate
 import {TranslateModule, TranslateService} from 'ng2-translate';
@@ -18,11 +19,13 @@ import { FrontModule } from './modules/front/front.module';
 import { WelcomeModule } from './modules/welcome/welcome.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { LocalStorageService } from './modules/core/services/localStorage';
+import { AppService } from './modules/core/services/app';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { reducer } from './modules/core/reducers';
+import { AppEffects } from './modules/core/effects/app';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { reducer } from './modules/core/reducers';
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterStoreModule.connectRouter(),
+    EffectsModule.run(AppEffects),
     TranslateModule.forRoot(),
     BrowserModule,
     FormsModule,
@@ -43,7 +47,8 @@ import { reducer } from './modules/core/reducers';
     AuthModule
   ],
   providers: [
-    LocalStorageService,
+    LocalStorageService, AppService
+
   ],
   bootstrap: [AppComponent]
 })
