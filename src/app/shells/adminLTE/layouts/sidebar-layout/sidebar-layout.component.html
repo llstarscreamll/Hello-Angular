@@ -1,4 +1,8 @@
-<div class="sidebar-mini skin-blue" [ngClass]="{'sidebar-collapse': !(showSidenav$ | async), 'sidebar-open': (!(showSidenav$ | async) && viewPortWidth <= 768)}">
+<div class="sidebar-mini skin-blue"
+     [ngClass]="{
+      'sidebar-collapse': !(showSidenav$ | async),
+      'sidebar-open': (!(showSidenav$ | async) && viewPortWidth <= 768)
+      }">
   <div class="wrapper">
 
     <!-- Main Header -->
