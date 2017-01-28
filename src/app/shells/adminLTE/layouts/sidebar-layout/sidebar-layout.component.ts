@@ -1,7 +1,15 @@
-import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostListener,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import * as fromRoot from './../../../../modules/core/reducers';
 import * as layout from './../../../../modules/core/actions/layout';
@@ -16,14 +24,19 @@ import { State as AuthState }  from './../../../../modules/auth/reducers/auth';
 })
 export class SidebarLayoutComponent implements OnInit {
 
-  @ViewChild('header') header: ElementRef;
-
   public showSidenav$: Observable<boolean>;
   public showControlSidebar$: Observable<boolean>;
   public authState$: Observable<AuthState>;
   public appState$: Observable<AppState>;
 
-  private viewPortHeight: number = window.innerHeight;
+  public viewPortHeight: number = window.innerHeight;
+  public viewPortWidth: number = window.innerWidth;
+
+  @ViewChild('header') header: ElementRef;
+  @HostListener('window:resize', ['$event']) onResize(event) {
+    this.viewPortWidth = event.target.innerWidth;
+    this.viewPortHeight = event.target.innerHeight;
+  }
 
   public constructor(private store: Store<fromRoot.State>) { }
 
