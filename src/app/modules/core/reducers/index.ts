@@ -63,6 +63,6 @@ export const getAuthApiErrors = createSelector(getAuthState, fromAuth.getAuthApi
 export const getAuthUser = createSelector(getAuthState, fromAuth.getAuthUser);
 
 /**
- * Core Selectors
+ * App Selectors
  */
 export const getAppState = (state: State) => state.app;

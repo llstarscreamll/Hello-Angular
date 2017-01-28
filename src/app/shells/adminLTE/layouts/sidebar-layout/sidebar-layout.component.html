@@ -9,9 +9,9 @@
       <!-- Logo -->
       <a routerLink="/welcome" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini">{{ (appState$ | async)?.companyInfo.short_name }}</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg"><b>{{ (appState$ | async)?.companyInfo.big_name }}</b> {{ (appState$ | async)?.companyInfo.small_name }}</span>
       </a>
 
       <!-- Header Navbar -->
@@ -53,7 +53,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer app-admin-lte-footer class="main-footer"></footer>
+    <footer app-admin-lte-footer class="main-footer" [appState]="(appState$ | async)"></footer>
 
     <!-- Control Sidebar -->
     <aside app-admin-lte-control-sidebar

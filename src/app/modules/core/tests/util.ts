@@ -7,6 +7,8 @@ import { TranslateModule } from 'ng2-translate';
 
 import { AdminLTEShellModule as Shell } from './../../../shells/adminLTE/admin-lte.module';
 import { reducer } from './../reducers';
+import { Company } from './../../core/models/company';
+import { AuthUser } from './../../auth/models/authUser';
 
 export const IMPORTS = [
   Shell,
@@ -16,7 +18,7 @@ export const IMPORTS = [
   RouterTestingModule
 ];
 
-export const TEST_USER = {
+export const TEST_USER: AuthUser = {
   "id": 1,
   "name": "Super Admin",
   "email": "admin@admin.com",
@@ -41,8 +43,11 @@ export const TEST_USER = {
   }
 };
 
-export const COMPANY = {
-  name: 'ACME Inc.',
+export const COMPANY: Company = {
+  fullname: 'ACME Inc.',
+  short_name: 'ACME',
+  big_name: 'ACME',
+  small_name: 'Inc.',
   cc_year: '2017',
   website: 'www.acme.com'
 };

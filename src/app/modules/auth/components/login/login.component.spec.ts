@@ -12,11 +12,6 @@ import { IMPORTS } from './../../../../modules/core/tests/util';
 import * as authActions from './../../actions/auth';
 import * as fromRoot from './../../../../modules/core/reducers';
 
-let RouterMock = {
-  navigate: true,
-  root: ''
-};
-
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;

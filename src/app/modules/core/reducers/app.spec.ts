@@ -7,7 +7,10 @@ describe('App Reducers', () => {
     let actual = reducer(undefined, new actions.GetAppDataAction());
     let expected = {
       companyInfo: {
-        name: 'WebApp',
+        fullname: 'WebApp',
+        short_name: 'App',
+        big_name: 'Web',
+        small_name: 'App',
         cc_year: '2017',
         website: 'www.google.com'
       }

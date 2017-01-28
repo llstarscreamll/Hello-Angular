@@ -8,10 +8,12 @@ import { Observable } from 'rxjs/Observable';
 import { SidebarLayoutComponent } from './sidebar-layout.component';
 import { UserAccountMenuComponent } from './../../components/user-account-menu/user-account-menu.component';
 import { MainSidebarComponent } from './../_partials/main-sidebar/main-sidebar.component';
+import { FooterComponent } from './../_partials/footer/footer.component';
 import * as fromRoot from './../../../../modules/core/reducers';
 import * as authActions from './../../../../modules/auth/actions/auth';
+import * as appActions from './../../../../modules/core/actions/app';
 import { IMPORTS } from './../../utils';
-import { TEST_USER } from './../../../../modules/core/tests/util';
+import { TEST_USER, COMPANY } from './../../../../modules/core/tests/util';
 
 describe('SidebarLayoutComponent', () => {
   let component: SidebarLayoutComponent;
@@ -21,7 +23,7 @@ describe('SidebarLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SidebarLayoutComponent, MainSidebarComponent, UserAccountMenuComponent],
+      declarations: [SidebarLayoutComponent, MainSidebarComponent, UserAccountMenuComponent, FooterComponent],
       imports: [IMPORTS]
     })
       .compileComponents();
@@ -75,5 +77,21 @@ describe('SidebarLayoutComponent', () => {
     });
 
   }));
+
+  it('should show the App name on page header', () => {
+    component.ngOnInit();
+
+    store.dispatch(new appActions.GetAppDataSuccessAction(COMPANY));
+    fixture.detectChanges();
+    
+    let appNameElem = fixture.debugElement.query(By.css('a.logo .logo-lg'));
+    let appShortNameElem = fixture.debugElement.query(By.css('a.logo .logo-mini'));
+
+    component.appState$.subscribe(res => {
+      expect(res.companyInfo.fullname).toEqual(COMPANY.fullname);
+      expect(appNameElem.nativeElement.textContent).toContain(COMPANY.fullname);
+      expect(appShortNameElem.nativeElement.textContent).toContain(COMPANY.short_name);
+    });
+  });
 
 });

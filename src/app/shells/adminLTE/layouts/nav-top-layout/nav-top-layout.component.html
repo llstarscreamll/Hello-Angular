@@ -5,7 +5,7 @@
       <nav class="navbar navbar-static-top">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a href="/" class="navbar-brand"><b>Admin</b>LTE</a>
+            <a href="/" class="navbar-brand"><b>{{ (appState$ | async)?.companyInfo.big_name }}</b> {{ (appState$ | async)?.companyInfo.small_name }}</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -62,7 +62,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer app-admin-lte-footer class="main-footer"></footer>
+    <footer app-admin-lte-footer class="main-footer" [appState]="(appState$ | async)"></footer>
 
   </div>
   <!-- ./wrapper -->

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import * as fromRoot from './../../../../modules/core/reducers';
 import * as layout from './../../../../modules/core/actions/layout';
+import { State as AppState } from './../../../../modules/core/reducers/app';
 import { State as AuthState }  from './../../../../modules/auth/reducers/auth';
 
 @Component({
@@ -20,15 +21,17 @@ export class SidebarLayoutComponent implements OnInit {
   public showSidenav$: Observable<boolean>;
   public showControlSidebar$: Observable<boolean>;
   public authState$: Observable<AuthState>;
+  public appState$: Observable<AppState>;
 
   private viewPortHeight: number = window.innerHeight;
 
   public constructor(private store: Store<fromRoot.State>) { }
 
   public ngOnInit() {
+    this.appState$ = this.store.select(fromRoot.getAppState);
+    this.authState$ = this.store.select(fromRoot.getAuthState);
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
     this.showControlSidebar$ = this.store.select(fromRoot.getShowControlSidebar);
-    this.authState$ = this.store.select(fromRoot.getAuthState);
   }
 
   /**

@@ -5,10 +5,12 @@ import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { NavTopLayoutComponent } from './nav-top-layout.component';
+import { FooterComponent } from './../_partials/footer/footer.component';
 import { UserAccountMenuComponent } from './../../components/user-account-menu/user-account-menu.component';
 import { IMPORTS } from './../../utils';
-import { TEST_USER } from './../../../../modules/core/tests/util';
+import { TEST_USER, COMPANY } from './../../../../modules/core/tests/util';
 import * as fromRoot from './../../../../modules/core/reducers';
+import * as appActions from './../../../../modules/core/actions/app';
 import * as authActions from './../../../../modules/auth/actions/auth';
 
 describe('NavTopLayoutComponent', () => {
@@ -19,7 +21,7 @@ describe('NavTopLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NavTopLayoutComponent, UserAccountMenuComponent],
+      declarations: [FooterComponent, NavTopLayoutComponent, UserAccountMenuComponent],
       imports: [IMPORTS]
     })
       .compileComponents();
@@ -65,5 +67,19 @@ describe('NavTopLayoutComponent', () => {
     });
 
   }));
+
+  it('should show the App name on page header', () => {
+    component.ngOnInit();
+
+    store.dispatch(new appActions.GetAppDataSuccessAction(COMPANY));
+    fixture.detectChanges();
+    
+    let appNameElem = fixture.debugElement.query(By.css('div.navbar-header .navbar-brand'));
+
+    component.appState$.subscribe(res => {
+      expect(res.companyInfo.fullname).toEqual(COMPANY.fullname);
+      expect(appNameElem.nativeElement.textContent).toContain(COMPANY.fullname);
+    });
+  });
 
 });
