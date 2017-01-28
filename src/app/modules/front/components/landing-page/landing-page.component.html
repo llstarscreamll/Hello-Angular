@@ -50,7 +50,7 @@
     </div>
 
     <div class="col-md-4">
-      <app-box #box>
+      <app-box>
         <app-box-header>
           <h3 class="box-title">
             Without header tools
@@ -64,12 +64,12 @@
     </div>
 
     <div class="col-md-4">
-      <app-box #box [isLoading]="true">
+      <app-box [isLoading]="true">
         <app-box-header>
           <h3 class="box-title">
             Without header tools
           </h3>
-          <app-box-tools (collapseBox)="box.toggleCollapse($event)" (hideBox)="box.hideBox($event)" [showCollapseBtn]="false">
+          <app-box-tools [showCollapseBtn]="false">
           </app-box-tools>
         </app-box-header>
 
