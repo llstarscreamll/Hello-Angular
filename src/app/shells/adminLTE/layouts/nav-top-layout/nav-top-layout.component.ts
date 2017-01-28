@@ -17,6 +17,7 @@ export class NavTopLayoutComponent implements OnInit {
   private viewPortHeight: number = window.innerHeight;
   public authState$: Observable<AuthState>;
   public appState$: Observable<AppState>;
+  public collapseNavBar: boolean = true;
 
   constructor(private store: Store<fromRoot.State>) { }
 

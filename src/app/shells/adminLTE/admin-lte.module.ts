@@ -7,6 +7,7 @@ import { TranslateService, TranslateModule } from 'ng2-translate';
 
 // ng2-bootstrap
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { CollapseModule } from 'ng2-bootstrap/collapse';
 
 // Layouts
 import { NavTopLayoutComponent } from './layouts/nav-top-layout/nav-top-layout.component';
@@ -59,7 +60,13 @@ export const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, TranslateModule, DropdownModule.forRoot()],
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+    DropdownModule.forRoot(),
+    CollapseModule.forRoot()
+  ],
   providers: [],
   declarations: COMPONENTS,
   exports: COMPONENTS,

@@ -31,9 +31,7 @@
           <ul app-admin-lte-user-account-menu
               *ngIf="(authState$ | async)?.loggedIn"
               [user]="(authState$ | async)?.user"
-              class="nav navbar-nav"></ul>
-
-          <ul class="nav navbar-nav">
+              class="nav navbar-nav">
             <!-- Control Sidebar Toggle Button -->
             <li>
               <a (click)="toggleControlSidebar()"
@@ -41,6 +39,7 @@
                  role="button"><i class="fa fa-gears"></i></a>
             </li>
           </ul>
+
         </div>
       </nav>
     </header>

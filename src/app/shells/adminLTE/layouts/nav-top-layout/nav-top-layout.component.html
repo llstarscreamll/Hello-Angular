@@ -6,13 +6,15 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <a href="/" class="navbar-brand"><b>{{ (appState$ | async)?.companyInfo.big_name }}</b> {{ (appState$ | async)?.companyInfo.small_name }}</a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <button (click)="collapseNavBar = !collapseNavBar"
+                    type="button"
+                    class="navbar-toggle">
             <i class="fa fa-bars"></i>
           </button>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <div [collapse]="collapseNavBar" class="collapse navbar-collapse pull-left">
 
             <ul class="nav navbar-nav">
               <li><a routerLink="/welcome">Example Link</a></li>
