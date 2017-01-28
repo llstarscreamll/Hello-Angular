@@ -10,11 +10,11 @@ import { State as appState } from './../../../../../modules/core/reducers/app';
     </div>
     <!-- Default to the left -->
     <strong class="app-copy-right">
-      Copyright &copy;{{ appState?.companyInfo.cc_year }} <a href="#">{{ appState?.companyInfo.fullname }}</a>
+      Copyright &copy;{{ appState?.companyInfo.cc_year }} <a href="{{ appState?.companyInfo.website }}">{{ appState?.companyInfo.fullname }}</a>
     </strong>
     All rights reserved.
   `,
-  styleUrls: ['./footer.component.css']
+  styles: []
 })
 export class FooterComponent implements OnInit {
 
