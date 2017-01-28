@@ -9,8 +9,8 @@ import { ENV } from './../../../../environments/env';
 export abstract class Service {
 
   protected headers: Headers;
+  private domain: string = ENV.API_URL;
   protected abstract API_ENDPOINT: string;
-  private DOMAIN: string = ENV.API_URL;
 
   public constructor() {
     this.headers = new Headers({ 'Accept': 'application/json' });
@@ -20,7 +20,7 @@ export abstract class Service {
    * Returns full API endpoint.
    */
   protected apiEndpoint(path: string = ''): string {
-    return this.DOMAIN + '/' +this.API_ENDPOINT + '/' + path;
+    return this.domain + '/' + this.API_ENDPOINT + '/' + path;
   }
 
   /**
@@ -29,6 +29,7 @@ export abstract class Service {
   protected handleError(error: Response | any): Observable<any> {
     let errorMsg: string;
     let body: string | any;
+    console.info(error);
 
     if (error instanceof Response) {
       body = error.json() || '';
