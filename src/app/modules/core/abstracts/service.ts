@@ -29,7 +29,6 @@ export abstract class Service {
   protected handleError(error: Response | any): Observable<any> {
     let errorMsg: string;
     let body: string | any;
-    console.info(error);
 
     if (error instanceof Response) {
       body = error.json() || '';
