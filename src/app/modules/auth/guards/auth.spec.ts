@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { Component } from '@angular/core';
-import { TestBed, getTestBed, async, inject } from '@angular/core/testing';
+import { TestBed, getTestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -28,16 +28,6 @@ class RoutingComponent { }
 })
 class PrivateComponent { }
 
-@Component({
-  template: `Public Component`
-})
-class PublicComponent { }
-
-@Component({
-  template: `Login Component`
-})
-class LoginComponent { }
-
 describe('AuthGuard', () => {
   let testBed: TestBed;
   let router: Router;
@@ -52,8 +42,6 @@ describe('AuthGuard', () => {
         HttpModule,
         StoreModule.provideStore(fromRoot.reducer),
         RouterTestingModule.withRoutes([
-          { path: 'public', component: PublicComponent },
-          { path: 'login', component: LoginComponent },
           { path: 'private', component: PrivateComponent, canActivate: [AuthGuard] }
         ]),
       ],
@@ -61,7 +49,7 @@ describe('AuthGuard', () => {
         AuthGuard, AuthService, LocalStorageService
       ],
       declarations: [
-        PrivateComponent, PublicComponent, LoginComponent, RoutingComponent
+        PrivateComponent, RoutingComponent
       ]
     });
 
