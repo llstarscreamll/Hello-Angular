@@ -12,7 +12,8 @@ import { Service } from './../../core/abstracts/service';
 @Injectable()
 export class AuthService extends Service {
 
-  protected API_ENDPOINT: string = "user";
+  protected API_ENDPOINT: string = 'user';
+  public loginRoute: string = '/auth/login';
 
   public constructor(
     private http: Http,

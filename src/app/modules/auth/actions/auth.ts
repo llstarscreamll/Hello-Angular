@@ -48,7 +48,7 @@ export class LogoutAction implements Action {
 
 export class LogoutSuccessAction implements Action {
   type = ActionTypes.LOGOUT_SUCCESS;
-  constructor(public payload: AuthUser | null) {}
+  constructor(public payload: boolean) {}
 }
 
 export class ToggleLoadingAction implements Action {

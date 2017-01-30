@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { go } from '@ngrx/router-store';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -23,7 +24,7 @@ export class AuthEffects {
     private authService: AuthService,
     private localStorageService: LocalStorageService
   ) { }
-  
+
   /**
    * LOGIN Effect, calls the Auth API and triggers success or error actions
    * based on the API response.
@@ -36,7 +37,7 @@ export class AuthEffects {
         .map((user: AuthUser) => new auth.LoginSuccessAction(user))
         .catch((error) => of(new auth.FlashErrors(error)))
     });
-  
+
   /**
    * LOGIN_FROM_LOCALSTORAGE Effect, tries to setup the user session based on
    * the token saved on localStorage, if the token is invalid, performs the
@@ -46,11 +47,11 @@ export class AuthEffects {
     .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
     .startWith(new auth.LoginFromLocalStorageAction(null))
     .map(() => {
-        return this.authService.loggedIn()
-          ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)
-          : new auth.LogoutSuccessAction(null);
-      });
-  
+      return this.authService.loggedIn()
+        ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)
+        : new auth.LogoutSuccessAction(false); // false = no redirect the user to login form
+    });
+
   /**
    * LOGOUT Effect, logs out the user from the app and the API.
    */
@@ -59,19 +60,23 @@ export class AuthEffects {
     .switchMap(() => {
       return this.authService.logout()
         .map(() => console.info('bye user!!'))
-        .map(() => new auth.LogoutSuccessAction(null));
+        .map(() => new auth.LogoutSuccessAction(true)); // true = redirect the user
     });
-  
+
   /**
    * LOGOUT_SUCCESS Effect, remove the user data from localStorage and
    * redirects to login page.
    */
   @Effect() logoutSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGOUT_SUCCESS)
-    .map(() => this.localStorageService.removeUser())
-    .map(() => new auth.ToggleLoadingAction(false))
-    .map(() => go(['/auth/login']));
-  
+    .do(() => this.localStorageService.removeUser())
+    .map((action: Action) => action.payload)
+    .map((redirect: boolean) => {
+      return redirect
+        ? go(['/auth/login'])
+        : new auth.ToggleLoadingAction(false) ;
+    });
+
   /**
    * LOGIN_SUCCESS Effect, redirect to back office when the login process is
    * success.

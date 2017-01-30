@@ -3,10 +3,13 @@
 import { TestBed, getTestBed, async, inject } from '@angular/core/testing';
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import  * as routerActions from '@ngrx/router-store/src/actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
+import { AuthRoutingModule } from './../auth-routing.module';
 import { AuthUser } from './../models/authUser';
 import { AuthEffects } from './auth';
 import { AuthService } from './../services/auth.service';
@@ -20,7 +23,6 @@ describe('Auth Effects', () => {
   let localStorageService: LocalStorageService;
   let runner: EffectsRunner;
   let authEffects: AuthEffects;
-
   let user = TEST_USER;
 
   beforeEach(async(() => {
@@ -29,7 +31,7 @@ describe('Auth Effects', () => {
       providers: [
         AuthEffects,
         AuthService,
-        LocalStorageService,
+        LocalStorageService
       ]
     });
 
@@ -120,7 +122,7 @@ describe('Auth Effects', () => {
   it('should return redirect on LOGOUT_SUCCESS action', () => {
     spyOn(localStorageService, 'removeUser').and.returnValue(null);
 
-    runner.queue(new actions.LogoutSuccessAction(null));
+    runner.queue(new actions.LogoutSuccessAction(true));
 
     authEffects.logoutSuccess$.subscribe(result => {
       expect(localStorageService.removeUser).toHaveBeenCalled();
