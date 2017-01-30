@@ -19,7 +19,6 @@ import { State as AuthState }  from './../../../../modules/auth/reducers/auth';
 @Component({
   selector: 'app-sidebar-layout',
   templateUrl: './sidebar-layout.component.html',
-  styleUrls: ['./sidebar-layout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarLayoutComponent implements OnInit {

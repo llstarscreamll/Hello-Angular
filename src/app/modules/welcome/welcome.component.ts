@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css']
+  templateUrl: './welcome.component.html'
 })
 export class WelcomeComponent implements OnInit {
 

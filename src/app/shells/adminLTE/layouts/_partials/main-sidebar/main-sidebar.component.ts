@@ -5,7 +5,6 @@ import { AuthUser } from './../../../../../modules/auth/models/authUser';
 @Component({
   selector: '[app-admin-lte-main-sidebar]',
   templateUrl: './main-sidebar.component.html',
-  styleUrls: ['./main-sidebar.component.css']
 })
 export class MainSidebarComponent implements OnInit {
 

@@ -9,7 +9,6 @@ import * as fromRoot from './../../../../modules/core/reducers';
 @Component({
   selector: 'app-nav-top-layout',
   templateUrl: './nav-top-layout.component.html',
-  styleUrls: ['./nav-top-layout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavTopLayoutComponent implements OnInit {
