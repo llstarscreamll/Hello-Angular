@@ -1,17 +1,14 @@
 <app-middle-box-layout>
   <h3 class="text-center" translate>AUTH.Login</h3>
 
-  <div *ngIf="serverMsg$ | async"
-       class="alert alert-danger">
-    {{ serverMsg$ | async }}
-  </div>
+  <app-alerts [appMessage]="appMessage$ | async"></app-alerts>
   
    <form novalidate
          [formGroup]="loginForm"
          (ngSubmit)="onSubmit()">
 
       <div class="form-group has-feedback"
-           [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || (serverErrors$ | async)?.email">
+           [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || (appMessage$ | async)?.errors?.email">
         <input type="email"
                name="email"
                class="form-control"
@@ -19,16 +16,16 @@
                formControlName="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         <div class="text-danger"
-             *ngIf="(!loginForm.get('email').valid && loginForm.get('email').touched) || (serverErrors$ | async )?.email">
+             *ngIf="(!loginForm.get('email').valid && loginForm.get('email').touched) || (appMessage$ | async )?.errors?.email">
              <span *ngIf="loginForm.get('email').hasError('required')">
                {{ 'AUTH.required field' | translate }}
              </span>
-             <span>{{ (serverErrors$ | async)?.email }}</span>
+             <span>{{ (appMessage$ | async)?.errors.email }}</span>
         </div>
       </div>
 
       <div class="form-group has-feedback"
-           [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || serverErrors?.password">
+           [class.has-error]="(!loginForm.get('email').valid && loginForm.get('email').touched) || (appMessages | async)?.errors?.password">
         <input type="password"
                name="password"
                class="form-control"
@@ -36,11 +33,11 @@
                formControlName="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         <div class="text-danger"
-             *ngIf="(!loginForm.get('password').valid && loginForm.get('password').touched) || (serverErrors$ | async)?.password">
+             *ngIf="(!loginForm.get('password').valid && loginForm.get('password').touched) || (appMessage$ | async)?.errors?.password">
              <span *ngIf="loginForm.get('password').hasError('required')">
                {{ 'AUTH.required field' | translate }}
              </span>
-             <span>{{ (serverErrors$ | async)?.password }}</span>
+             <span>{{ (appMessage$ | async)?.errors.password }}</span>
         </div>
       </div>
 

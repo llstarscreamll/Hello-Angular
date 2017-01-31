@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthUser } from './../../models/authUser';
 
 import * as authActions from './../../actions/auth';
+import * as appMessage from './../../../core/reducers/appMessage';
 import * as fromRoot from './../../../core/reducers';
 
 @Component({
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   
   public loading$: Observable<boolean>;
-  public serverMsg$: Observable<string>;
+  public appMessage$: Observable<appMessage.State>;
   public serverErrors$: Observable<any>;
 
   public constructor(
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.buildForm();
 
     this.loading$ = this.store.select(fromRoot.getAuthLoading);
-    this.serverMsg$ = this.store.select(fromRoot.getAuthApiMsg);
+    this.appMessage$ = this.store.select(fromRoot.getAppMessagesState);
     this.serverErrors$ = this.store.select(fromRoot.getAuthApiErrors);
   }
 

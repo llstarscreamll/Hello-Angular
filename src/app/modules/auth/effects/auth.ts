@@ -15,6 +15,7 @@ import { AuthService } from './../services/auth.service';
 import { LoginCredentials } from './../models/loginCredentials';
 import { AuthUser } from './../models/authUser';
 import * as auth from './../actions/auth';
+import * as appMsgActions from './../../core/actions/appMessage';
 
 @Injectable()
 export class AuthEffects {
@@ -35,8 +36,15 @@ export class AuthEffects {
     .switchMap((credentials: LoginCredentials) => {
       return this.authService.login(credentials.email, credentials.password)
         .map((user: AuthUser) => new auth.LoginSuccessAction(user))
-        .catch((error) => of(new auth.FlashErrors(error)))
+        .catch((error) => {
+          error.type = 'danger';
+          return of(new appMsgActions.Flash(error))
+        })
     });
+
+  @Effect() flashMsg$: Observable<Action> = this.actions$
+    .ofType(appMsgActions.ActionTypes.FLASH)
+    .map(() => new auth.ToggleLoadingAction(false));
 
   /**
    * LOGIN_FROM_LOCALSTORAGE Effect, tries to setup the user session based on

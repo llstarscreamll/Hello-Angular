@@ -11,6 +11,7 @@ import { combineReducers } from '@ngrx/store';
  */ 
 import * as fromLayout from './layout';
 import * as fromApp from './app';
+import * as fromAppMessages from './appMessage';
 import * as fromAuth from './../../auth/reducers/auth';
 
 /**
@@ -18,6 +19,7 @@ import * as fromAuth from './../../auth/reducers/auth';
  */
 export interface State {
   app: fromApp.State;
+  appMessages: fromAppMessages.State;
   layout: fromLayout.State;
   auth: fromAuth.State;
   router: fromRouter.RouterState;
@@ -28,6 +30,7 @@ export interface State {
  */
 const reducers = {
   app: fromApp.reducer,
+  appMessages: fromAppMessages.reducer,
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
@@ -66,3 +69,8 @@ export const getAuthUser = createSelector(getAuthState, fromAuth.getAuthUser);
  * App Selectors
  */
 export const getAppState = (state: State) => state.app;
+
+/**
+ * App Messages Selector
+ */
+export const getAppMessagesState = (state: State) => state.appMessages;
