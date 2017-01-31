@@ -16,6 +16,7 @@ import { AuthService } from './../services/auth.service';
 import { LocalStorageService } from './../../core/services/localStorage';
 import * as actions from './../actions/auth';
 import { TEST_USER } from './../../core/tests/util';
+import * as appMsgActions from './../../core/actions/appMessage';
 
 describe('Auth Effects', () => {
   let testbed: TestBed;
@@ -59,7 +60,7 @@ describe('Auth Effects', () => {
     });
   });
 
-  it('should return FLASH_ERROR action on LOGIN error 401', () => {
+  it('should return FLASH action on LOGIN error 401', () => {
     // mock service response
     let response = {
       message: 'Credentials Incorrect.',
@@ -74,7 +75,7 @@ describe('Auth Effects', () => {
     authEffects.logIn$.subscribe(result => {
       expect(authService.login).toHaveBeenCalled();
       expect(localStorageService.setUser).not.toHaveBeenCalled();
-      expect(result.type).toEqual(actions.ActionTypes.FLASH_ERROR);
+      expect(result.type).toEqual(appMsgActions.ActionTypes.FLASH);
     });
 
   });

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import { LoginComponent } from './login.component';
 
@@ -47,18 +48,14 @@ describe('LoginComponent', () => {
 
   it('should login success', async(() => {
     // setup the spies
-    spyOn(store, 'select');
-    spyOn(store, 'dispatch');
+    //spyOn(store, 'select');
+    //spyOn(store, 'dispatch');
 
     // form builder and store selects are executed on ngOnInit() method
     component.ngOnInit();
     fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(store.select).toHaveBeenCalledWith(fromRoot.getAuthLoading);
-      expect(store.select).toHaveBeenCalledWith(fromRoot.getAuthApiMsg);
-      expect(store.select).toHaveBeenCalledWith(fromRoot.getAuthApiErrors);
+    component.appMessage$.subscribe(result => {
+      expect(result).toBeDefined();
     });
 
     let email = component.loginForm.get('email').value;
@@ -81,15 +78,14 @@ describe('LoginComponent', () => {
     expect(btn.disabled).toBe(false, 'button is now enabled');
     expect(component.loginForm.valid).toBe(true, 'the form is now valid');
 
+    spyOn(store, 'dispatch');
     component.onSubmit();
-
+    
+    fixture.detectChanges();
+    
     // the LOGIN action should be dispatched
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      email = component.loginForm.get('email').value;
-      password = component.loginForm.get('password').value;
-      expect(store.dispatch).toHaveBeenCalledWith(new authActions.LoginAction({email: email, password: password}));
-    });
-
+    email = component.loginForm.get('email').value;
+    password = component.loginForm.get('password').value;
+    expect(store.dispatch).toHaveBeenCalledWith(new authActions.LoginAction({email: email, password: password}));
   }));
 });
