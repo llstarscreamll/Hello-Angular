@@ -47,10 +47,6 @@ describe('LoginComponent', () => {
   });
 
   it('should login success', async(() => {
-    // setup the spies
-    //spyOn(store, 'select');
-    //spyOn(store, 'dispatch');
-
     // form builder and store selects are executed on ngOnInit() method
     component.ngOnInit();
     fixture.detectChanges();
