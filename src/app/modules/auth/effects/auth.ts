@@ -55,6 +55,7 @@ export class AuthEffects {
     .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
     .startWith(new auth.LoginFromLocalStorageAction(null))
     .map(() => {
+      this.authService.loginFromLocalStorage = true;
       return this.authService.loggedIn()
         ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)
         : new auth.LogoutSuccessAction(false); // false = no redirect the user to login form
@@ -82,7 +83,7 @@ export class AuthEffects {
     .map((redirect: boolean) => {
       return redirect
         ? go(['/auth/login'])
-        : new auth.ToggleLoadingAction(false) ;
+        : new auth.ToggleLoadingAction(false);
     });
 
   /**
@@ -94,6 +95,10 @@ export class AuthEffects {
     .map((action) => action.payload as AuthUser)
     .do((user: AuthUser) => this.localStorageService.setUser(user))
     .do((user: AuthUser) => console.info('welcome ' + user.name))
-    .map(() => go(['/welcome']));
+    .map(() => {
+      return this.authService.loginFromLocalStorage
+        ? new auth.ToggleLoadingAction(false)
+        : go(['/welcome']);
+    });
 
 }

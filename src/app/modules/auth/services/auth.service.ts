@@ -14,11 +14,12 @@ export class AuthService extends Service {
 
   protected API_ENDPOINT: string = 'user';
   public loginRoute: string = '/auth/login';
+  public loginFromLocalStorage: boolean = false;
 
   public constructor(
     private http: Http,
     private localStorageService: LocalStorageService
-    ) {
+  ) {
     super();
   }
 
@@ -26,6 +27,8 @@ export class AuthService extends Service {
    * Process the login request to the API.
    */
   public login(email: string, password: string): Observable<AuthUser> {
+    this.loginFromLocalStorage = false;
+
     return this.http
       .post(this.apiEndpoint('login'), { 'email': email, 'password': password }, this.headers)
       .map(res => res.json().data as AuthUser)
