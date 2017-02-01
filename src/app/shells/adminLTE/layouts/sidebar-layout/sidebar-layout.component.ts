@@ -63,7 +63,7 @@ export class SidebarLayoutComponent implements OnInit {
   }
 
   /**
-   * 
+   * Fix the page height.
    */
   public fixHeight() {
     let sidebarHeight: number = this.sidebar.element.nativeElement.offsetHeight;
