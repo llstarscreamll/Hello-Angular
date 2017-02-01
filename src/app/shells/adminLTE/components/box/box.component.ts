@@ -13,7 +13,8 @@ export class BoxComponent implements OnInit {
 
   @Input() isLoading: boolean = false;
 
-  @HostBinding('class.box') boxStyle: boolean = true;
+  @HostBinding('class.box') box: boolean = true;
+  @HostBinding('class.box-solid') boxSolid: boolean = true;
   @HostBinding('class.hide') @Input() hidden: boolean = false;
   @HostBinding('class.collapsed-box') @Input() collapse: boolean = false;
 

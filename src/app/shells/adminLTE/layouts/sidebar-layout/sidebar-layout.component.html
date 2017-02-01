@@ -3,7 +3,7 @@
       'sidebar-collapse': !(showSidenav$ | async),
       'sidebar-open': (!(showSidenav$ | async) && viewPortWidth <= 768)
       }">
-  <div class="wrapper">
+  <div #wrapper class="wrapper">
 
     <!-- Main Header -->
     <header #header
@@ -50,7 +50,7 @@
            [user]="(authState$ | async)?.user"></aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" [ngStyle]="{'height.px': viewPortHeight}">
+    <div #contentWrapper class="content-wrapper">
       <ng-content></ng-content>
     </div>
     <!-- /.content-wrapper -->

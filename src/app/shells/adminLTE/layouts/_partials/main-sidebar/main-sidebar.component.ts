@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { MenuItem } from './../../../../../modules/core/models/MenuItem';
 import { AuthUser } from './../../../../../modules/auth/models/authUser';
 
@@ -11,7 +11,7 @@ export class MainSidebarComponent implements OnInit {
   public menuItems: MenuItem[] = [
     { label: 'Header', icon: '', url: '', visivility: 'private', isHeader: true, childs: [] },
     { label: 'Home', icon: 'fa fa-home', url: '/front/landing', visivility: 'private', isHeader: false, childs: [] },
-    { label: 'Payrolls', icon: 'fa fa-dollar', url: '/payrolls-setup', visivility: 'private', isHeader: false, childs: [] },
+    { label: 'Payrolls', icon: 'fa fa-dollar', url: '/payroll/setup-wizard', visivility: 'private', isHeader: false, childs: [] },
     { label: 'public menu 2', icon: 'fa fa-link', url: '/foo/foo', visivility: 'public', isHeader: false, childs: [] },
     {
       label: 'tree 1', icon: 'fa fa-link', url: '/foo/foo', visivility: 'private', isHeader: false, childs: [
@@ -32,7 +32,7 @@ export class MainSidebarComponent implements OnInit {
   public selectedItemIndex: number = 0;
   @Input() user: AuthUser;
 
-  public constructor() { }
+  public constructor(public element: ElementRef) { }
 
   public ngOnInit() { }
 

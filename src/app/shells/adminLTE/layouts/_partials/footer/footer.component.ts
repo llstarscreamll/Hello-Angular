@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { State as appState } from './../../../../../modules/core/reducers/app';
 
 @Component({
@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
 
   @Input() appState: appState;
 
-  constructor() { }
+  constructor(public element: ElementRef) { }
 
   ngOnInit() { }
 
