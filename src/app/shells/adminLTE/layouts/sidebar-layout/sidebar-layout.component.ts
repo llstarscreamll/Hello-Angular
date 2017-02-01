@@ -75,7 +75,6 @@ export class SidebarLayoutComponent implements OnInit {
       minHeight = this.viewPortHeight - (headerHeight);
       this.renderer.setElementStyle(this.contentWrapper.nativeElement, 'min-height', minHeight + 'px');
     } else {
-      console.log('window < sidebar');
       this.renderer.setElementStyle(this.contentWrapper.nativeElement, 'min-height', sidebarHeight + 'px');
     }
   }
