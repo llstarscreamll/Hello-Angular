@@ -18,6 +18,10 @@ import { AdminLTEShellModule } from './shells/adminLTE/admin-lte.module';
 import { FrontModule } from './modules/front/front.module';
 import { WelcomeModule } from './modules/welcome/welcome.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { PayrollModule } from './modules/payroll/payroll.module';
+import { CompanyModule } from './modules/company/company.module';
+
+// Separated files for core module, TODO: wrap everything from core module on NgModule Class
 import { LocalStorageService } from './modules/core/services/localStorage';
 import { AppService } from './modules/core/services/app';
 
@@ -44,11 +48,12 @@ import { AppEffects } from './modules/core/effects/app';
     AdminLTEShellModule,
     FrontModule,
     WelcomeModule,
-    AuthModule
+    AuthModule,
+    PayrollModule,
+    CompanyModule
   ],
   providers: [
     LocalStorageService, AppService
-
   ],
   bootstrap: [AppComponent]
 })
