@@ -10,6 +10,13 @@ src/environments/env.ts
 # dependencies
 /node_modules
 
+# modules
+src/app/modules/
+!src/app/modules/auth
+!src/app/modules/core
+!src/app/modules/front
+!src/app/modules/welcome
+
 # IDEs and editors
 /.idea
 .project
