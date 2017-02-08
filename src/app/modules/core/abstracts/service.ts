@@ -20,7 +20,10 @@ export abstract class Service {
    * Returns full API endpoint.
    */
   protected apiEndpoint(path: string = ''): string {
-    return this.domain + '/' + this.API_ENDPOINT + '/' + path;
+    let url = this.domain + '/';
+    url += (this.API_ENDPOINT !== '') ? this.API_ENDPOINT + '/' : '';
+
+    return url + path;
   }
 
   /**

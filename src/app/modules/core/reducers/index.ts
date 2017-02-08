@@ -13,6 +13,7 @@ import * as fromLayout from './layout';
 import * as fromApp from './app';
 import * as fromAppMessages from './appMessage';
 import * as fromAuth from './../../auth/reducers/auth';
+import * as fromCompany from './../../company/reducers/company.reducer';
 
 /**
  * The app state interface.
@@ -23,6 +24,7 @@ export interface State {
   layout: fromLayout.State;
   auth: fromAuth.State;
   router: fromRouter.RouterState;
+  company: fromCompany.State;
 }
 
 /**
@@ -34,6 +36,7 @@ const reducers = {
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
+  company: fromCompany.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -74,3 +77,8 @@ export const getAppState = (state: State) => state.app;
  * App Messages Selector
  */
 export const getAppMessagesState = (state: State) => state.appMessages;
+
+/**
+ * Company Selector
+ */
+export const getCompanyState = (state: State) => state.company;
