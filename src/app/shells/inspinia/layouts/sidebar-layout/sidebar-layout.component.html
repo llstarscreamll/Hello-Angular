@@ -1,0 +1,64 @@
+<div #wrapper id="wrapper">
+
+  <!-- Left navigation bar -->
+  <aside app-admin-lte-main-sidebar class="main-sidebar" [user]="(authState$ | async)?.user" [company]="(appState$ | async)?.companyInfo"></aside>
+
+  <!-- Main page wrapper -->
+  <div id="page-wrapper" class="gray-bg">
+
+    <!-- Main Header -->
+    <div #header class="row border-bottom">
+      <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        
+        <!-- navigation toggle -->
+        <div class="navbar-header">
+          <a class="minimalize-styl-2 btn btn-primary " (click)="toggleNavigation()"><i class="fa fa-bars"></i> </a>
+        </div>
+        <!-- /navigation toggle -->
+
+        <!-- user account menu -->
+        <ul app-admin-lte-user-account-menu
+            *ngIf="(authState$ | async)?.loggedIn"
+            [user]="(authState$ | async)?.user"
+            class="nav navbar-top-links navbar-right">
+
+            <!-- You can add more items here!! -->
+
+        </ul>
+        <!-- /user account menu -->
+
+      </nav>
+    </div>
+
+    <header #header [attr.is-sidebar-opened]="showSidenav$ | async" [attr.is-control-sidebar-opened]="showControlSidebar$ | async"
+      class="main-header">
+
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a (click)="toggleNavigation()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+
+          <!-- TODO: build user Account Menu -->
+
+        </div>
+      </nav>
+    </header>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div #contentWrapper class="content-wrapper">
+      <ng-content></ng-content>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer app-admin-lte-footer [appState]="(appState$ | async)"></footer>
+
+  </div>
+  <!-- /Main page wrapper -->
+
+</div>
+<!-- ./wrapper -->

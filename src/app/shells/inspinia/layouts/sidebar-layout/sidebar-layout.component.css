@@ -1,0 +1,2 @@
+/* Hidding the headers menu sections when sidebar is collapsed */
+.mini-navbar li.header { display: none; }
