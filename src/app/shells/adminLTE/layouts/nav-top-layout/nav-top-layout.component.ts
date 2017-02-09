@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -9,6 +9,11 @@ import * as fromRoot from './../../../../modules/core/reducers';
 @Component({
   selector: 'app-nav-top-layout',
   templateUrl: './nav-top-layout.component.html',
+  styleUrls: [
+    '~admin-lte/dist/css/AdminLTE.min.css',
+    '~admin-lte/dist/css/skins/_all-skins.min.css'
+    ],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavTopLayoutComponent implements OnInit {

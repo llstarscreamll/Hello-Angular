@@ -7,7 +7,8 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   ElementRef,
-  Renderer
+  Renderer,
+  ViewEncapsulation
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -22,7 +23,12 @@ import { FooterComponent } from './../_partials/footer/footer.component';
 @Component({
   selector: 'app-sidebar-layout',
   templateUrl: './sidebar-layout.component.html',
-  styles: [''],
+  styleUrls: [
+    './sidebar-layout.component.css',
+    '~admin-lte/dist/css/AdminLTE.min.css',
+    '~admin-lte/dist/css/skins/_all-skins.min.css'
+    ],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarLayoutComponent implements OnInit {
