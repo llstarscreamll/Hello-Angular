@@ -1,19 +1,20 @@
+import 'rxjs/add/operator/catch';
+
+import * as appMessage from './../../../core/reducers/appMessage';
+import * as authActions from './../../actions/auth';
+import * as fromRoot from './../../../core/reducers';
+
 import { Component, OnInit } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
-  FormBuilder,
-  Validators
+  Validators,
 } from '@angular/forms';
-import 'rxjs/add/operator/catch';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 
 import { AuthUser } from './../../models/authUser';
-
-import * as authActions from './../../actions/auth';
-import * as appMessage from './../../../core/reducers/appMessage';
-import * as fromRoot from './../../../core/reducers';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,6 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit() {
     this.buildForm();
-
     this.loading$ = this.store.select(fromRoot.getAuthLoading);
     this.appMessage$ = this.store.select(fromRoot.getAppMessagesState);
     this.serverErrors$ = this.store.select(fromRoot.getAuthApiErrors);

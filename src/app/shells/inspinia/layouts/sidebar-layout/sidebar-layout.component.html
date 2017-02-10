@@ -30,29 +30,13 @@
       </nav>
     </div>
 
-    <header #header [attr.is-sidebar-opened]="showSidenav$ | async" [attr.is-control-sidebar-opened]="showControlSidebar$ | async"
-      class="main-header">
-
-      <!-- Header Navbar -->
-      <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button-->
-        <a (click)="toggleNavigation()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-          <span class="sr-only">Toggle navigation</span>
-        </a>
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-
-          <!-- TODO: build user Account Menu -->
-
-        </div>
-      </nav>
-    </header>
-
     <!-- Content Wrapper. Contains page content -->
-    <div #contentWrapper class="content-wrapper">
+    <div #contentWrapper class="content-wrapper m-b">
       <ng-content></ng-content>
     </div>
     <!-- /.content-wrapper -->
+
+    <div class="clearfix"></div>
 
     <!-- Main Footer -->
     <footer app-admin-lte-footer [appState]="(appState$ | async)"></footer>
