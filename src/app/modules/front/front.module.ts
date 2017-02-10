@@ -8,7 +8,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 // AdminLTE Shell
-import { AdminLTEShellModule as Shell } from './../../shells/adminLTE/admin-lte.module';
+import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
 
 @NgModule({
   imports: [

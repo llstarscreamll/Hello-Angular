@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
 
-// AdminLTE Shell
-import { AdminLTEShellModule as Shell } from './../../shells/adminLTE/admin-lte.module';
+// Shell Theme
+import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
 
 @NgModule({
   imports: [

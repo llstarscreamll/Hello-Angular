@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 // ng2 Translate
 import { TranslateService, TranslateModule } from 'ng2-translate';
 // AdminLTE Shell
-import { AdminLTEShellModule as Shell } from './../../shells/adminLTE/admin-lte.module';
+import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
 // Components
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
