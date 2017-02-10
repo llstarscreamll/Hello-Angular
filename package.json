@@ -39,11 +39,15 @@
     "reselect": "^2.5.4",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.2"
+    "zone.js": "^0.7.2",
+    "jquery": "^3.1.0",
+    "metismenu": "^2.5.0",
+    "animate.css": "3.1.1"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
+    "@types/jquery": "^2.0.40",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.25.5",
     "codelyzer": "~2.0.0-beta.1",
