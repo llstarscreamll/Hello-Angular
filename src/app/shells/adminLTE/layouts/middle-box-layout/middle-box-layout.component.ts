@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -17,7 +17,12 @@ import { State as AppState } from './../../../../modules/core/reducers/app';
       </div>
     </div>
   `,
-  styles: [':host { display: block; }']
+  styleUrls: [
+    '~admin-lte/dist/css/AdminLTE.min.css',
+    '~admin-lte/dist/css/skins/_all-skins.min.css'
+  ],
+  encapsulation: ViewEncapsulation.None,
+  //styles: [':host { display: block; }']
 })
 export class MiddleBoxLayoutComponent implements OnInit {
 
