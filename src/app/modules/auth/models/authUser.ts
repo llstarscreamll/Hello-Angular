@@ -2,7 +2,7 @@ export class AuthUser {
     id: number;
     visitor_id: number;
     social_id: string;
-    token: string;
+    token: { token };
     name: string;
     nickname: string;
     gender: string;

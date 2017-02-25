@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { tokenNotExpired } from 'angular2-jwt';
 
 import { AuthUser } from '../models/authUser';
+import { Http } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { LocalStorageService } from './../../core/services/localStorage';
+import { Observable } from 'rxjs/Observable';
 import { Service } from './../../core/abstracts/service';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService extends Service {
@@ -28,9 +28,11 @@ export class AuthService extends Service {
    */
   public login(email: string, password: string): Observable<AuthUser> {
     this.loginFromLocalStorage = false;
+    let endPoint = this.domain + '/login';
+    console.log(endPoint);
 
     return this.http
-      .post(this.apiEndpoint('login'), { 'email': email, 'password': password }, this.headers)
+      .post(endPoint, { 'email': email, 'password': password }, this.headers)
       .map(res => res.json().data as AuthUser)
       .catch(this.handleError);
   }

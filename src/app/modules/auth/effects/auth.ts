@@ -1,26 +1,28 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { go } from '@ngrx/router-store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/from';
-import { of } from 'rxjs/observable/of';
 
-import { LocalStorageService } from './../.././core/services/localStorage';
-import { AuthService } from './../services/auth.service';
-import { LoginCredentials } from './../models/loginCredentials';
-import { AuthUser } from './../models/authUser';
-import * as auth from './../actions/auth';
 import * as appMsgActions from './../../core/actions/appMessage';
+import * as auth from './../actions/auth';
+
+import { Actions, Effect } from '@ngrx/effects';
+
+import { Action } from '@ngrx/store';
+import { AuthService } from './../services/auth.service';
+import { AuthUser } from './../models/authUser';
+import { Injectable } from '@angular/core';
+import { LocalStorageService } from './../.././core/services/localStorage';
+import { LoginCredentials } from './../models/loginCredentials';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { go } from '@ngrx/router-store';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class AuthEffects {
 
-  constructor(
+  public constructor(
     private actions$: Actions,
     private authService: AuthService,
     private localStorageService: LocalStorageService
@@ -35,7 +37,7 @@ export class AuthEffects {
     .map((action: Action) => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => {
       return this.authService.login(credentials.email, credentials.password)
-        .map((user: AuthUser) => new auth.LoginSuccessAction(user))
+        .map((user: AuthUser) => { return new auth.LoginSuccessAction(user)})
         .catch((error) => {
           error.type = 'danger';
           return of(new appMsgActions.Flash(error))
