@@ -1,7 +1,9 @@
-import { Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+
+import { Headers, Response } from '@angular/http';
+
 import { ENV } from './../../../../environments/env';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Abstract Class Service.
@@ -9,7 +11,7 @@ import { ENV } from './../../../../environments/env';
 export abstract class Service {
 
   protected headers: Headers;
-  private domain: string = ENV.API_URL;
+  protected domain: string = ENV.API_URL;
   protected abstract API_ENDPOINT: string;
 
   public constructor() {
@@ -40,7 +42,8 @@ export abstract class Service {
     } else {
       errorMsg = error.statusText ? error.statusText : error.toString();
     }
-
+    
+    console.log(body);
     console.error(`${error.status} - ` + errorMsg);
 
     return Observable.throw(body);

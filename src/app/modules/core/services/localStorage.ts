@@ -27,7 +27,7 @@ export class LocalStorageService {
      * Set user data on localStorage.
      */
     public setUser(user: AuthUser) {
-        this.setItem('token', user.token);
+        this.setItem('token', user.token.token);
         this.setItem('user', user);
     }
 
