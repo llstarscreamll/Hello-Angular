@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from './../../../../modules/core/reducers';
 import * as authActions from './../../../../modules/auth/actions/auth';
+import * as fromRoot from './../../../../modules/core/reducers';
 import { AuthUser } from './../../../../modules/auth/models/authUser';
 
 @Component({
