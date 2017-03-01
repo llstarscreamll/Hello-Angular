@@ -1,6 +1,5 @@
 import 'rxjs/add/observable/throw';
-
-import { Headers, Response } from '@angular/http';
+import { Headers, Response, URLSearchParams } from '@angular/http';
 
 import { ENV } from './../../../../environments/env';
 import { Observable } from 'rxjs/Observable';
@@ -32,6 +31,7 @@ export abstract class Service {
    * Handle response errors.
    */
   protected handleError(error: Response | any): Observable<any> {
+    console.log(error);
     let errorMsg: string;
     let body: string | any;
 
@@ -42,11 +42,18 @@ export abstract class Service {
     } else {
       errorMsg = error.statusText ? error.statusText : error.toString();
     }
-    
-    console.log(body);
+
     console.error(`${error.status} - ` + errorMsg);
 
     return Observable.throw(body);
   }
 
+  protected parseGetParams(data: Object = {}) {
+    let params : URLSearchParams = new URLSearchParams;
+    Object.keys(data).map((value, index) => {
+      params.set(value, data[value]);
+    });
+
+    return params;
+  }
 }
