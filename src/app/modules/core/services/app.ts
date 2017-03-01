@@ -20,7 +20,7 @@ export class AppService extends Service {
   public getData() {
     return this.http
       .get(this.apiEndpoint(), this.headers)
-      .map(res => res.json().data)
+      .map(res => {return res.json().data})
       .catch(this.handleError);
   }
 
