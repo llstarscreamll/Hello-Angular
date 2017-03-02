@@ -3,6 +3,7 @@ import { Headers, Response, URLSearchParams } from '@angular/http';
 
 import { ENV } from './../../../../environments/env';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 /**
  * Abstract Class Service.
@@ -49,11 +50,36 @@ export abstract class Service {
   }
 
   protected parseGetParams(data: Object = {}) {
-    let params : URLSearchParams = new URLSearchParams;
-    Object.keys(data).map((value, index) => {
-      params.set(value, data[value]);
+    let urlParams: URLSearchParams = new URLSearchParams;
+    let str = "";
+    let array = new Array();
+
+    _.forOwn(data, function (value, key) {
+      // parse search param
+      if (key == "search") {
+        urlParams.set(key, value);
+      }
+
+      // parse columns param
+      if (key == "filter") {
+        urlParams.set(key, _.join(value, ';'));
+      }
+
+      // parse include columns
+      if (key == "include") {
+        array = [];
+        // iterate over the include object
+        _.forOwn(value, (includeValue, includeKey) => {
+          // if the include key exist on the columns array, then collect the include value
+          if (_.includes(urlParams.get('filter'), includeKey)) {
+            array.push(includeValue);
+          }
+        });
+        // join the array with "," and set the url param
+        urlParams.set(key, _.join(array, ','));
+      }
     });
 
-    return params;
+    return urlParams;
   }
 }
