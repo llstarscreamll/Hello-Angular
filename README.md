@@ -1,69 +1,89 @@
-# Angular2AdminLte
+# Hello-angular
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.25.5.
+TODO: add some introduction here!!
 
-### Nginx server configuration
+## The dynamic form builder
 
-```
-# Default server configuration
-#
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+This feature allows you build dynamic forms based on a Javascript Object. To define the fileds that the form should have, create an object like:
 
-	# root /var/www/html;
-	root /home/ubuntu/code/dist;
+```Javascript
 
-	# Add index.php to the list if you are using PHP
-	index index.html index.htm index.nginx-debian.html;
-
-	server_name _;
-
-	location / {
-		expires -1;
-		add_header Pragma "no-cache";
-		add_header Cache-Control "no-store, no-cache, must-revalicate, post-check=0 pre-check=0";
-		root /home/ubuntu/code/dist;
-		try_files $uri $uri/ /index.html =404;
-		break;
+{
+	// define a textbox field
+	name: { // the field name
+		label: 'Nombre', // the field label
+		type: 'text', // the input type
+		placeholder: 'tu nombre...', // a palce holder for the field
+		labelClass: 'my-label-class', // classes for the input label tag
+		inputClass: 'my-input-class', // classes for the input
+		inputGridClass: 'my-grid-class-for-input' // classes for the input wrapper
+	},
+	// define a select dropdown with static options
+	country: {
+		label: 'Country',
+		type: 'select',
+		multiple: false, // it's a multiple dropdown?
+		options: [ // the dropdown options
+			{ value: 1, label: 'Colombia' },
+			{ value: 2, label: 'Perú' },
+		]
+	},
+	// define a select dropdown with dynamic options  (given in the data ()Input component) based on another form value
+	state: {
+		label: 'State',
+		type: 'select',
+		multiple: false,
+		dependantDynamicOptions: { // options depends on another field value
+			field: 'country', // depends on the country field value
+			data: 'departments', // the data object key where we go to filter and map to retrieve our options
+			key: 'country_id' // the above object key used to filter the data
+		},
+	},
+	// select dropdown multiple
+	abilities: {
+		label: 'Abilities',
+		type: 'select',
+		multiple: true,
+		options: [
+			{ value: 'php', label: 'PHP' },
+			{ value: 'ruby', label: 'Ruby' },
+			{ value: 'python', label: 'Python' },
+			{ value: 'javascript', label: 'Javascript' },
+			{ value: 'css', label: 'CSS' },
+			{ value: 'html', label: 'HTML' },
+		]
 	}
-
-	gzip on;
-	gzip_http_version 1.1;
-	gzip_disable      "MSIE [1-6]\.";
-	gzip_min_length   1100;
-	gzip_vary         on;
-	gzip_proxied      expired no-cache no-store private auth;
-	gzip_types        text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;
-	gzip_comp_level   9;
+	// define a radio button
+	genre: {
+		label: 'Genre',
+		type: 'radiobutton',
+		options: [ // the options
+			{ value: 'm', label: 'Male' },
+			{ value: 'f', label: 'Female' },
+		]
+	},
+	// define a textarea
+	comments: {
+		label: 'comments',
+		type: 'textarea',
+	},
+	// define checkbox array 
+	topics: {
+		label: 'Topics',
+		type: 'checkbox-array',
+		options: [
+			{ value: 'science', label: 'Science' },
+			{ value: 'tech', label: 'Technology' },
+			{ value: 'robotics', label: 'Robotics' },
+			{ value: 'programming', label: 'Programming' },
+		]
+	},
+	// single checkbox, for boolean data maybe?
+	active: {
+		label: 'Activate Account?',
+		type: 'checkbox',
+		option: { value: 'true', label: 'Yes!!' } // object, not array
+	},
 }
 
-```
-
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+``` 
