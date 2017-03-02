@@ -54,8 +54,8 @@ export abstract class Service {
     let tmpArray = new Array();
 
     _.forOwn(data, function (value, key) {
-      // parse search param
-      if (key == "search" || key == "sortedBy") {
+      // parse search, sortedBy and page param
+      if (key == "search" || key == "sortedBy" || key == 'page') {
         urlParams.set(key, value);
       }
 
