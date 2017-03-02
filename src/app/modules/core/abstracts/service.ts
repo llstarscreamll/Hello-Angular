@@ -55,8 +55,18 @@ export abstract class Service {
 
     _.forOwn(data, function (value, key) {
       // parse search param
-      if (key == "search") {
+      if (key == "search" || key == "sortedBy") {
         urlParams.set(key, value);
+      }
+
+      // parse orderBy param
+      if (key == "orderBy") {
+        if (_.has(data, 'orderByRelationsMap.'+value)) {
+          //console.warn(_.get(data, 'orderByRelationsMap.'+value) as String);
+          urlParams.set(key, _.get(data, 'orderByRelationsMap.'+value) as string);
+        } else {
+          urlParams.set(key, value);
+        }
       }
 
       // parse columns param
@@ -70,7 +80,7 @@ export abstract class Service {
         // iterate over the include object
         _.forOwn(value, (includeValue, includeKey) => {
           // if the include key exist on the columns array, then collect the include value
-          if (_.includes(urlParams.get('filter'), includeKey)) {
+          if (_.includes(_.get(data, 'filter', []), includeKey)) {
             tmpArray.push(includeValue);
           }
         });
@@ -78,6 +88,7 @@ export abstract class Service {
         urlParams.set(key, _.join(tmpArray, ','));
       }
     });
+    console.warn(urlParams);
 
     return urlParams;
   }
