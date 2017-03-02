@@ -51,8 +51,7 @@ export abstract class Service {
 
   protected parseGetParams(data: Object = {}) {
     let urlParams: URLSearchParams = new URLSearchParams;
-    let str = "";
-    let array = new Array();
+    let tmpArray = new Array();
 
     _.forOwn(data, function (value, key) {
       // parse search param
@@ -67,16 +66,16 @@ export abstract class Service {
 
       // parse include columns
       if (key == "include") {
-        array = [];
+        tmpArray = [];
         // iterate over the include object
         _.forOwn(value, (includeValue, includeKey) => {
           // if the include key exist on the columns array, then collect the include value
           if (_.includes(urlParams.get('filter'), includeKey)) {
-            array.push(includeValue);
+            tmpArray.push(includeValue);
           }
         });
         // join the array with "," and set the url param
-        urlParams.set(key, _.join(array, ','));
+        urlParams.set(key, _.join(tmpArray, ','));
       }
     });
 
