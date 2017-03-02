@@ -18,7 +18,6 @@ import { Pagination } from './../models/pagination';
     <div class="text-right">
       Página {{ pagination?.current_page }} de {{ pagination?.total_pages }}
     </div>
-    <pre>{{ pagination | json }}</pre>
   `,
 })
 export class PaginationComponent implements OnInit {
