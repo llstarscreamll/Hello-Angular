@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-basic-search',
   template: `
-  <form name="basicSearch" (ngSubmit)="search.emit({search: searchText})">
+  <form name="basicSearch" (ngSubmit)="search.emit({search: searchText, page: 1})">
     <div class="input-group">
       <input [(ngModel)]="searchText" name="searchText" class="form-control" placeholder="Buscar..." aria-label="Text input with segmented button dropdown">
       <div class="input-group-btn">
