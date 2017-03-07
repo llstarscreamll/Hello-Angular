@@ -13,8 +13,10 @@ export class FormModelParser {
     private formBuilder: FormBuilder
   ) { }
 
-  public parse(model: Object, langNamespace: string = ''): { model: {}, formGroup: {} } {
+  public parse(model: Object, langNamespace: string = ''): Object {
     let parsedModel = {};
+    let options = [];
+    let option: any;
 
     _.forOwn(model, (value, key) => {
       if (key == this.optionsKey) return false;
@@ -22,11 +24,24 @@ export class FormModelParser {
       let field = {};
       Object.assign(field, value);
       this.translate.get(langNamespace + key).subscribe((res: string) => field['label'] = res);
-      
+
+      // setup the options translations
+      if (_.has(value, 'options')) {
+        options = [];
+        _.forEach(value.options, (optValue) => {
+          option = { value: '', label: '' };
+          option.value = optValue;
+          this.translate.get(langNamespace + key + '-options.' + optValue)
+            .subscribe((res: string) => option.label = res);
+          options.push(option);
+        });
+        field['options'] = options;
+      }
+
       parsedModel[key] = field;
     });
 
-    return { model: parsedModel, formGroup: this.toFormGroup(parsedModel) };
+    return parsedModel;
   }
 
   public toFormGroup(parsedModel: Object): FormGroup {

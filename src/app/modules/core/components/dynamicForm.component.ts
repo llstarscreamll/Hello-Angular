@@ -9,69 +9,8 @@ import * as _ from "lodash";
 })
 export class DynamicFormcomponent implements OnInit {
 
-  @Input() model: Object = {
-    name: {
-      label: 'Nombre',
-      type: 'text',
-      placeholder: 'tu nombre...'
-    },
-    country: {
-      label: 'Pais',
-      type: 'select',
-      multiple: false,
-      placeholder: 'Seleccione...',
-      options: [
-        { value: 1, label: 'Colombia' },
-        { value: 2, label: 'Perú' },
-      ]
-    },
-    department: {
-      label: 'Departamento',
-      type: 'select',
-      multiple: false,
-      placeholder: 'Seleccione...',
-      dynamicOptions: { field: 'country', data: 'departments', key: 'country_id' },
-    },
-    genre: {
-      label: 'Género',
-      type: 'radiobutton',
-      options: [
-        { value: 'm', label: 'Masculino' },
-        { value: 'f', label: 'Femenino' },
-      ]
-    },
-    comments: {
-      label: 'Comentarios',
-      type: 'textarea',
-    },
-    areas: {
-      label: 'Áreas',
-      type: 'checkbox-array',
-      options: [
-        { value: 'ciencie', label: 'Ciencia' },
-        { value: 'tech', label: 'Tecnología' },
-        { value: 'tobotics', label: 'Robotica' },
-      ]
-    },
-    active: {
-      label: 'Activo?',
-      type: 'checkbox',
-      option: { value: 'true', label: 'Si' }
-    },
-    interests: {
-      label: 'Intereses',
-      type: 'select',
-      multiple: true,
-      options: [
-        { value: 'musica', label: 'musica' },
-        { value: 'arte', label: 'arte' },
-        { value: 'agricultura', label: 'agricultura' },
-        { value: 'foo', label: 'foo' },
-        { value: 'bar', label: 'bar' },
-      ]
-    }
-  };
-
+  @Input() model: Object;
+  @Input() controls: FormGroup;
   @Input() data: Object = {
     departments: [
       { id: 1, name: 'Boyacá', country_id: 1 },
@@ -81,23 +20,8 @@ export class DynamicFormcomponent implements OnInit {
     ]
   };
 
-  @Input() controls: FormGroup;
-
-  public defaultAreas = ['cience'];
-
   constructor(private fb: FormBuilder) { }
-  ngOnInit() {
-    this.controls = this.fb.group({
-      name: [null],
-      country: [2],
-      department: [20],
-      genre: [null],
-      comments: [null],
-      active: [false],
-      areas: [[]],
-      interests: [[]]
-    });
-  }
+  ngOnInit() { }
 
   getModelKeys() {
     return Object.keys(this.model);
