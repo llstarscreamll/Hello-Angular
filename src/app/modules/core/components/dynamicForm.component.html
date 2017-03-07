@@ -134,13 +134,17 @@
     </div>
 </form>
 
-<div class="row">
-    <div class="col-sm-6">
+<div *ngIf="debug" class="row">
+    <div class="col-sm-4">
         <strong>FormGroup</strong>
         <pre> {{ controls.value | json }} </pre>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <strong>FormModel</strong>
         <pre> {{ model | json }} </pre>
+    </div>
+    <div class="col-sm-4">
+        <strong>FormData</strong>
+        <pre> {{ data | json }} </pre>
     </div>
 </div>
