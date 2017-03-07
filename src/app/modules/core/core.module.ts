@@ -8,6 +8,9 @@ import { PaginationComponent } from './components/pagination.component';
 import { BasicSearchComponent } from './components/basicSearch.component';
 import { DynamicFormcomponent } from './components/dynamicForm.component';
 
+// Services
+import { FormModelParser } from './services/formModelParser';
+
 /**
  * Here we expose the shared components to another modules.
  */
@@ -27,6 +30,9 @@ import { DynamicFormcomponent } from './components/dynamicForm.component';
     PaginationComponent,
     BasicSearchComponent,
     DynamicFormcomponent
+  ],
+  providers: [
+    FormModelParser
   ]
 })
 export class CoreModule { }
