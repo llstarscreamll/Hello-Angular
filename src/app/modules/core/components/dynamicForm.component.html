@@ -1,15 +1,19 @@
 <form [formGroup]="controls">
 
+    <!-- iterate over the model keys -->
     <div *ngFor="let item of getModelKeys()" class="form-group">
+        
+        <!-- the control label -->
         <label [attr.for]="item"
                 class="control-label"
                 [ngClass]="[model[item].labelClass || '']">
             {{ model[item].label }}
         </label>
 
+        <!-- render the correct control based on the field type  -->
         <div [ngSwitch]="model[item].type" [ngClass]="[model[item].inputGridClass || '']">
             
-            <!-- Text box -->
+            <!-- text box -->
             <ng-container *ngSwitchCase="'text'">
                 <input type="text"
                     name="{{ item }}"
@@ -20,7 +24,7 @@
                     placeholder="{{ model[item].placeholder }}">
             </ng-container>
 
-            <!-- Number box -->
+            <!-- number box -->
             <ng-container *ngSwitchCase="'number'">
                 <input type="number"
                     name="{{ item }}"
@@ -32,7 +36,7 @@
                     step="{{ model[item].step || 1 }}">
             </ng-container>
 
-            <!-- Textarea -->
+            <!-- textarea -->
             <ng-container *ngSwitchCase="'textarea'">
                 <textarea name="{{ item }}"
                         rows="4"
@@ -44,7 +48,7 @@
                 </textarea>
             </ng-container>
 
-            <!-- Select -->
+            <!-- select single -->
             <ng-container *ngSwitchCase="'select'">
                 <select name="{{ item }}"
                         formControlName="{{ item }}"
@@ -54,17 +58,17 @@
                         class="form-control"
                         [ngClass]="[model[item].inputClass || '']">
 
-                    <!-- if we have dynamic options setup -->
-                    <ng-container *ngIf="model[item].dynamicOptions !== undefined">
-                        <ng-container *ngFor="let option of data[model[item].dynamicOptions.data]">
-                        <option *ngIf="option[model[item].dynamicOptions.key] == controls.get(model[item].dynamicOptions.field).value"
+                    <!-- if the dynamic options depends on other field value -->
+                    <ng-container *ngIf="model[item].dependantDynamicOptions !== undefined">
+                        <ng-container *ngFor="let option of data[model[item].dependantDynamicOptions.data]">
+                        <option *ngIf="option[model[item].dependantDynamicOptions.key] == controls.get(model[item].dependantDynamicOptions.field).value"
                                 [value]="option.id || option.value">
                             {{ option.name || option.label }}
                         </option>
                         </ng-container>
                     </ng-container>
 
-                    <!-- if we have static options setup -->
+                    <!-- if the options are static -->
                     <ng-container *ngIf="model[item].dynamicOptions === undefined">
                         <option *ngFor="let foo of model[item].options"
                                 [value]="foo.value"
@@ -75,7 +79,7 @@
                 </select>
             </ng-container>
 
-            <!-- Radio button -->
+            <!-- radio buttons -->
             <ng-container *ngSwitchCase="'radiobutton'">
                 
                     <div *ngFor="let option of model[item].options" class="radio">
@@ -90,15 +94,15 @@
 
             </ng-container>
             
-            <!-- checkbox array -->
+            <!-- checkboxs array -->
             <ng-container *ngSwitchCase="'checkbox-array'">
-                
+
                     <div *ngFor="let option of model[item].options" class="checkbox">
                         <label>
                             <input type="checkbox"
                                 [value]="option.value"
                                 name="{{ item }}"
-                                (click)="toggleArrayControlItemValue(item, $event.target.value)">
+                                (click)="toggleArrayFieldValue(item, $event.target.value)">
                             {{ option.label }}
                         </label>
                     </div>
@@ -120,7 +124,7 @@
 
             </ng-container>
 
-            <!-- Default output -->
+            <!-- default output -->
             <div *ngSwitchDefault class="text-danger">
                 Unsupported Widget!!
             </div>
