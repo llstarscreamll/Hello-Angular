@@ -1,7 +1,7 @@
-<form [formGroup]="controls">
+<div [formGroup]="controls">
 
     <!-- iterate over the model keys -->
-    <div *ngFor="let item of getModelKeys()" class="form-group">
+    <div *ngFor="let item of getModelKeys()" class="form-group" [ngClass]="{'has-success': controls.get(item).valid && controls.get(item).touched, 'has-error': !controls.get(item).valid && controls.get(item).touched}">
         
         <!-- the control label -->
         <label [attr.for]="item"
@@ -142,7 +142,7 @@
         </div>
 
     </div>
-</form>
+</div>
 
 <div *ngIf="debug" class="row">
     <div class="col-sm-4">
