@@ -48,15 +48,25 @@
                 </textarea>
             </ng-container>
 
-            <!-- select single -->
+            <!-- select -->
             <ng-container *ngSwitchCase="'select'">
                 <select name="{{ item }}"
                         formControlName="{{ item }}"
                         [attr.id]="item"
-                        [multiple]="model[item].multiple || false"
+                        [attr.multiple]="model[item].multiple ? true : null"
                         [size]="model[item].size || (model[item].multiple ? 5 : 1)"
                         class="form-control"
                         [ngClass]="[model[item].inputClass || '']">
+
+                    <!-- if the options are dynamic, I mean if the options are on the data component attribute -->
+                    <ng-container *ngIf="model[item].dynamicOptions !== undefined">
+                        <option value="">---</option>
+                        <ng-container *ngFor="let option of data[model[item].dynamicOptions.data]">
+                        <option [value]="option.id || option.value">
+                            {{ option.name || option.label }}
+                        </option>
+                        </ng-container>
+                    </ng-container>
 
                     <!-- if the dynamic options depends on other field value -->
                     <ng-container *ngIf="model[item].dependantDynamicOptions !== undefined">
