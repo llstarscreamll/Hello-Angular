@@ -29,6 +29,7 @@ export class FormModelParser {
 
     // loop over the model fields
     _.forOwn(model, (value, key) => {
+      // don't parse the form model options
       if (key == this.optionsKey) return false;
 
       let field = {};
@@ -54,6 +55,20 @@ export class FormModelParser {
       }
 
       parsedModel[key] = field;
+
+      // the field requires confirmation?
+      if (_.includes(_.get(value, 'validation', []), 'confirmed')) {
+        let filteredVal = _.filter(value['validation'], (rule) => {
+          return rule != 'confirmed';
+        });
+
+        let confirmField = this.parse(
+          {[key+'_confirmation']: Object.assign({}, value, {validation: filteredVal})},
+          langNamespace
+        );
+
+        Object.assign(parsedModel, confirmField);
+      }
     });
 
     return parsedModel;
