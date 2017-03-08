@@ -91,7 +91,7 @@
 
             <!-- radio buttons -->
             <ng-container *ngSwitchCase="'radiobutton'">
-                
+                <div [ngClass]="{'ng-invalid-group': !controls.get(item).valid}">
                     <div *ngFor="let option of model[item].options" class="radio">
                         <label>
                             <input type="radio"
@@ -101,6 +101,7 @@
                             {{ option.label }}
                         </label>
                     </div>
+                </div>
 
             </ng-container>
             
