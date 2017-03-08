@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from 'ng2-translate';
 import * as _ from 'lodash';
 
@@ -67,9 +67,17 @@ export class FormModelParser {
    */
   public toFormGroup(parsedModel: Object): FormGroup {
     let group = {};
+    let validation = [];
 
     _.forOwn(parsedModel, (value, key) => {
-      group[key] = [''];
+        validation = [];
+      if(_.has(value, 'validation')) {
+        _.each(value['validation'], (validationRule) => {
+          validationRule == "required" ? validation.push(Validators.required) : null;
+        });
+      }
+
+      group[key] = ['', validation];
     });
 
     let form = this.formBuilder.group(group);
