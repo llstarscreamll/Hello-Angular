@@ -28,7 +28,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   @Input() showErrors: boolean = true;
   @Input() appMessage: AppMessage;
   public icon: string = '';
-  public dismissTime: number = 10000;
+  public dismissTime: number = 30000;
 
   constructor(private store: Store<fromRoot.State>) { }
 
