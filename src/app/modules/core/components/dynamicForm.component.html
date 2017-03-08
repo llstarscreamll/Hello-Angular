@@ -1,65 +1,52 @@
-<div [formGroup]="controls">
+<div ng-if="disabled">
+  <div *ngFor="let item of getModelKeys()" class="form-group col-sm-6">
 
-    <!-- iterate over the model keys -->
-    <div *ngFor="let item of getModelKeys()"
-         class="form-group"
-         [class.has-success]="controls.get(item).valid && controls.get(item).touched"
-         [class.has-error]="(!controls.get(item).valid && controls.get(item).touched) || errors['errors'][item]">
-        
-        <!-- the control label -->
-        <label [attr.for]="item"
-                class="control-label"
-                [ngClass]="[model[item].labelClass || '']">
-            {{ model[item].label }}
-        </label>
+    <label [attr.for]="item" class="control-label">{{ model[item].label }}</label>
+    <div class="form-control" disabled>{{ controls.get(item).value }}</div>
 
-        <!-- render the correct control based on the field type  -->
-        <div [ngSwitch]="model[item].type" [ngClass]="[model[item].inputGridClass || '']">
-            
-            <!-- text box -->
-            <ng-container *ngSwitchCase="'text'">
-                <input type="text"
-                    name="{{ item }}"
-                    [attr.id]="item"
-                    class="form-control"
-                    [ngClass]="[model[item].inputClass || '']"
-                    formControlName="{{ item }}"
-                    placeholder="{{ model[item].placeholder }}">
-            </ng-container>
+  </div>
+</div>
+<div class="clearfix"></div>
 
-            <!-- number box -->
-            <ng-container *ngSwitchCase="'number'">
-                <input type="number"
-                    name="{{ item }}"
-                    [attr.id]="item"
-                    class="form-control"
-                    [ngClass]="[model[item].inputClass || '']"
-                    formControlName="{{ item }}"
-                    placeholder="{{ model[item].placeholder }}"
-                    step="{{ model[item].step || 1 }}">
-            </ng-container>
+<div *ngIf="!disabled" [formGroup]="controls">
 
-            <!-- textarea -->
-            <ng-container *ngSwitchCase="'textarea'">
-                <textarea name="{{ item }}"
-                        rows="4"
-                        [attr.id]="item"
-                        class="form-control"
-                        [ngClass]="[model[item].inputClass || '']"
-                        formControlName="{{ item }}"
-                        placeholder="{{ model[item].placeholder || null }}">
+  <!-- iterate over the model keys -->
+  <div  *ngFor="let item of getModelKeys()"
+        class="form-group"
+        [class.has-success]="controls.get(item).valid && controls.get(item).touched"
+        [class.has-error]="(!controls.get(item).valid && controls.get(item).touched) || errors['errors'][item]">
+
+    <!-- the control label -->
+    <label [attr.for]="item" class="control-label" [ngClass]="[model[item].labelClass || '']">
+      {{ model[item].label }}
+    </label>
+
+    <!-- render the correct control based on the field type  -->
+    <div [ngSwitch]="model[item].type" [ngClass]="[model[item].inputGridClass || '']">
+
+      <!-- text box -->
+      <ng-container *ngSwitchCase="'text'">
+        <input type="text" name="{{ item }}" [attr.id]="item" class="form-control" [ngClass]="[model[item].inputClass || '']" formControlName="{{ item }}"
+          placeholder="{{ model[item].placeholder }}">
+      </ng-container>
+
+      <!-- number box -->
+      <ng-container *ngSwitchCase="'number'">
+        <input type="number" name="{{ item }}" [attr.id]="item" class="form-control" [ngClass]="[model[item].inputClass || '']" formControlName="{{ item }}"
+          placeholder="{{ model[item].placeholder }}" step="{{ model[item].step || 1 }}">
+      </ng-container>
+
+      <!-- textarea -->
+      <ng-container *ngSwitchCase="'textarea'">
+        <textarea name="{{ item }}" rows="4" [attr.id]="item" class="form-control" [ngClass]="[model[item].inputClass || '']" formControlName="{{ item }}"
+          placeholder="{{ model[item].placeholder || null }}">
                 </textarea>
-            </ng-container>
+      </ng-container>
 
-            <!-- select -->
-            <ng-container *ngSwitchCase="'select'">
-                <select name="{{ item }}"
-                        formControlName="{{ item }}"
-                        [attr.id]="item"
-                        [attr.multiple]="model[item].multiple ? true : null"
-                        [size]="model[item].size || (model[item].multiple ? 5 : 1)"
-                        class="form-control"
-                        [ngClass]="[model[item].inputClass || '']">
+      <!-- select -->
+      <ng-container *ngSwitchCase="'select'">
+        <select name="{{ item }}" formControlName="{{ item }}" [attr.id]="item" [attr.multiple]="model[item].multiple ? true : null"
+          [size]="model[item].size || (model[item].multiple ? 5 : 1)" class="form-control" [ngClass]="[model[item].inputClass || '']">
 
                     <!-- if the options are dynamic, I mean if the options are on the data component attribute -->
                     <ng-container *ngIf="model[item].dynamicOptions !== undefined">
@@ -90,80 +77,79 @@
                         </option>
                     </ng-container>
                 </select>
-            </ng-container>
+      </ng-container>
 
-            <!-- radio buttons -->
-            <ng-container *ngSwitchCase="'radiobutton'">
-                <div [ngClass]="{'ng-invalid-group': !controls.get(item).valid}">
-                    <div *ngFor="let option of model[item].options" class="radio">
-                        <label>
-                            <input type="radio"
-                                formControlName="{{ item }}"
-                                name="{{ item }}"
-                                [value]="option.value">
-                            {{ option.label }}
-                        </label>
-                    </div>
-                </div>
-
-            </ng-container>
-            
-            <!-- checkboxs array -->
-            <ng-container *ngSwitchCase="'checkbox-array'">
-
-                    <div *ngFor="let option of model[item].options" class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                [value]="option.value"
-                                name="{{ item }}"
-                                (click)="toggleArrayFieldValue(item, $event.target.value)">
-                            {{ option.label }}
-                        </label>
-                    </div>
-
-            </ng-container>
-
-            <!-- single checkbox -->
-            <ng-container *ngSwitchCase="'checkbox'">
-                
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                [value]="model[item].option.value"
-                                name="{{ item }}"
-                                formControlName="{{ item }}">
-                            {{ model[item].option.label }}
-                        </label>
-                    </div>
-
-            </ng-container>
-
-            <!-- default output -->
-            <div *ngSwitchDefault class="text-danger">
-                Unsupported Widget!!
-            </div>
-
-            <div class="text-danger"
-                 *ngIf="(!controls.get(item).valid && controls.get(item).touched) || errors['errors'][item]">
-                <span>{{ errors['errors'][item] }}</span>
-            </div>
-
+      <!-- radio buttons -->
+      <ng-container *ngSwitchCase="'radiobutton'">
+        <div [ngClass]="{'ng-invalid-group': !controls.get(item).valid}">
+          <div *ngFor="let option of model[item].options" class="radio">
+            <label>
+              <input  type="radio"
+                      formControlName="{{ item }}"
+                      name="{{ item }}"
+                      [value]="option.value">
+              {{ option.label }}
+            </label>
+          </div>
         </div>
 
+      </ng-container>
+
+      <!-- checkboxs array -->
+      <ng-container *ngSwitchCase="'checkbox-array'">
+
+        <div *ngFor="let option of model[item].options" class="checkbox">
+          <label>
+            <input  type="checkbox"
+                    [value]="option.value"
+                    name="{{ item }}"
+                    (click)="toggleArrayFieldValue(item, $event.target.value)">
+            {{ option.label }}
+          </label>
+        </div>
+
+      </ng-container>
+
+      <!-- single checkbox -->
+      <ng-container *ngSwitchCase="'checkbox'">
+
+        <div class="checkbox">
+          <label>
+            <input  type="checkbox"
+                    [value]="model[item].option.value"
+                    name="{{ item }}"
+                    formControlName="{{ item }}">
+              {{ model[item].option.label }}
+          </label>
+        </div>
+
+      </ng-container>
+
+      <!-- default output -->
+      <div *ngSwitchDefault class="text-danger">
+        Unsupported Widget!!
+      </div>
+
+      <div class="text-danger" *ngIf="(!controls.get(item).valid && controls.get(item).touched) || errors['errors'][item]">
+        <span>{{ errors['errors'][item] }}</span>
+      </div>
+
     </div>
+
+  </div>
 </div>
 
 <div *ngIf="debug" class="row">
-    <div class="col-sm-4">
-        <strong>FormGroup</strong>
-        <pre> {{ controls.value | json }} </pre>
-    </div>
-    <div class="col-sm-4">
-        <strong>FormModel</strong>
-        <pre> {{ model | json }} </pre>
-    </div>
-    <div class="col-sm-4">
-        <strong>FormData</strong>
-        <pre> {{ data | json }} </pre>
-    </div>
+  <div class="col-sm-4">
+    <strong>FormGroup</strong>
+    <pre> {{ controls.value | json }} </pre>
+  </div>
+  <div class="col-sm-4">
+    <strong>FormModel</strong>
+    <pre> {{ model | json }} </pre>
+  </div>
+  <div class="col-sm-4">
+    <strong>FormData</strong>
+    <pre> {{ data | json }} </pre>
+  </div>
 </div>

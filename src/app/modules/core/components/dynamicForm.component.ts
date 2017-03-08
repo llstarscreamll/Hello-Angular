@@ -30,6 +30,11 @@ export class DynamicFormcomponent implements OnInit {
   @Input() errors: Object = {};
 
   /**
+   * Should be the fileds disabled?
+   */
+  @Input() disabled: boolean = false;
+
+  /**
    * Option to display info about the model, controls and data attributes.
    */
   @Input() debug: boolean = false;
