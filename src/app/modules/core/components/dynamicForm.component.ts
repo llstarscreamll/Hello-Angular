@@ -25,6 +25,11 @@ export class DynamicFormcomponent implements OnInit {
   @Input() data: Object = {};
 
   /**
+   * The form external errors, from API for example.
+   */
+  @Input() errors: Object = {};
+
+  /**
    * Option to display info about the model, controls and data attributes.
    */
   @Input() debug: boolean = false;

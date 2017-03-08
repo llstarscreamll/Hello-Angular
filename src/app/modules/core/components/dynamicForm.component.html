@@ -1,7 +1,10 @@
 <div [formGroup]="controls">
 
     <!-- iterate over the model keys -->
-    <div *ngFor="let item of getModelKeys()" class="form-group" [ngClass]="{'has-success': controls.get(item).valid && controls.get(item).touched, 'has-error': !controls.get(item).valid && controls.get(item).touched}">
+    <div *ngFor="let item of getModelKeys()"
+         class="form-group"
+         [class.has-success]="controls.get(item).valid && controls.get(item).touched"
+         [class.has-error]="(!controls.get(item).valid && controls.get(item).touched) || errors['errors'][item]">
         
         <!-- the control label -->
         <label [attr.for]="item"
@@ -138,6 +141,11 @@
             <!-- default output -->
             <div *ngSwitchDefault class="text-danger">
                 Unsupported Widget!!
+            </div>
+
+            <div class="text-danger"
+                 *ngIf="(!controls.get(item).valid && controls.get(item).touched) || errors['errors'][item]">
+                <span>{{ errors['errors'][item] }}</span>
             </div>
 
         </div>
