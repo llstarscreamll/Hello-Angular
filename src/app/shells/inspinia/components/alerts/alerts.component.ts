@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 import * as appMessageActions from './../../../../modules/core/actions/appMessage';
 import * as fromRoot from './../../../../modules/core/reducers';
@@ -16,6 +17,9 @@ import { AppMessage } from './../../../../modules/core/models/appMessage';
            (onClosed)="ngOnDestroy()">
       <h4><i class="icon {{ icon }}"></i> {{ 'SHELL.alert-' + appMessage?.type | translate }}!</h4>
       {{ appMessage.message }}
+      <ul class="m-t-sm">
+        <li *ngFor="let item of getErrorsArray(appMessage?.errors)">{{ item }}</li>
+      </ul>
     </alert>
   `,
   styles: []
@@ -28,20 +32,35 @@ export class AlertsComponent implements OnInit, OnDestroy {
   @Input() showErrors: boolean = true;
   @Input() appMessage: AppMessage;
   public icon: string = '';
-  public dismissTime: number = 30000;
+  public dismissTime: number = 20000;
 
-  constructor(private store: Store<fromRoot.State>) { }
+  public constructor(private store: Store<fromRoot.State>) { }
 
-  ngOnInit() { this.setIconAndMsgStyle(); }
+  public ngOnInit() { this.setIconAndMsgStyle(); }
 
-  ngOnDestroy() {
-    this.store.dispatch(new appMessageActions.Remove());
+  public ngOnDestroy() {
+    let endTime = new Date();
+    let diffTime = (endTime.getTime() - this.appMessage.date.getTime()) / 1000;
+    
+    if (diffTime > 5 && this.appMessage.message !== "") {
+      this.store.dispatch(new appMessageActions.Remove());
+    }
   }
 
-  public setIconAndMsgStyle () {
+  public getErrorsArray(Obj: Object) {
+    let array = [];
+
+    _.forOwn(Obj, (value) => {
+      array.push(value);
+    });
+
+    return array;
+  }
+
+  public setIconAndMsgStyle() {
     let iconStyle = '';
 
-    switch(this.appMessage.type) {
+    switch (this.appMessage.type) {
       case 'success': {
         iconStyle = 'fa fa-check';
       }

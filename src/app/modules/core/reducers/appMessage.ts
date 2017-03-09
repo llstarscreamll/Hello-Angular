@@ -7,16 +7,20 @@ const initialState: AppMessage = {
   message: '',
   errors: {},
   status_code: null,
-  type: ''
+  type: '',
+  date: new Date(),
 }
 
 export function reducer(state = initialState, action: error.Actions): State {
 
   switch (action.type) {
 
-    case error.ActionTypes.REMOVE:
+    case error.ActionTypes.REMOVE: {
+      return { ...action.payload, date: new Date() };
+    }
+
     case error.ActionTypes.FLASH: {
-      return action.payload;
+      return { ...action.payload, date: new Date() };
     }
 
     default: {
