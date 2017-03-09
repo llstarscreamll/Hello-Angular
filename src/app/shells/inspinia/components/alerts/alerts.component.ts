@@ -32,7 +32,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   @Input() showErrors: boolean = true;
   @Input() appMessage: AppMessage;
   public icon: string = '';
-  public dismissTime: number = 20000;
+  public dismissTime: number = 50000;
 
   public constructor(private store: Store<fromRoot.State>) { }
 
@@ -59,7 +59,6 @@ export class AlertsComponent implements OnInit, OnDestroy {
 
   public getIconAndMsgStyle(type: string) {
     let iconStyle = '';
-    console.log(type);
 
     switch (type) {
       case 'success': {

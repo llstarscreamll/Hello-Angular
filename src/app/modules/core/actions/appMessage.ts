@@ -18,7 +18,8 @@ export class Remove implements Action {
     message: '',
     errors: {},
     status_code: null,
-    type: ''
+    type: '',
+    date: new Date()
   }) {}
 }
 
