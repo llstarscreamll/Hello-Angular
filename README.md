@@ -17,6 +17,11 @@ This feature allows you build dynamic forms based on a Javascript Object. To def
 		labelClass: 'my-label-class', // classes for the input label tag
 		inputClass: 'my-input-class', // classes for the input
 		inputGridClass: 'my-grid-class-for-input' // classes for the input wrapper
+		visibility: { // with this setup the field will be shown only on create contexts
+			create: true,
+			datails: false,
+			update: false
+		}
 	},
 	// define a select dropdown with static options
 	country: {
@@ -85,5 +90,24 @@ This feature allows you build dynamic forms based on a Javascript Object. To def
 		option: { value: 'true', label: 'Yes!!' } // object, not array
 	},
 }
+```
 
-``` 
+Taken the avobe example you should use the component like this;
+
+```html
+<app-dynamic-form 	[model]="model | async"
+					[data]="formData | async"
+					[disabled]="false"
+					[visibility]="'create'"
+					[debug]="false"
+					[controls]="bookForm"></app-dynamic-form>
+```
+
+Where:
+
+- [model] = the parsed model with the `FormModelParser` service located on `src/app/modules/core/services/localStorage.ts`.
+- [data] = the form data, like the dropdown/checkboxes/radio options retreived from the API
+- [disabled] = should the component render all controls as static? useful for readonly data
+- [visibility] = this determines what fields will be shown based on their visibility options
+- [debug] = set to true if you want to see the FormModel, FormGroup and FormData info on divs
+- [controls] = the ReactiveForm controls, build manually as needed or build dynamically with `FormModelParser.toFormGroup(parsedModel)`
