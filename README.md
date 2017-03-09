@@ -111,3 +111,18 @@ Where:
 - [visibility] = this determines what fields will be shown based on their visibility options
 - [debug] = set to true if you want to see the FormModel, FormGroup and FormData info on divs
 - [controls] = the ReactiveForm controls, build manually as needed or build dynamically with `FormModelParser.toFormGroup(parsedModel)`
+
+## Nginx Server config
+
+Use this config to avoid `No input file especified` errors on Homestead:
+
+```bash
+location / {
+	expires -1;
+	add_header Pragma "no-cache";
+	add_header Cache-Control "no-store, no-cache, must-revalicate, post-check=0 pre-check=0";
+	root /home/ubuntu/code/dist;
+	try_files $uri $uri/ /index.html =404;
+	break;
+}
+```
