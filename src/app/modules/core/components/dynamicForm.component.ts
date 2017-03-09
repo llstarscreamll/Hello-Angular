@@ -30,6 +30,12 @@ export class DynamicFormcomponent implements OnInit {
   @Input() errors: Object = {};
 
   /**
+   * The visibility parameter to show or not the fields. It means that form model
+   * fields with visibility = 'create' will be rendered.
+   */
+  @Input() visibility: string  = 'create';
+
+  /**
    * Should be the fileds disabled?
    */
   @Input() disabled: boolean = false;
