@@ -1,6 +1,6 @@
 <div *ngIf="disabled">
   <ng-container *ngFor="let item of getModelKeys()">
-    <div *ngIf="model[item]['visibility'][visibility] === true" class="form-group col-sm-6">
+    <div *ngIf="model[item]['visibility'][visibility] === true" class="form-group col-xs-12 col-md-6">
 
       <label [attr.for]="item" class="control-label">{{ model[item].label }}</label>
       <div class="form-control fix-form-control-height" disabled>{{ controls.get(item).value }}</div>
@@ -14,7 +14,7 @@
 
   <!-- iterate over the model keys -->
   <ng-container  *ngFor="let item of getModelKeys()">
-    
+
   <div  *ngIf="model[item]['visibility'][visibility] === true"
         class="form-group"
         [class.has-success]="controls.get(item).valid && controls.get(item).touched"
