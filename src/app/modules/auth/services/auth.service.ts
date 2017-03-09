@@ -13,7 +13,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class AuthService extends Service {
 
   protected API_ENDPOINT: string = 'user';
-  public loginRoute: string = '/auth/login';
+  public loginRoute: string = '/login';
   public loginFromLocalStorage: boolean = false;
 
   public constructor(
@@ -53,7 +53,7 @@ export class AuthService extends Service {
     this.headers.set('authorization', 'Bearer ' + this.localStorageService.getItem('token'));
 
     return this.http
-      .post(this.apiEndpoint('logout'), {}, { headers: this.headers })
+      .post(this.domain + '/logout', {}, { headers: this.headers })
       .map(res => res.json().message)
       .catch(this.handleError);
   }

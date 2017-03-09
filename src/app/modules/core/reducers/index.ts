@@ -90,3 +90,6 @@ export const getCompanyState = (state: State) => state.company;
  * Books Selector
  */
 export const getBookState = (state: State) => state.book;
+export const getBookFormModel = createSelector(getBookState, fromBook.getBookFormModel);
+export const getBookFormGroup = createSelector(getBookState, fromBook.getBookFormModel);
+export const getSelectedBook = createSelector(getBookState, fromBook.getSelectedBook);
