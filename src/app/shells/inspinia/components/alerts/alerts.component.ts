@@ -15,7 +15,7 @@ import { AppMessage } from './../../../../modules/core/models/appMessage';
            dismissible="true"
            [dismissOnTimeout]="dismissTime"
            (onClosed)="ngOnDestroy()">
-      <h4><i class="icon {{ icon }}"></i> {{ 'SHELL.alert-' + appMessage?.type | translate }}!</h4>
+      <h4><i class="icon {{ getIconAndMsgStyle(appMessage?.type) }}"></i> {{ 'SHELL.alert-' + appMessage?.type | translate }}!</h4>
       {{ appMessage.message }}
       <ul class="m-t-sm">
         <li *ngFor="let item of getErrorsArray(appMessage?.errors)">{{ item }}</li>
@@ -36,7 +36,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
 
   public constructor(private store: Store<fromRoot.State>) { }
 
-  public ngOnInit() { this.setIconAndMsgStyle(); }
+  public ngOnInit() { }
 
   public ngOnDestroy() {
     let endTime = new Date();
@@ -57,21 +57,26 @@ export class AlertsComponent implements OnInit, OnDestroy {
     return array;
   }
 
-  public setIconAndMsgStyle() {
+  public getIconAndMsgStyle(type: string) {
     let iconStyle = '';
+    console.log(type);
 
-    switch (this.appMessage.type) {
+    switch (type) {
       case 'success': {
         iconStyle = 'fa fa-check';
+        break;
       }
       case 'warning': {
         iconStyle = 'fa fa-warning';
+        break;
       }
       case 'info': {
         iconStyle = 'fa fa-info';
+        break;
       }
       default: {
         iconStyle = 'fa fa-ban';
+        break;
       }
     }
 
