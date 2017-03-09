@@ -1,8 +1,8 @@
-<div ng-if="disabled">
+<div *ngIf="disabled">
   <div *ngFor="let item of getModelKeys()" class="form-group col-sm-6">
 
     <label [attr.for]="item" class="control-label">{{ model[item].label }}</label>
-    <div class="form-control" disabled>{{ controls.get(item).value }}</div>
+    <div class="form-control fix-form-control-height" disabled>{{ controls.get(item).value }}</div>
 
   </div>
 </div>
