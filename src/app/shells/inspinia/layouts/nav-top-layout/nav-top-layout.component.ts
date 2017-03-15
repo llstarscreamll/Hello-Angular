@@ -11,7 +11,7 @@ import * as fromRoot from './../../../../modules/core/reducers';
   templateUrl: './nav-top-layout.component.html',
   styleUrls: [
     './../../styles.css',
-    ],
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

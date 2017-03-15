@@ -1,21 +1,17 @@
 // ng2 Translate
 import {TranslateModule, TranslateService} from 'ng2-translate';
 
-// Shell
-import { AdminLTEShellModule } from './shells/adminLTE/admin-lte.module';
 import { AppComponent } from './app.component';
 import { AppEffects } from './modules/core/effects/app';
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './modules/core/services/app';
 import { AuthModule } from './modules/auth/auth.module';
-import { BookModule } from './modules/book/book.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CompanyModule } from './modules/company/company.module';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 // Modules
 import { FrontModule } from './modules/front/front.module';
-import { GeneratorModule } from './modules/generator/generator.module';
 import { HttpModule } from '@angular/http';
 // Separated files for core module, TODO: wrap everything from core module on NgModule Class
 import { LocalStorageService } from './modules/core/services/localStorage';
@@ -41,14 +37,11 @@ import { reducer } from './modules/core/reducers';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    AdminLTEShellModule,
     FrontModule,
     WelcomeModule,
     AuthModule,
     PayrollModule,
     CompanyModule,
-    GeneratorModule,
-    BookModule
   ],
   providers: [
     LocalStorageService, AppService

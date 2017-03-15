@@ -14,14 +14,12 @@ import * as fromApp from './app';
 import * as fromAppMessages from './appMessage';
 import * as fromAuth from './../../auth/reducers/auth';
 import * as fromCompany from './../../company/reducers/company.reducer';
-import * as fromBook from './../../book/reducers/book.reducer';
 
 /**
  * The app state interface.
  */
 export interface State {
   app: fromApp.State;
-  book: fromBook.State;
   appMessages: fromAppMessages.State;
   layout: fromLayout.State;
   auth: fromAuth.State;
@@ -34,7 +32,6 @@ export interface State {
  */
 const reducers = {
   app: fromApp.reducer,
-  book: fromBook.reducer,
   appMessages: fromAppMessages.reducer,
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
@@ -85,11 +82,3 @@ export const getAppMessagesState = (state: State) => state.appMessages;
  * Company Selector
  */
 export const getCompanyState = (state: State) => state.company;
-
-/**
- * Books Selector
- */
-export const getBookState = (state: State) => state.book;
-export const getBookFormModel = createSelector(getBookState, fromBook.getBookFormModel);
-export const getBookFormGroup = createSelector(getBookState, fromBook.getBookFormModel);
-export const getSelectedBook = createSelector(getBookState, fromBook.getSelectedBook);
