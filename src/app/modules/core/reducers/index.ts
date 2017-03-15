@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
+import * as fromDocumentType from './../../colombian-parameter/reducers/document-type.reducer';
 
 /**
  * Importing reducers from other modules.
@@ -25,6 +26,7 @@ export interface State {
   auth: fromAuth.State;
   router: fromRouter.RouterState;
   company: fromCompany.State;
+  documentType: fromDocumentType.State;
 }
 
 /**
@@ -36,7 +38,8 @@ const reducers = {
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
-  company: fromCompany.reducer
+  company: fromCompany.reducer,
+  documentType: fromDocumentType.reducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -82,3 +85,11 @@ export const getAppMessagesState = (state: State) => state.appMessages;
  * Company Selector
  */
 export const getCompanyState = (state: State) => state.company;
+
+/**
+ * 
+ * DocumentType selectors
+ */
+export const getDocumentTypeState = (state: State) => state.documentType;
+export const getDocumentTypeFormModel = createSelector(getDocumentTypeState, fromDocumentType.getDocumentTypeFormModel);
+export const getSelectedDocumentType: any = (state: State) => state.documentType;
