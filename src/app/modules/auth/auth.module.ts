@@ -2,17 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-// @ngrx
 import { EffectsModule } from '@ngrx/effects';
-// ng2 Translate
 import { TranslateService, TranslateModule } from 'ng2-translate';
-// AdminLTE Shell
+// Shell
 import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
-// Components
+// Routing
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent } from './auth.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+// Components
+import { COMPONENTS } from './components';
 // Services
 import { AuthService } from './services/auth.service';
 // Language files
@@ -30,7 +27,7 @@ import { AuthEffects } from './effects/auth';
     ReactiveFormsModule,
     EffectsModule.run(AuthEffects),
   ],
-  declarations: [AuthComponent, LoginComponent, RegisterComponent],
+  declarations: [...COMPONENTS],
   providers: [AuthService]
 })
 export class AuthModule {
