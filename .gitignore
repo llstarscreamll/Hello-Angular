@@ -20,6 +20,7 @@ src/app/*
 !src/app/front
 !src/app/welcome
 !src/app/adminLTE
+!src/app/*.ts
 
 # IDEs and editors
 /.idea
