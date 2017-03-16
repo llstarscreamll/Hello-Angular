@@ -92,4 +92,4 @@ export const getCompanyState = (state: State) => state.company;
  */
 export const getDocumentTypeState = (state: State) => state.documentType;
 export const getDocumentTypeFormModel = createSelector(getDocumentTypeState, fromDocumentType.getDocumentTypeFormModel);
-export const getSelectedDocumentType: any = (state: State) => state.documentType;
+export const getSelectedDocumentType = createSelector(getDocumentTypeState, fromDocumentType.getSelectedDocumentType);
