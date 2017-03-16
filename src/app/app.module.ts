@@ -10,7 +10,7 @@ import { TranslateModule, TranslateService } from 'ng2-translate';
 import { MODULES } from './modules';
 
 // the main reducer
-import { reducer } from './core/reducers';
+import { reducer } from './reducers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

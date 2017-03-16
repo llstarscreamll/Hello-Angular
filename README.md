@@ -12,11 +12,25 @@ Here are some libraries used on this app:
 - ng2-bootstrap
 - etc...
 
+## Install
+
+```bash
+git clone https://github.com/llstarscreamll/Hello-Angular.git
+cd Hello-Angular
+cp src/app/menu.ts.example src/app/menu.ts
+cp src/app/modules.ts.example src/app/modules.ts
+cp src/app/reducers.ts.example src/app/reducers.ts
+npm install
+ng serve
+```
+
+Go to **http://localhost:4200** and check the app.
+
 ## Features
 
 - Authentication:
   - login users
-  - ~~register users~~, a small pregress only
+  - ~~register users~~, a small pregress only, not functional yet
   - guard to check if user is authenticated
 - Dynamic form builder
 - Basic search component
@@ -36,7 +50,7 @@ This feature allows you build dynamic forms based on a Javascript Object. To def
     name: { // the field name
         label: 'Nombre', // the field label
         type: 'text', // the input type
-        placeholder: 'tu nombre...', // a palce holder for the field
+        placeholder: 'tu nombre...', // placeholder for the field
         labelClass: 'my-label-class', // classes for the input label tag
         inputClass: 'my-input-class', // classes for the input
         inputGridClass: 'my-grid-class-for-input' // classes for the input wrapper
