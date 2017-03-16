@@ -1,0 +1,15 @@
+import { FrontModule } from './front/front.module';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { WelcomeModule } from './welcome/welcome.module';
+
+/**
+ * Here you can add all your modules, this file is called on app.module.ts
+ */
+
+export const MODULES = [
+    CoreModule,
+    FrontModule,
+    AuthModule,
+    WelcomeModule,
+];
