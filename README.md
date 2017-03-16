@@ -20,6 +20,7 @@ cd Hello-Angular
 cp src/app/menu.ts.example src/app/menu.ts
 cp src/app/modules.ts.example src/app/modules.ts
 cp src/app/reducers.ts.example src/app/reducers.ts
+cp src/environments/env.example.ts src/environments/env.ts # go to this file and fill the variables
 npm install
 ng serve
 ```
