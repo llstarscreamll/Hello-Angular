@@ -22,6 +22,7 @@ Here are some libraries used on this app:
 - Basic search component
 - Translations files, at the moment only Spanish is supported
 - AdminLTE Theme, whit top navbar, right sidebar and center box layouts
+- Public and private components that make use of the auth guard
 
 Well, you see... there are many work to do here... I would be happy receiving help!!
 
