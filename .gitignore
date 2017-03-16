@@ -12,6 +12,10 @@ src/environments/env.ts
 # dependencies
 /node_modules
 
+src/app/menu.ts
+src/app/modules.ts
+src/app/reducers.ts
+
 # modules
 !src/app/
 src/app/*
@@ -20,7 +24,8 @@ src/app/*
 !src/app/front
 !src/app/welcome
 !src/app/adminLTE
-!src/app/*.ts
+!src/app/app*.ts
+!src/app/*.example
 
 # IDEs and editors
 /.idea
