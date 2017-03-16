@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { State as AuthState }  from './../../../auth/reducers/auth';
 import { State as AppState } from './../../../core/reducers/app';
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 
 @Component({
   selector: 'app-nav-top-layout',

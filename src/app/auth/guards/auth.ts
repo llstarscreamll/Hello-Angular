@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { go } from '@ngrx/router-store';
 
 import { AuthService } from './../services/auth.service';
-import * as fromRoot from './../../core/reducers';
+import * as fromRoot from './../../reducers';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

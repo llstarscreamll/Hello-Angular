@@ -9,7 +9,7 @@ import { SidebarLayoutComponent } from './sidebar-layout.component';
 import { UserAccountMenuComponent } from './../../components/user-account-menu/user-account-menu.component';
 import { MainSidebarComponent } from './../_partials/main-sidebar/main-sidebar.component';
 import { FooterComponent } from './../_partials/footer/footer.component';
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 import * as authActions from './../../../auth/actions/auth';
 import * as appActions from './../../../../modules/core/actions/app';
 import { IMPORTS } from './../../utils';

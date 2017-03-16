@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as appMessageActions from './../../../core/actions/appMessage';
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 import { AppMessage } from './../../../core/models/appMessage';
 
 @Component({

@@ -9,7 +9,7 @@ import { FooterComponent } from './../_partials/footer/footer.component';
 import { UserAccountMenuComponent } from './../../components/user-account-menu/user-account-menu.component';
 import { IMPORTS } from './../../utils';
 import { TEST_USER, COMPANY } from './../../../../modules/core/tests/util';
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 import * as appActions from './../../../../modules/core/actions/app';
 import * as authActions from './../../../auth/actions/auth';
 

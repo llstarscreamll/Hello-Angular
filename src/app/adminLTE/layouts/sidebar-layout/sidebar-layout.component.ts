@@ -13,7 +13,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 import * as layout from './../../../core/actions/layout';
 import { State as AppState } from './../../../core/reducers/app';
 import { State as AuthState }  from './../../../auth/reducers/auth';

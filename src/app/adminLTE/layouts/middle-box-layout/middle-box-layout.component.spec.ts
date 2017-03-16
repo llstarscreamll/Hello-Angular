@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { IMPORTS } from './../../utils';
 import { COMPANY } from './../../../../modules/core/tests/util';
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 import * as appActions from './../../../../modules/core/actions/app';
 import { MiddleBoxLayoutComponent } from './middle-box-layout.component';
 

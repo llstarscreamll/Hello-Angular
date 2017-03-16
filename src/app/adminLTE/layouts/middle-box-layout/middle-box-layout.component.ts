@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from './../../../core/reducers';
+import * as fromRoot from './../../../reducers';
 import { State as AppState } from './../../../core/reducers/app';
 
 @Component({

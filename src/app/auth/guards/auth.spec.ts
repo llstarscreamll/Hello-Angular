@@ -13,7 +13,7 @@ import { go } from '@ngrx/router-store';
 import { AuthGuard } from './auth';
 import { AuthService } from './../services/auth.service';
 import { LocalStorageService } from './../../core/services/localStorage';
-import * as fromRoot from './../../core/reducers';
+import * as fromRoot from './../../reducers';
 
 /**
  * Dummy components
