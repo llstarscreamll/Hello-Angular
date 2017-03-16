@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { MenuItem } from './../../../../../modules/core/models/MenuItem';
-import { AuthUser } from './../../../../../modules/auth/models/authUser';
+import { AuthUser } from './../../../../auth/models/authUser';
 
 @Component({
   selector: '[app-admin-lte-main-sidebar]',

@@ -4,7 +4,7 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
 
 // Shell Theme
-import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
+import { InspiniaShellModule as Shell } from './../inspinia/inspinia.module';
 
 @NgModule({
   imports: [

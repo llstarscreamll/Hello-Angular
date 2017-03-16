@@ -5,7 +5,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from 'ng2-translate';
 
-import { AdminLTEShellModule as Shell } from './../../../shells/adminLTE/admin-lte.module';
+import { AdminLTEShellModule as Shell } from './../../adminLTE/admin-lte.module';
 import { reducer } from './../reducers';
 import { Company } from './../../core/models/company';
 import { AuthUser } from './../../auth/models/authUser';

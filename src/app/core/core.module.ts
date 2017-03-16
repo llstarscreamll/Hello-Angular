@@ -1,38 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-// ng2-boostrap
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
-// Shared components
-import { PaginationComponent } from './components/pagination.component';
-import { BasicSearchComponent } from './components/basicSearch.component';
-import { DynamicFormcomponent } from './components/dynamicForm.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TranslateService, TranslateModule } from 'ng2-translate';
 
-// Services
-import { FormModelParser } from './services/formModelParser';
+import { AppEffects } from './effects/app';
+import { AppService } from './services/app';
+import { LocalStorageService } from './services/localStorage';
 
-/**
- * Here we expose the shared components to another modules.
- */
+import { ES } from './translations/es';
+
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    DropdownModule,
-  ],
-  declarations: [
-    PaginationComponent,
-    BasicSearchComponent,
-    DynamicFormcomponent
-  ],
-  exports: [
-    PaginationComponent,
-    BasicSearchComponent,
-    DynamicFormcomponent
-  ],
-  providers: [
-    FormModelParser
-  ]
+    declarations: [],
+    imports: [
+        TranslateModule,
+        EffectsModule.run(AppEffects),
+    ],
+    exports: [],
+    providers: [ LocalStorageService, AppService ],
+    bootstrap: []
 })
-export class CoreModule { }
+export class CoreModule {
+    public constructor(translate: TranslateService) {
+        translate.setTranslation('es', ES, true);
+    }
+}

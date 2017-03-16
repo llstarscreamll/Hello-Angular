@@ -37,9 +37,6 @@ import { PageContentComponent } from './components/page-content/page-content.com
 // Alerts Component
 import { AlertsComponent } from './components/alerts/alerts.component';
 
-// Language files
-import { ES } from './../translations/es';
-
 export const COMPONENTS = [
   // Layouts
   NavTopLayoutComponent,

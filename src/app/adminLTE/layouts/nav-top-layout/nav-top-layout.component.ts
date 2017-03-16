@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulatio
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import { State as AuthState }  from './../../../../modules/auth/reducers/auth';
-import { State as AppState } from './../../../../modules/core/reducers/app';
-import * as fromRoot from './../../../../modules/core/reducers';
+import { State as AuthState }  from './../../../auth/reducers/auth';
+import { State as AppState } from './../../../core/reducers/app';
+import * as fromRoot from './../../../core/reducers';
 
 @Component({
   selector: 'app-nav-top-layout',

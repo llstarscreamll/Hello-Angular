@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { MenuItem } from './../../../../modules/core/models/MenuItem';
-import { AuthUser } from './../../../../modules/auth/models/authUser';
-import { MENU } from './../../../../menu';
+import { MenuItem } from './../../..//core/models/MenuItem';
+import { AuthUser } from './../../../auth/models/authUser';
+import { MENU } from './../../../menu';
 
 declare let jQuery:any;
 

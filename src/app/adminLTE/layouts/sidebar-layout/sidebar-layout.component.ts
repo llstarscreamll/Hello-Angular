@@ -13,10 +13,10 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from './../../../../modules/core/reducers';
-import * as layout from './../../../../modules/core/actions/layout';
-import { State as AppState } from './../../../../modules/core/reducers/app';
-import { State as AuthState }  from './../../../../modules/auth/reducers/auth';
+import * as fromRoot from './../../../core/reducers';
+import * as layout from './../../../core/actions/layout';
+import { State as AppState } from './../../../core/reducers/app';
+import { State as AuthState }  from './../../../auth/reducers/auth';
 import { MainSidebarComponent } from './../_partials/main-sidebar/main-sidebar.component';
 import { FooterComponent } from './../_partials/footer/footer.component';
 

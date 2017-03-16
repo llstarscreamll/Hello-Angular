@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/test
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../../../../modules/core/reducers';
+import * as fromRoot from './../../../core/reducers';
 
 import { AlertsComponent } from './alerts.component';
 import { IMPORTS } from './../../utils';

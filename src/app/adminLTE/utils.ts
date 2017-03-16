@@ -6,7 +6,7 @@ import { DropdownModule } from 'ng2-bootstrap/dropdown';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { AlertModule } from 'ng2-bootstrap/alert';
 
-import { reducer } from './../../modules/core/reducers';
+import { reducer } from './../core/reducers';
 
 export const IMPORTS = [
   TranslateModule.forRoot(),

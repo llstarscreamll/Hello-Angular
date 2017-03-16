@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { State as appState } from './../../../../../modules/core/reducers/app';
+import { State as appState } from './../../../../core/reducers/app';
 
 @Component({
   selector: '[app-admin-lte-footer]',

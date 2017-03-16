@@ -7,8 +7,8 @@ import { Store } from '@ngrx/store';
 import { MainSidebarComponent } from './main-sidebar.component';
 import { IMPORTS } from './../../../utils';
 import { TEST_USER } from './../../../../../modules/core/tests/util';
-import * as fromRoot from './../../../../../modules/core/reducers';
-import * as authActions from './../../../../../modules/auth/actions/auth';
+import * as fromRoot from './../../../../core/reducers';
+import * as authActions from './../../../../auth/actions/auth';
 
 describe('MainSidebarComponent', () => {
   let component: MainSidebarComponent;

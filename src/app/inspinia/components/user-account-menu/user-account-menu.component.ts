@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as authActions from './../../../../modules/auth/actions/auth';
-import * as fromRoot from './../../../../modules/core/reducers';
-import { AuthUser } from './../../../../modules/auth/models/authUser';
+import * as authActions from './../../../auth/actions/auth';
+import * as fromRoot from './../../../core/reducers';
+import { AuthUser } from './../../../auth/models/authUser';
 
 @Component({
   selector: '[app-admin-lte-user-account-menu]',

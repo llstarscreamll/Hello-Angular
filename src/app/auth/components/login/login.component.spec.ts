@@ -11,7 +11,7 @@ import { LoginComponent } from './login.component';
 
 import { IMPORTS } from './../../../../modules/core/tests/util';
 import * as authActions from './../../actions/auth';
-import * as fromRoot from './../../../../modules/core/reducers';
+import * as fromRoot from './../../../core/reducers';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

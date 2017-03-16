@@ -2,8 +2,8 @@ import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from './../../../../modules/core/reducers';
-import { State as AppState } from './../../../../modules/core/reducers/app';
+import * as fromRoot from './../../../core/reducers';
+import { State as AppState } from './../../../core/reducers/app';
 
 @Component({
   selector: 'app-middle-box-layout',

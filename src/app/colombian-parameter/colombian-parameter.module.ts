@@ -5,9 +5,9 @@ import { DocumentTypeRoutingModule } from './colombian-parameter-routing.module'
 // ng2 Translate
 import { TranslateService, TranslateModule } from 'ng2-translate';
 
-import { CoreModule } from './../core/core.module';
+import { CoreSharedModule } from './../core/core.shared.module';
 // shell
-import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
+import { InspiniaShellModule as Shell } from './../inspinia/inspinia.module';
 // Containers
 import { CONTAINERS } from './containers';
 // Components
@@ -24,7 +24,7 @@ import { SERVICES } from './services';
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
-    CoreModule,
+    CoreSharedModule,
     Shell,
     DocumentTypeRoutingModule,
     ...EFFECTS,

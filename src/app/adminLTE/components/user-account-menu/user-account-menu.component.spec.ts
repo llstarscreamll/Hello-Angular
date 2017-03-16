@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { UserAccountMenuComponent } from './user-account-menu.component';
 import { IMPORTS } from './../../utils';
-import * as fromRoot from './../../../../modules/core/reducers';
+import * as fromRoot from './../../../core/reducers';
 import { TEST_USER } from './../../../../modules/core/tests/util';
 
 describe('UserAccountMenuComponent', () => {

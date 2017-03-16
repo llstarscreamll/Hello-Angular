@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
-import * as appMessageActions from './../../../../modules/core/actions/appMessage';
-import * as fromRoot from './../../../../modules/core/reducers';
-import { AppMessage } from './../../../../modules/core/models/appMessage';
+import * as appMessageActions from './../../../core/actions/appMessage';
+import * as fromRoot from './../../../core/reducers';
+import { AppMessage } from './../../../core/models/appMessage';
 
 @Component({
   selector: 'app-alerts',

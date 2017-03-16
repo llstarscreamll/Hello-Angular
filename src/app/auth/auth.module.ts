@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateService, TranslateModule } from 'ng2-translate';
 // Shell
-import { InspiniaShellModule as Shell } from './../../shells/inspinia/inspinia.module';
+import { InspiniaShellModule as Shell } from './../inspinia/inspinia.module';
 // Routing
 import { AuthRoutingModule } from './auth-routing.module';
 // Components

@@ -20,9 +20,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainSidebarComponent } from './components/main-sidebar/main-sidebar.component';
 // import { ControlSidebarComponent } from './components/control-sidebar/control-sidebar.component';
 
-// /**
-//  * Components
-//  */
 // // User menu component
 import { UserAccountMenuComponent } from './components/user-account-menu/user-account-menu.component';
 // // Box Widget
@@ -36,9 +33,6 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { PageContentComponent } from './components/page-content/page-content.component';
 // // Alerts Component
 import { AlertsComponent } from './components/alerts/alerts.component';
-
-// Language files
-import { ES } from './../translations/es';
 
 export const COMPONENTS = [
   // Layouts
@@ -76,10 +70,4 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
-export class InspiniaShellModule {
-
-  public constructor(translate: TranslateService) {
-    translate.setTranslation('es', ES, true);
-  }
-  
-}
+export class InspiniaShellModule { }

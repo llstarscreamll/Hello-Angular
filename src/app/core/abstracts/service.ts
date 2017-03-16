@@ -1,7 +1,7 @@
 import 'rxjs/add/observable/throw';
 import { Headers, Response, URLSearchParams } from '@angular/http';
 
-import { ENV } from './../../../../environments/env';
+import { ENV } from './../../../environments/env';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
