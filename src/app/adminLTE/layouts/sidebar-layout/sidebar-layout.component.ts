@@ -26,8 +26,9 @@ import { FooterComponent } from './../_partials/footer/footer.component';
   styleUrls: [
     './sidebar-layout.component.css',
     '~admin-lte/dist/css/AdminLTE.min.css',
-    '~admin-lte/dist/css/skins/_all-skins.min.css'
-    ],
+    '~admin-lte/dist/css/skins/_all-skins.min.css',
+    './../../styles.css',
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
