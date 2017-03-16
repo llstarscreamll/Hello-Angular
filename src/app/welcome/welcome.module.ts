@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
 
-// Shell Theme
-import { InspiniaShellModule as Shell } from './../inspinia/inspinia.module';
+// Theme
+import { AdminLTEShellModule as Theme } from './../adminLTE/admin-lte.module';
 
 @NgModule({
   imports: [
     CommonModule,
     WelcomeRoutingModule,
-    Shell,
+    Theme,
   ],
   declarations: [WelcomeComponent]
 })

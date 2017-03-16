@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-// ng2 Translate
-import { TranslateService, TranslateModule } from 'ng2-translate';
+import { TranslateModule } from 'ng2-translate';
 
 // ng2-bootstrap
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
@@ -65,18 +64,12 @@ export const COMPONENTS = [
     CommonModule,
     RouterModule,
     TranslateModule,
-    DropdownModule.forRoot(),
-    CollapseModule.forRoot(),
-    AlertModule.forRoot(),
+    DropdownModule,
+    CollapseModule,
+    AlertModule,
   ],
   providers: [],
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
-export class AdminLTEShellModule {
-
-  public constructor(translate: TranslateService) {
-    translate.setTranslation('es', ES, true);
-  }
-  
-}
+export class AdminLTEShellModule { }

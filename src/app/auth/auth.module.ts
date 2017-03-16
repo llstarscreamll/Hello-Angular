@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateService, TranslateModule } from 'ng2-translate';
-// Shell
-import { InspiniaShellModule as Shell } from './../inspinia/inspinia.module';
+// Theme
+import { AdminLTEShellModule as Theme } from './../adminLTE/admin-lte.module';
 // Routing
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
@@ -22,7 +22,7 @@ import { AuthEffects } from './effects/auth';
     CommonModule,
     RouterModule,
     TranslateModule,
-    Shell,
+    Theme,
     AuthRoutingModule,
     ReactiveFormsModule,
     EffectsModule.run(AuthEffects),
