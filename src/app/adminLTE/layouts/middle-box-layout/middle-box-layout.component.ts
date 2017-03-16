@@ -18,11 +18,11 @@ import { State as AppState } from './../../../core/reducers/app';
     </div>
   `,
   styleUrls: [
+    './middle-box-layout.component.css',
     '~admin-lte/dist/css/AdminLTE.min.css',
-    '~admin-lte/dist/css/skins/_all-skins.min.css'
+    '~admin-lte/dist/css/skins/_all-skins.min.css',
   ],
-  encapsulation: ViewEncapsulation.None,
-  //styles: [':host { display: block; }']
+  encapsulation: ViewEncapsulation.None
 })
 export class MiddleBoxLayoutComponent implements OnInit {
 
