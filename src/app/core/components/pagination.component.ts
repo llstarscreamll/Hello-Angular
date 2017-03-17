@@ -5,7 +5,7 @@ import { Pagination } from './../models/pagination';
   selector: 'app-pagination',
   template: `
     <nav>
-      <ul class="pagination pagination-lg pull-right">
+      <ul class="pagination pagination-md pull-right">
         <li class="" [ngClass]="{ 'disabled': !pagination?.links?.previous }">
           <span (click)="emitClickEvent(false)" role="button"><span aria-hidden="true">&laquo;</span></span>
         </li>
