@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateService, TranslateModule } from 'ng2-translate';
 // Theme
-import { getTheme } from './../theme';
+import { ENV } from './../../environments/env';
 // Routing
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
@@ -22,7 +22,7 @@ import { AuthEffects } from './effects/auth';
     CommonModule,
     RouterModule,
     TranslateModule,
-    getTheme(),
+    ENV.THEME,
     AuthRoutingModule,
     ReactiveFormsModule,
     EffectsModule.run(AuthEffects),

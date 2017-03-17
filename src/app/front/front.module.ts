@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 // Theme
-import { getTheme } from './../theme';
+import { ENV } from './../../environments/env';
 // Routing
 import { FrontRoutingModule } from './front-routing.module';
 // Component
@@ -13,7 +13,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     CommonModule,
     DropdownModule.forRoot(),
     FrontRoutingModule,
-    getTheme(),
+    ENV.THEME,
   ],
   declarations: [LandingPageComponent]
 })
