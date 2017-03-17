@@ -17,10 +17,11 @@ Here are some libraries used on this app:
 ```bash
 git clone https://github.com/llstarscreamll/Hello-Angular.git
 cd Hello-Angular
-cp src/app/menu.ts.example src/app/menu.ts
-cp src/app/modules.ts.example src/app/modules.ts
-cp src/app/reducers.ts.example src/app/reducers.ts
-cp src/environments/env.example.ts src/environments/env.ts # go to this file and fill the variables
+cp src/app/menu.ts.example src/app/menu.ts # setup you menus here (optional)
+cp src/app/modules.ts.example src/app/modules.ts # setup your models here (optional)
+cp src/app/reducers.ts.example src/app/reducers.ts # setup your reducers here (optional)
+cp src/app/theme.ts.example src/app/theme.ts # setup your themes here (optional)
+cp src/environments/env.example.ts src/environments/env.ts # go to this file and fill the variables (required)
 npm install
 ng serve
 ```
