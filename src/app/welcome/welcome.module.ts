@@ -4,13 +4,13 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
 
 // Theme
-import { AdminLTEShellModule as Theme } from './../adminLTE/admin-lte.module';
+import { getTheme } from './../theme';
 
 @NgModule({
   imports: [
     CommonModule,
     WelcomeRoutingModule,
-    Theme,
+    getTheme(),
   ],
   declarations: [WelcomeComponent]
 })

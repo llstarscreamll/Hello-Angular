@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 // Theme
-import { AdminLTEShellModule as Theme } from './../adminLTE/admin-lte.module';
+import { getTheme } from './../theme';
 // Routing
 import { FrontRoutingModule } from './front-routing.module';
 // Component
@@ -13,7 +13,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     CommonModule,
     DropdownModule.forRoot(),
     FrontRoutingModule,
-    Theme,
+    getTheme(),
   ],
   declarations: [LandingPageComponent]
 })

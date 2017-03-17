@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateService, TranslateModule } from 'ng2-translate';
 // Theme
-import { AdminLTEShellModule as Theme } from './../adminLTE/admin-lte.module';
+import { getTheme } from './../theme';
 // Routing
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
@@ -22,7 +22,7 @@ import { AuthEffects } from './effects/auth';
     CommonModule,
     RouterModule,
     TranslateModule,
-    Theme,
+    getTheme(),
     AuthRoutingModule,
     ReactiveFormsModule,
     EffectsModule.run(AuthEffects),
