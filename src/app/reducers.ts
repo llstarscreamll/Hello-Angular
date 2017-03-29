@@ -9,10 +9,10 @@ import { combineReducers } from '@ngrx/store';
 /**
  * Here you can import reducers from other modules
  */ 
-import * as fromLayout from './core/reducers/layout';
-import * as fromApp from './core/reducers/app';
-import * as fromAppMessages from './core/reducers/appMessage';
-import * as fromAuth from './auth/reducers/auth';
+import * as fromLayout from './core/reducers/layout.reducer';
+import * as fromApp from './core/reducers/app.reducer';
+import * as fromAppMessages from './core/reducers/app-message.reducer';
+import * as fromAuth from './auth/reducers/auth.reducer';
 
 /**
  * The app state interface
