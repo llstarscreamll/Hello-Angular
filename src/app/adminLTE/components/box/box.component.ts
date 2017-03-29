@@ -25,8 +25,8 @@ export class BoxComponent implements OnInit {
 
   public ngOnInit() { }
 
-  public toggleCollapse(collapse: boolean) {
-    this.collapse = collapse;
+  public toggleCollapse() {
+    this.collapse = !this.collapse;
   }
 
   public hideBox() {

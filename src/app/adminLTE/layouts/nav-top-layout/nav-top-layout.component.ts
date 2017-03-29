@@ -32,7 +32,7 @@ export class NavTopLayoutComponent implements OnInit {
   public appState$: Observable<AppState>;
   
   public collapseNavBar: boolean = true;
-  private viewPortHeight: number = window.innerHeight;
+  public viewPortHeight: number = window.innerHeight;
 
   constructor(
     private store: Store<fromRoot.State>,
