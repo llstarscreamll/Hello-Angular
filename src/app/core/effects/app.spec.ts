@@ -8,9 +8,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 import { Company } from './../models/company';
-import { AppService } from './../services/app';
-import { AppEffects } from './app';
-import * as appActions from './../actions/app';
+import { AppService } from './../services/app.service';
+import { AppEffects } from './app.effects';
+import * as appActions from './../actions/app.actions';
 import { COMPANY } from './../../core/tests/util';
 
 describe('App Effects', () => {

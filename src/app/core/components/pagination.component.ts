@@ -22,8 +22,11 @@ import { Pagination } from './../models/pagination';
 })
 export class PaginationComponent implements OnInit {
 
-  @Input() pagination: Pagination;
-  @Output() pageLinkClicked = new EventEmitter<any>();
+  @Input()
+  public pagination: Pagination;
+
+  @Output()
+  public pageLinkClicked = new EventEmitter<any>();
 
   public constructor() { }
 
@@ -54,5 +57,4 @@ export class PaginationComponent implements OnInit {
 
     return nextPage;
   }
-
 }

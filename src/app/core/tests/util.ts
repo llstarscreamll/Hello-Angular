@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from 'ng2-translate';
 
 import { AdminLTEShellModule as Shell } from './../../adminLTE/admin-lte.module';
-import { reducer } from './../reducers';
+import { reducer } from './../../reducers';
 import { Company } from './../../core/models/company';
 import { AuthUser } from './../../auth/models/authUser';
 
@@ -35,7 +35,9 @@ export const TEST_USER: AuthUser = {
     "timezone_type": 3,
     "timezone": "UTC"
   },
-  "token": "test-token-for-the-user",
+  "token": {
+    token: "foo-token"
+  },
   "roles": {
     "data": [
       { "object": "Role", "name": "admin", "description": "Super Administrator", "display_name": null }

@@ -6,7 +6,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
-import { AppService } from './app';
+import { AppService } from './app.service';
 import { Company } from './../models/company';
 import { TEST_USER, COMPANY, setupConnections } from './../../core/tests/util';
 

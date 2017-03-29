@@ -13,9 +13,14 @@ export abstract class Service {
   protected headers: Headers;
   protected domain: string = ENV.API_URL;
   protected abstract API_ENDPOINT: string;
+  protected required_columns: Array<string> = [];
 
   public constructor() {
     this.headers = new Headers({ 'Accept': 'application/json' });
+  }
+
+  protected setAuthorizationHeader() {
+    this.headers.set('authorization', 'Bearer ' + sessionStorage.getItem('token'));
   }
 
   /**
@@ -31,8 +36,7 @@ export abstract class Service {
   /**
    * Handle response errors.
    */
-  protected handleError(error: Response | any): Observable<any> {
-    console.log(error);
+  public handleError(error: Response | any): Observable<any> {
     let errorMsg: string;
     let body: string | any;
 
@@ -53,7 +57,7 @@ export abstract class Service {
     let urlParams: URLSearchParams = new URLSearchParams;
     let tmpArray = new Array();
 
-    _.forOwn(data, function (value, key) {
+    _.forOwn(data, (value, key) => {
       // parse search, sortedBy and page param
       if (key == "search" || key == "sortedBy" || key == 'page') {
         urlParams.set(key, value);
@@ -71,10 +75,11 @@ export abstract class Service {
 
       // parse columns param
       if (key == "filter") {
-        urlParams.set(key, _.join(value, ';'));
+        // concat the required_columns with the filter columns given on parameters
+        urlParams.set('filter', _.join(this.required_columns.concat(value), ';'));
       }
 
-      // parse include columns
+      // parse include model relations
       if (key == "include") {
         tmpArray = [];
         // iterate over the include object
@@ -88,7 +93,6 @@ export abstract class Service {
         urlParams.set(key, _.join(tmpArray, ','));
       }
     });
-    console.warn(urlParams);
 
     return urlParams;
   }

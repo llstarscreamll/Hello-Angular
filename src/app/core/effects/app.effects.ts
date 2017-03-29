@@ -4,8 +4,8 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Company } from './../models/company';
 
-import * as app from './../actions/app';
-import { AppService } from './../services/app';
+import * as app from './../actions/app.actions';
+import { AppService } from './../services/app.service';
 
 @Injectable()
 export class AppEffects {
@@ -13,9 +13,10 @@ export class AppEffects {
   constructor(
     private actions$: Actions,
     private appService: AppService
-    ) { }
+  ) { }
 
-  @Effect() getAppData$: Observable<Action> = this.actions$
+  @Effect()
+  getAppData$: Observable<Action> = this.actions$
     .ofType(app.ActionTypes.GET_APP_DATA)
     .startWith(new app.GetAppDataAction())
     .switchMap(() => this.appService.getData()

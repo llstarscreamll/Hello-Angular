@@ -1,4 +1,4 @@
-import * as error from './../actions/appMessage';
+import * as error from './../actions/app-message.actions';
 import { AppMessage } from './../models/appMessage';
 
 export class State extends AppMessage { }

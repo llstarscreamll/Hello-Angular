@@ -18,7 +18,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class BasicSearchComponent implements OnInit {
 
-  @Output() search = new EventEmitter<{}>();
+  @Output()
+  public search = new EventEmitter<{}>();
+  
   public searchText: string;
 
   constructor() { }

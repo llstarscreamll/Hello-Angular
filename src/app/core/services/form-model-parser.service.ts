@@ -4,7 +4,7 @@ import { TranslateService } from 'ng2-translate';
 import * as _ from 'lodash';
 
 @Injectable()
-export class FormModelParser {
+export class FormModelParserService {
 
   private optionsKey = '_options_';
 

@@ -26,18 +26,34 @@ export class LocalStorageService {
     /**
      * Set user data on localStorage.
      */
-    public setUser(user: AuthUser) {
-        this.setItem('token', user.token.token);
-        this.setItem('user', user);
+    public setUser(user: AuthUser | null) {
+        if (user) {
+            sessionStorage.setItem('token', user.token.token);
+            sessionStorage.setItem('user', JSON.stringify(user));
+        }
+    }
+
+    public getUser() {
+        return JSON.parse(sessionStorage.getItem('user'));
+    }
+
+    public getToken() {
+        let user = (JSON.parse(sessionStorage.getItem('user')) as AuthUser);
+        return user ? user.token.token : '';
     }
 
     /**
      * Remove the user data from localStorage.
      */
     public removeUser() {
-        this.removeItem('token');
-        this.removeItem('user');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
         return true;
+    }
+
+    public removeAll() {
+        localStorage.clear();
+        sessionStorage.clear();
     }
 
 }

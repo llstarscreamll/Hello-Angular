@@ -1,5 +1,5 @@
-import { reducer } from './app';
-import * as actions from './../actions/app';
+import { reducer } from './app.reducer';
+import * as actions from './../actions/app.actions';
 
 describe('App Reducers', () => {
 

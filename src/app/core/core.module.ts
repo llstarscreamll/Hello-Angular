@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateService, TranslateModule } from 'ng2-translate';
 
-import { AppEffects } from './effects/app';
-import { AppService } from './services/app';
-import { LocalStorageService } from './services/localStorage';
+import { AppEffects } from './effects/app.effects';
+import { AppService } from './services/app.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 import { ES } from './translations/es';
 

@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { Service } from './../abstracts/service';
+import { Service } from './abstract.service';
 
 @Injectable()
 export class AppService extends Service {

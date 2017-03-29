@@ -1,4 +1,4 @@
-import * as layout from '../actions/layout';
+import * as layout from '../actions/layout.actions';
 
 export interface State {
   showSidenav: boolean;

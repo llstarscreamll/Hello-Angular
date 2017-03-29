@@ -1,4 +1,4 @@
-import * as app from './../actions/app';
+import * as app from './../actions/app.actions';
 import { Company } from './../models/company';
 
 export class State {

@@ -9,7 +9,7 @@ import { BasicSearchComponent } from './components/basicSearch.component';
 import { DynamicFormcomponent } from './components/dynamicForm.component';
 
 // Services
-import { FormModelParser } from './services/formModelParser';
+import { FormModelParserService } from './services/form-model-parser.service';
 
 /**
  * Here we expose the shared components to another modules.
@@ -32,7 +32,7 @@ import { FormModelParser } from './services/formModelParser';
     DynamicFormcomponent
   ],
   providers: [
-    FormModelParser
+    FormModelParserService
   ]
 })
 export class CoreSharedModule { }
