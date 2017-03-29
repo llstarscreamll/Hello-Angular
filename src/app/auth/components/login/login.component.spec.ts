@@ -9,8 +9,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { LoginComponent } from './login.component';
 
-import { IMPORTS } from './../../../../modules/core/tests/util';
-import * as authActions from './../../actions/auth';
+import { IMPORTS } from './../../../core/tests/util';
+import * as authActions from './../../actions/auth.actions';
 import * as fromRoot from './../../../reducers';
 
 describe('LoginComponent', () => {

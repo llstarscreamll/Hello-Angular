@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/catch';
 
-import * as appMessage from './../../../core/reducers/appMessage';
-import * as authActions from './../../actions/auth';
+import * as appMessage from './../../../core/reducers/app-message.reducer';
+import * as authActions from './../../actions/auth.actions';
 import * as fromRoot from './../../../reducers';
 
 import { Component, OnInit } from '@angular/core';

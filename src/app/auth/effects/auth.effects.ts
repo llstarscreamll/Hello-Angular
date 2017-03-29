@@ -3,8 +3,8 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/from';
 
-import * as appMsgActions from './../../core/actions/appMessage';
-import * as auth from './../actions/auth';
+import * as appMsgActions from './../../core/actions/app-message.actions';
+import * as auth from './../actions/auth.actions';
 
 import { Actions, Effect } from '@ngrx/effects';
 
@@ -12,7 +12,7 @@ import { Action } from '@ngrx/store';
 import { AuthService } from './../services/auth.service';
 import { AuthUser } from './../models/authUser';
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './../.././core/services/localStorage';
+import { LocalStorageService } from './../.././core/services/local-storage.service';
 import { LoginCredentials } from './../models/loginCredentials';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class AuthEffects {
 
-  public constructor(
+  public constructor (
     private actions$: Actions,
     private authService: AuthService,
     private localStorageService: LocalStorageService
@@ -32,19 +32,21 @@ export class AuthEffects {
    * LOGIN Effect, calls the Auth API and triggers success or error actions
    * based on the API response.
    */
-  @Effect() logIn$: Observable<Action> = this.actions$
+  @Effect()
+  logIn$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN)
     .map((action: Action) => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => {
       return this.authService.login(credentials.email, credentials.password)
-        .map((user: AuthUser) => { return new auth.LoginSuccessAction(user)})
+        .map((user: AuthUser) => { return new auth.LoginSuccessAction(user) })
         .catch((error) => {
           error.type = 'danger';
           return of(new appMsgActions.Flash(error))
         })
     });
 
-  @Effect() flashMsg$: Observable<Action> = this.actions$
+  @Effect()
+  flashMsg$: Observable<Action> = this.actions$
     .ofType(appMsgActions.ActionTypes.FLASH)
     .map(() => new auth.ToggleLoadingAction(false));
 
@@ -53,24 +55,25 @@ export class AuthEffects {
    * the token saved on localStorage, if the token is invalid, performs the
    * LOGOUT_SUCCESS Action/@Effect.
    */
-  @Effect() loginFromLocalStorage$: Observable<Action> = this.actions$
+  @Effect()
+  loginFromLocalStorage$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
     .startWith(new auth.LoginFromLocalStorageAction(null))
     .map(() => {
       this.authService.loginFromLocalStorage = true;
       return this.authService.loggedIn()
-        ? new auth.LoginSuccessAction(this.localStorageService.getItem('user') as AuthUser)
+        ? new auth.LoginSuccessAction(this.localStorageService.getUser() as AuthUser)
         : new auth.LogoutSuccessAction(false); // false = no redirect the user to login form
     });
 
   /**
    * LOGOUT Effect, logs out the user from the app and the API.
    */
-  @Effect() logout$: Observable<Action> = this.actions$
+  @Effect()
+  logout$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGOUT)
     .switchMap(() => {
       return this.authService.logout()
-        .map(() => console.info('bye user!!'))
         .map(() => new auth.LogoutSuccessAction(true)); // true = redirect the user
     });
 
@@ -78,9 +81,11 @@ export class AuthEffects {
    * LOGOUT_SUCCESS Effect, remove the user data from localStorage and
    * redirects to login page.
    */
-  @Effect() logoutSuccess$: Observable<Action> = this.actions$
+  @Effect()
+  logoutSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGOUT_SUCCESS)
-    .do(() => this.localStorageService.removeUser())
+    .do(() => localStorage.clear())
+    .do(() => sessionStorage.clear())
     .map((action: Action) => action.payload)
     .map((redirect: boolean) => {
       return redirect
@@ -92,11 +97,11 @@ export class AuthEffects {
    * LOGIN_SUCCESS Effect, redirect to back office when the login process is
    * success.
    */
-  @Effect() loginSuccess$: Observable<Action> = this.actions$
+  @Effect()
+  loginSuccess$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_SUCCESS)
     .map((action) => action.payload as AuthUser)
     .do((user: AuthUser) => this.localStorageService.setUser(user))
-    .do((user: AuthUser) => console.info('welcome ' + user.name))
     .map(() => {
       return this.authService.loginFromLocalStorage
         ? new auth.ToggleLoadingAction(false)

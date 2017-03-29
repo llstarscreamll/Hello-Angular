@@ -4,9 +4,9 @@ import 'rxjs/add/observable/throw';
 import { AuthUser } from '../models/authUser';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './../../core/services/localStorage';
+import { LocalStorageService } from './../../core/services/local-storage.service';
 import { Observable } from 'rxjs/Observable';
-import { Service } from './../../core/abstracts/service';
+import { Service } from './../../core/services/abstract.service';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
@@ -29,7 +29,6 @@ export class AuthService extends Service {
   public login(email: string, password: string): Observable<AuthUser> {
     this.loginFromLocalStorage = false;
     let endPoint = this.domain + '/login';
-    console.log(endPoint);
 
     return this.http
       .post(endPoint, { 'email': email, 'password': password }, this.headers)
@@ -42,16 +41,15 @@ export class AuthService extends Service {
    */
   public loggedIn(): boolean {
     // are there a token and is a valid token?
-    console.info('are there a valid token? ' + tokenNotExpired('token'));
-    return tokenNotExpired('token');
+    return tokenNotExpired('token', this.localStorageService.getToken());
   }
 
   /**
    * Logs out the user from the API.
    */
   public logout(): Observable<any> {
-    this.headers.set('authorization', 'Bearer ' + this.localStorageService.getItem('token'));
-
+    this.setAuthorizationHeader();
+    
     return this.http
       .post(this.domain + '/logout', {}, { headers: this.headers })
       .map(res => res.json().message)

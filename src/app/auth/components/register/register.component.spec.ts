@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { RegisterComponent } from './register.component';
-import { IMPORTS } from './../../../../modules/core/tests/util';
+import { IMPORTS } from './../../../core/tests/util';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;

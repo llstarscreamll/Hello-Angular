@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 import { AuthService } from './auth.service';
-import { LocalStorageService } from './../../core/services/localStorage';
+import { LocalStorageService } from './../../core/services/local-storage.service';
 import { TEST_USER, setupConnections } from './../../core/tests/util';
 
 describe('Auth Service', () => {

@@ -10,9 +10,9 @@ import { StoreModule } from '@ngrx/store';
 import { Store } from '@ngrx/store';
 import { go } from '@ngrx/router-store';
 
-import { AuthGuard } from './auth';
+import { AuthGuard } from './auth.guard';
 import { AuthService } from './../services/auth.service';
-import { LocalStorageService } from './../../core/services/localStorage';
+import { LocalStorageService } from './../../core/services/local-storage.service';
 import * as fromRoot from './../../reducers';
 
 /**

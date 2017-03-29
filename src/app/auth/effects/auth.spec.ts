@@ -11,12 +11,12 @@ import 'rxjs/add/observable/throw';
 
 import { AuthRoutingModule } from './../auth-routing.module';
 import { AuthUser } from './../models/authUser';
-import { AuthEffects } from './auth';
+import { AuthEffects } from './auth.effects';
 import { AuthService } from './../services/auth.service';
-import { LocalStorageService } from './../../core/services/localStorage';
-import * as actions from './../actions/auth';
+import { LocalStorageService } from './../../core/services/local-storage.service';
+import * as actions from './../actions/auth.actions';
 import { TEST_USER } from './../../core/tests/util';
-import * as appMsgActions from './../../core/actions/appMessage';
+import * as appMsgActions from './../../core/actions/app-message.actions';
 
 describe('Auth Effects', () => {
   let testbed: TestBed;

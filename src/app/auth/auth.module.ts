@@ -15,7 +15,7 @@ import { AuthService } from './services/auth.service';
 // Language files
 import { ES } from './translations/es';
 // Effects
-import { AuthEffects } from './effects/auth';
+import { AuthEffects } from './effects/auth.effects';
 
 @NgModule({
   imports: [

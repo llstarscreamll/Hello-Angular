@@ -1,5 +1,5 @@
-import { reducer } from './auth';
-import * as actions from './../actions/auth';
+import { reducer } from './auth.reducer';
+import * as actions from './../actions/auth.actions';
 import { TEST_USER } from './../../core/tests/util';
 
 describe('Auth reducer', () => {
