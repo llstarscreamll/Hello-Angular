@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+.table.actions-btns-3 .actions {
+  width: 130px;
+  text-align: right;
+}
+
 .fix-form-control-height {
     height: auto;
     min-height: 34px;
