@@ -1,3 +1,5 @@
+import { Timestamps } from './../../core/models/date';
+
 export class AuthUser {
     id: number;
     visitor_id: number;
@@ -10,7 +12,7 @@ export class AuthUser {
     roles: Object;
     birth: number;
     confirmed: boolean;
-    created_at: Object;
     social_auth_provider: string;
     social_avatar: Object;
+    created_at: Timestamps;
 }
