@@ -24,7 +24,7 @@ ng serve
 
 Go to **http://localhost:4200** and check the app.
 
-> You should have a endpoint on your [apiato](https://github.com/apiato/apiato) backend named `api.apiato.dev/company-info` to set the app name, something easy like this [apiato container](https://github.com/llstarscreamll/AppData). It's just a very a simple example, do it as you want!!
+> You should have an endpoint on your [apiato](https://github.com/apiato/apiato) backend named `api.apiato.dev/company-info` to set the app name, something easy like this [apiato container](https://github.com/llstarscreamll/AppData). It's just a very simple example, do it as you want!!
 
 ## Features
 
