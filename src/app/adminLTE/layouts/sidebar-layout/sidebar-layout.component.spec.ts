@@ -7,13 +7,13 @@ import { Observable } from 'rxjs/Observable';
 
 import { SidebarLayoutComponent } from './sidebar-layout.component';
 import { UserAccountMenuComponent } from './../../components/user-account-menu/user-account-menu.component';
-import { MainSidebarComponent } from './../_partials/main-sidebar/main-sidebar.component';
-import { FooterComponent } from './../_partials/footer/footer.component';
+import { MainSidebarComponent } from './../../components/main-sidebar/main-sidebar.component';
+import { MainFooterComponent } from './../../components/footer/footer.component';
 import * as fromRoot from './../../../reducers';
-import * as authActions from './../../../auth/actions/auth';
-import * as appActions from './../../../../modules/core/actions/app';
+import * as authActions from './../../../auth/actions/auth.actions';
+import * as appActions from './../../../core/actions/app.actions';
 import { IMPORTS } from './../../utils';
-import { TEST_USER, COMPANY } from './../../../../modules/core/tests/util';
+import { TEST_USER, COMPANY } from './../../../core/tests/util';
 
 describe('SidebarLayoutComponent', () => {
   let component: SidebarLayoutComponent;
@@ -23,7 +23,7 @@ describe('SidebarLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SidebarLayoutComponent, MainSidebarComponent, UserAccountMenuComponent, FooterComponent],
+      declarations: [SidebarLayoutComponent, MainSidebarComponent, UserAccountMenuComponent, MainFooterComponent],
       imports: [IMPORTS]
     })
       .compileComponents();

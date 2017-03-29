@@ -5,13 +5,13 @@ import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { NavTopLayoutComponent } from './nav-top-layout.component';
-import { FooterComponent } from './../_partials/footer/footer.component';
+import { MainFooterComponent } from './../../components/footer/footer.component';
 import { UserAccountMenuComponent } from './../../components/user-account-menu/user-account-menu.component';
 import { IMPORTS } from './../../utils';
-import { TEST_USER, COMPANY } from './../../../../modules/core/tests/util';
+import { TEST_USER, COMPANY } from './../../../core/tests/util';
 import * as fromRoot from './../../../reducers';
-import * as appActions from './../../../../modules/core/actions/app';
-import * as authActions from './../../../auth/actions/auth';
+import * as appActions from './../../../core/actions/app.actions';
+import * as authActions from './../../../auth/actions/auth.actions';
 
 describe('NavTopLayoutComponent', () => {
   let component: NavTopLayoutComponent;
@@ -21,7 +21,7 @@ describe('NavTopLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent, NavTopLayoutComponent, UserAccountMenuComponent],
+      declarations: [MainFooterComponent, NavTopLayoutComponent, UserAccountMenuComponent],
       imports: [IMPORTS]
     })
       .compileComponents();

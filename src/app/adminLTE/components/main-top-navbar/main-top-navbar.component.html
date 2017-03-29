@@ -1,0 +1,29 @@
+<header class="main-header">
+  <!-- Logo -->
+  <a routerLink="/welcome" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini">{{ appState?.companyInfo?.short_name }}</span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><b>{{ appState?.companyInfo?.big_name }}</b> {{ appState?.companyInfo.small_name }}</span>
+  </a>
+
+  <!-- Header Navbar -->
+  <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+    <a (click)="toggleNavigation()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+
+      <!-- User Account Menu -->
+      <app-user-menu *ngIf="authState?.loggedIn" [user]="authState?.user" class="nav navbar-nav">
+        <!-- Control Sidebar Toggle Button -->
+        <li>
+          <a (click)="toggleControlSidebar()" data-toggle="control-sidebar" role="button"><i class="fa fa-gears"></i></a>
+        </li>
+      </app-user-menu>
+
+    </div>
+  </nav>
+</header>

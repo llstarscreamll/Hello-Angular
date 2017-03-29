@@ -3,7 +3,7 @@ import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from './../../../reducers';
-import { State as AppState } from './../../../core/reducers/app';
+import { State as AppState } from './../../../core/reducers/app.reducer';
 
 @Component({
   selector: 'app-middle-box-layout',
@@ -19,14 +19,14 @@ import { State as AppState } from './../../../core/reducers/app';
   `,
   styleUrls: [
     './middle-box-layout.component.css',
-    '~admin-lte/dist/css/AdminLTE.min.css',
-    '~admin-lte/dist/css/skins/_all-skins.min.css',
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class MiddleBoxLayoutComponent implements OnInit {
 
-  @HostBinding('class.login-page') loginStyle: boolean = true;
+  @HostBinding('class')
+  public classes: string = 'login-page';
+  
   public appState$: Observable<AppState>;
 
   constructor(private store: Store<fromRoot.State>) { }

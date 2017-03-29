@@ -5,9 +5,9 @@ import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { IMPORTS } from './../../utils';
-import { COMPANY } from './../../../../modules/core/tests/util';
+import { COMPANY } from './../../../core/tests/util';
 import * as fromRoot from './../../../reducers';
-import * as appActions from './../../../../modules/core/actions/app';
+import * as appActions from './../../../core/actions/app.actions';
 import { MiddleBoxLayoutComponent } from './middle-box-layout.component';
 
 describe('MiddleBoxLayoutComponent', () => {

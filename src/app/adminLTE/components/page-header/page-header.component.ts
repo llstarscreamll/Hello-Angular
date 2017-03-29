@@ -2,17 +2,15 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
-  template: `<ng-content></ng-content>`,
+  template: `<ng-content></ng-content><div class="clearfix"></div>`,
   styles: [':host { display: block; }']
 })
 export class PageHeaderComponent implements OnInit {
 
-  @HostBinding('class.content-header') headerClass: boolean = true;
-  @HostBinding('class.row') rowClass: boolean = true;
+  @HostBinding('class')
+  public classes: string = 'content-header';
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() {
-  }
-
+  public ngOnInit() { }
 }

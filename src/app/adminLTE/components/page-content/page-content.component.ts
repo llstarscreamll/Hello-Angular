@@ -7,11 +7,10 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 })
 export class PageContentComponent implements OnInit {
 
-  @HostBinding('class.content') contentClass: boolean = true;
+  @HostBinding('class')
+  public classes: string = 'content';
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() {
-  }
-
+  public ngOnInit() { }
 }

@@ -3,22 +3,22 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { FooterComponent } from './footer.component';
-import { COMPANY } from './../../../../../modules/core/tests/util';
+import { MainFooterComponent } from './footer.component';
+import { COMPANY } from './../../../core/tests/util';
 
 describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+  let component: MainFooterComponent;
+  let fixture: ComponentFixture<MainFooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [ MainFooterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(MainFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

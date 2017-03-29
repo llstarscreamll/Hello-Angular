@@ -1,7 +1,7 @@
 <div class="hold-transition fixed skin-blue layout-top-nav">
   <div class="wrapper" [ngStyle]="{'height.px': viewPortHeight}">
 
-    <header class="main-header">
+    <header #header class="main-header">
       <nav class="navbar navbar-static-top">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -34,10 +34,10 @@
           <div class="navbar-custom-menu">
               
               <!-- User Account Menu -->
-              <ul app-admin-lte-user-account-menu
+              <app-user-menu
                   *ngIf="(authState$ | async)?.loggedIn"
                   [user]="(authState$ | async)?.user"
-                  class="nav navbar-nav"></ul>
+                  class="nav navbar-nav"></app-user-menu>
             
             <ul *ngIf="!(authState$ | async)?.loggedIn" class="nav navbar-nav">
               <li><a class="login-link" routerLink="/auth/login" translate>SHELL.Login</a></li>
@@ -52,19 +52,15 @@
     </header>
 
     <!-- Full Width Column -->
-    <div class="content-wrapper">
-      <div class="container-fluid">
-
-        <!-- Page content -->
-        <ng-content></ng-content>
-
-      </div>
+    <div #wrapper class="content-wrapper">
+      <!-- Page content -->
+      <ng-content class="container-fluid"></ng-content>
       <!-- /.container -->
     </div>
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer app-admin-lte-footer class="main-footer" [appState]="(appState$ | async)"></footer>
+    <footer app-main-footer class="main-footer" [appState]="(appState$ | async)"></footer>
 
   </div>
   <!-- ./wrapper -->

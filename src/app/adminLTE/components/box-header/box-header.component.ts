@@ -7,11 +7,10 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class BoxHeaderComponent implements OnInit {
 
-  @HostBinding('class.box-header') boxHeader: boolean = true;
-  @HostBinding('class.with-border') withBorder: boolean = true;
+  @HostBinding('class')
+  public classes: string = 'box-header with-border';
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() { }
-
+  public ngOnInit() { }
 }

@@ -1,8 +1,8 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { State as appState } from './../../../../core/reducers/app';
+import { State as appState } from './../../../core/reducers/app.reducer';
 
 @Component({
-  selector: '[app-admin-lte-footer]',
+  selector: '[app-main-footer]',
   template: `
     <!-- To the right -->
     <div class="pull-right hidden-xs">
@@ -16,12 +16,13 @@ import { State as appState } from './../../../../core/reducers/app';
   `,
   styles: []
 })
-export class FooterComponent implements OnInit {
+export class MainFooterComponent implements OnInit {
 
-  @Input() appState: appState;
+  @Input()
+  public appState: appState;
 
-  constructor(public element: ElementRef) { }
+  public constructor(public element: ElementRef) { }
 
-  ngOnInit() { }
+  public ngOnInit() { }
 
 }

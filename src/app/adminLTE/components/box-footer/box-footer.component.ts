@@ -11,11 +11,10 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 })
 export class BoxFooterComponent implements OnInit {
 
-  @HostBinding('class.box-footer') boxFooter: boolean = true;
+  @HostBinding('class')
+  public classes: string = 'box-footer';
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() {
-  }
-
+  public ngOnInit() { }
 }

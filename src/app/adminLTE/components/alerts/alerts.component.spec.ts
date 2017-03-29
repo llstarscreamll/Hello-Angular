@@ -30,7 +30,7 @@ describe('AlertsComponent', () => {
       type: '',
       errors: {},
       message: '',
-      
+      date: new Date(),
       status_code: null
     };
     

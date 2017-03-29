@@ -11,21 +11,27 @@ import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@an
 })
 export class BoxToolsComponent implements OnInit {
 
-  @HostBinding('class.box-tools') boxTools: boolean = true;
-  @HostBinding('class.pull-right') boxPullRight: boolean = true;
+  @HostBinding('class')
+  public classes: string = 'box-tools pull-right';
 
-  @Output() collapseBox = new EventEmitter<boolean>();
-  @Output() hideBox = new EventEmitter<boolean>();
+  @Output()
+  public collapseBox = new EventEmitter<boolean>();
 
-  @Input() showCollapseBtn: boolean = true;
-  @Input() showRemoveBtn: boolean = true;
+  @Output()
+  public hideBox = new EventEmitter<boolean>();
+
+  @Input()
+  public showCollapseBtn: boolean = true;
+
+  @Input()
+  public showRemoveBtn: boolean = true;
 
   public collapse: boolean = false;
   public collapseIcon: string = 'fa fa-minus';
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() { }
+  public ngOnInit() { }
 
   public emitCollapse(collapse: boolean) {
     this.collapseBox.emit(collapse);
@@ -37,5 +43,4 @@ export class BoxToolsComponent implements OnInit {
   private changeCollapseIcon(isHidden) {
     this.collapseIcon = (isHidden ? 'fa fa-plus' : this.collapseIcon = 'fa fa-minus');
   }
-
 }
