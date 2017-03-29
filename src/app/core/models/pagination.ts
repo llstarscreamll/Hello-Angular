@@ -6,6 +6,6 @@ export class Pagination {
 	public total_pages: number;
 	public links: {
 		next: string,
-		prevous: string
+		previous: string
 	};
 }
