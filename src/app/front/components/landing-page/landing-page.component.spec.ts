@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { LandingPageComponent } from './landing-page.component';
 
-import { IMPORTS } from './../../../../modules/core/tests/util';
+import { IMPORTS } from './../../../core/tests/util';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
