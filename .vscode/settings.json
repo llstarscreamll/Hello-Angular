@@ -1,0 +1,7 @@
+{
+    "typescript.check.workspaceVersion": false,
+    "editor.rulers": [80,120]
+,
+"cSpell.enabled": true,
+"vsicons.presets.angular": true
+}

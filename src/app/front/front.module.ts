@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // Theme
-import { ENV } from './../../environments/env';
+import { environment } from './../../environments/environment';
 // Routing
 import { FrontRoutingModule } from './front-routing.module';
 // Component
@@ -11,9 +11,9 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 @NgModule({
   imports: [
     CommonModule,
-    DropdownModule.forRoot(),
+    BsDropdownModule.forRoot(),
     FrontRoutingModule,
-    ENV.THEME,
+    environment.theme,
   ],
   declarations: [LandingPageComponent]
 })

@@ -2,14 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // ng2-boostrap
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // Shared components
-import { PaginationComponent } from './components/pagination.component';
-import { BasicSearchComponent } from './components/basicSearch.component';
 import { DynamicFormcomponent } from './components/dynamicForm.component';
-
-// Services
-import { FormModelParserService } from './services/form-model-parser.service';
 
 /**
  * Here we expose the shared components to another modules.
@@ -19,20 +14,14 @@ import { FormModelParserService } from './services/form-model-parser.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    DropdownModule,
+    BsDropdownModule,
   ],
   declarations: [
-    PaginationComponent,
-    BasicSearchComponent,
     DynamicFormcomponent
   ],
   exports: [
-    PaginationComponent,
-    BasicSearchComponent,
     DynamicFormcomponent
   ],
-  providers: [
-    FormModelParserService
-  ]
+  providers: []
 })
 export class CoreSharedModule { }

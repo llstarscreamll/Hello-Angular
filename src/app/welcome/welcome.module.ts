@@ -4,13 +4,13 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
 
 // Theme
-import { ENV } from './../../environments/env';
+import { environment } from './../../environments/environment';
 
 @NgModule({
   imports: [
     CommonModule,
     WelcomeRoutingModule,
-    ENV.THEME,
+    environment.theme,
   ],
   declarations: [WelcomeComponent]
 })

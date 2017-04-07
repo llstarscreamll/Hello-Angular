@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { StoreModule } from '@ngrx/store';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AdminLTEShellModule as Shell } from './../../adminLTE/admin-lte.module';
 import { reducer } from './../../reducers';

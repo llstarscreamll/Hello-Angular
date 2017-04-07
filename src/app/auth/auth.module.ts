@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { TranslateService, TranslateModule } from 'ng2-translate';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 // Theme
-import { ENV } from './../../environments/env';
+import { environment } from './../../environments/environment';
 // Routing
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
@@ -22,7 +22,7 @@ import { AuthEffects } from './effects/auth.effects';
     CommonModule,
     RouterModule,
     TranslateModule,
-    ENV.THEME,
+    environment.theme,
     AuthRoutingModule,
     ReactiveFormsModule,
     EffectsModule.run(AuthEffects),

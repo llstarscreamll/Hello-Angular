@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { TranslateModule } from 'ng2-translate';
-import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 import { LAYOUTS } from './layouts';
 import { COMPONENTS } from './components';

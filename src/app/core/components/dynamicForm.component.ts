@@ -66,8 +66,8 @@ export class DynamicFormcomponent implements OnInit {
   /**
    * Toggles a value from an form control, used on checkboxes arrays.
    *
-   * @param item 
-   * @param value 
+   * @param item
+   * @param value
    */
   public toggleArrayFieldValue(field: any, value: any) {
     let index = this.controls.get(field).value.indexOf(value);

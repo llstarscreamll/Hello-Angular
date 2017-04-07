@@ -27,10 +27,10 @@
             <app-box-tools (collapseBox)="box.toggleCollapse()" (hideBox)="box.hideBox()">
 
               <div class="dropdown-toggle btn-group" dropdown>
-                <a class="btn" id="single-button" role="button" dropdownToggle>
+                <a dropdownToggle class="btn dropdown-toggle" id="single-button" role="button">
                   <i class="fa fa-wrench"></i>
                 </a>
-                <ul dropdownMenu role="menu" aria-labelledby="single-button">
+                <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="single-button">
                   <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
                   <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
                   <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>

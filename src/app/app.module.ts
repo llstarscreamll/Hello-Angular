@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { TranslateModule, TranslateService } from 'ng2-translate';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { MODULES } from './modules';
 

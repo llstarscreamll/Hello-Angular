@@ -1,0 +1,8 @@
+[submodule "src/app/colombian-parameter"]
+	path = src/app/colombian-parameter
+	url = git@github.com:llstarscreamll/ColombianParameters-CLI.git
+	branch = master
+[submodule "src/app/inspinia"]
+	path = src/app/inspinia
+	url = git@github.com:llstarscreamll/Inspinia-Angular.git
+	branch = master

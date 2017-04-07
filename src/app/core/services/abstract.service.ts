@@ -1,7 +1,7 @@
 import 'rxjs/add/observable/throw';
 import { Headers, Response, URLSearchParams } from '@angular/http';
 
-import { ENV } from './../../../environments/env';
+import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 export abstract class Service {
 
   protected headers: Headers;
-  protected domain: string = ENV.API_URL;
+  protected domain: string = environment.api_url;
   protected abstract API_ENDPOINT: string;
   protected required_columns: Array<string> = [];
 
@@ -57,9 +57,25 @@ export abstract class Service {
     let urlParams: URLSearchParams = new URLSearchParams;
     let tmpArray = new Array();
 
+    if (_.get(data, 'advanced_search', false)) {
+      _.forOwn(data, (value, key) => {
+        // the value it's an object?
+        if (_.isPlainObject(value)) {
+          _.forOwn(value, (subValue) => { subValue != '' ? urlParams.append(key+'[]', subValue) : null; });
+          console.info();
+        } else if (_.isArray(value)) {
+          _.forOwn(value, (subValue => { urlParams.append(key+'[]', subValue) }));
+        } else {
+          urlParams.set(key, value);
+        }
+      });
+
+      return urlParams;
+    }
+
     _.forOwn(data, (value, key) => {
       // parse search, sortedBy and page param
-      if (key == "search" || key == "sortedBy" || key == 'page') {
+      if (key == "search" || key == "sortedBy" || key == 'page' || key == 'trashed') {
         urlParams.set(key, value);
       }
 

@@ -10,10 +10,12 @@
     min-height: 34px;
 }
 
-.ng-valid.ng-touched:not(form):not(div), .ng-valid.ng-dirty:not(form):not(div)  {
+.ng-valid.ng-touched:not(form):not(div):not([class*="dynamic-form-fields"]):not(pagination),
+.ng-valid.ng-dirty:not(form):not(div):not([class*="dynamic-form-fields"]):not(pagination) {
   border-left: 5px solid #149178;
 }
 
-.ng-invalid:not(form):not(div), .ng-invalid-group{
+.ng-invalid:not(form):not(div):not([class*="dynamic-form-fields"]):not(pagination),
+.ng-invalid-group{
   border-left: 5px solid #ca4440;
 }

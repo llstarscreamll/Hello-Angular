@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import { TranslateService, TranslateModule } from 'ng2-translate';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 import { AppEffects } from './effects/app.effects';
 import { AppService } from './services/app.service';

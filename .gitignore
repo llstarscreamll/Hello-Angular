@@ -1,13 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-.vscode/settings.json
-
-# Environment file
-src/environments/env.ts
-
 # compiled output
 /dist
 /tmp
+/out-tsc
 
 # dependencies
 /node_modules
@@ -19,9 +15,10 @@ src/environments/env.ts
 .c9/
 *.launch
 .settings/
+*.sublime-workspace
 
 # IDE - VSCode
-.vscode/
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -30,7 +27,7 @@ src/environments/env.ts
 # misc
 /.sass-cache
 /connect.lock
-/coverage/*
+/coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
@@ -40,6 +37,6 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
