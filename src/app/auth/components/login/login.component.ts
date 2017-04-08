@@ -24,7 +24,7 @@ import { Store } from '@ngrx/store';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
-  
+
   public loading$: Observable<boolean>;
   public appMessage$: Observable<appMessage.State>;
   public serverErrors$: Observable<any>;
@@ -61,5 +61,4 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.get('password').value
       }));
   }
-
 }

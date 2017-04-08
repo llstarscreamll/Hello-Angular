@@ -10,7 +10,7 @@ import { TEST_USER } from './../../../core/tests/util';
 import * as fromRoot from './../../../reducers';
 import * as authActions from './../../../auth/actions/auth.actions';
 
-describe('MainSidebarComponent', () => {
+describe('AdminLTE MainSidebarComponent', () => {
   let component: MainSidebarComponent;
   let fixture: ComponentFixture<MainSidebarComponent>;
   let store: Store<fromRoot.State>;

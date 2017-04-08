@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from './../../../reducers';
-import * as layout from './../../../core/actions/layout.actions';
 import { State as AppState } from './../../../core/reducers/app.reducer';
 import { State as AuthState } from './../../../auth/reducers/auth.reducer';
 import { MainSidebarComponent } from './../../components/main-sidebar/main-sidebar.component';

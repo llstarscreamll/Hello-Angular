@@ -2,7 +2,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
@@ -12,7 +12,7 @@ export const IMPORTS = [
   TranslateModule.forRoot(),
   StoreModule.provideStore(reducer),
   RouterTestingModule,
-  BsDropdownModule.forRoot(),
+  Ng2BootstrapModule.forRoot(),
   CollapseModule.forRoot(),
   AlertModule.forRoot(),
 ];

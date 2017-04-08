@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,7 @@ import * as fromRoot from './../../../reducers';
 import * as appActions from './../../../core/actions/app.actions';
 import * as authActions from './../../../auth/actions/auth.actions';
 
-describe('NavTopLayoutComponent', () => {
+describe('AdminLTE NavTopLayoutComponent', () => {
   let component: NavTopLayoutComponent;
   let fixture: ComponentFixture<NavTopLayoutComponent>;
   let store: Store<fromRoot.State>;
@@ -25,61 +25,56 @@ describe('NavTopLayoutComponent', () => {
       imports: [IMPORTS]
     })
       .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(NavTopLayoutComponent);
     component = fixture.componentInstance;
     store = fixture.debugElement.injector.get(Store);
 
     fixture.detectChanges();
-  });
+  }));
 
-  it('should hide/show user menu', async(() => {
+  it('should hide/show user menu', fakeAsync(() => {
     // let's begin with the TEST_USER logged in
     store.dispatch(new authActions.LoginSuccessAction(user));
-    let userMenuSelector = 'ul[app-admin-lte-user-account-menu]';
+    let userMenuSelector = 'app-user-menu';
     let userMenu;
+    
+    component.ngOnInit();
+    fixture.detectChanges();
+    tick();
 
-    component.authState$.subscribe((res) => {
-      component.ngOnInit();
-      fixture.detectChanges();
-
-      userMenu = fixture.debugElement.query(By.css(userMenuSelector));
-      expect(userMenu).not.toBeNull();
-    });
+    userMenu = fixture.debugElement.query(By.css(userMenuSelector));
+    expect(userMenu).not.toBeNull();
 
     // now the TEST_USER should be logged out, the user drop down should be
     // hide and the login and register links should appear
     store.dispatch(new authActions.LogoutSuccessAction(null));
-    component.authState$.subscribe((res) => {
-      component.ngOnInit();
-      fixture.detectChanges();
+    component.ngOnInit();
+    fixture.detectChanges();
+    tick();
 
-      userMenu = fixture.debugElement.query(By.css(userMenuSelector));
-      expect(userMenu).toBeNull();
+    userMenu = fixture.debugElement.query(By.css(userMenuSelector));
+    expect(userMenu).toBeNull();
 
-      let loginLink = fixture.debugElement.query(By.css('a.login-link'));
-      let signUpLink = fixture.debugElement.query(By.css('a.sign-up-link'));
+    let loginLink = fixture.debugElement.query(By.css('a.login-link'));
+    let signUpLink = fixture.debugElement.query(By.css('a.sign-up-link'));
 
-      expect(loginLink).not.toBeNull();
-      expect(signUpLink).not.toBeNull();
-    });
+    expect(loginLink).not.toBeNull();
+    expect(signUpLink).not.toBeNull();
 
   }));
 
-  it('should show the App name on page header', () => {
+  it('should show the App name on page header', fakeAsync(() => {
     component.ngOnInit();
 
     store.dispatch(new appActions.GetAppDataSuccessAction(COMPANY));
     fixture.detectChanges();
-    
+    tick();
+
     let appNameElem = fixture.debugElement.query(By.css('div.navbar-header .navbar-brand'));
 
-    component.appState$.subscribe(res => {
-      expect(res.companyInfo.fullname).toEqual(COMPANY.fullname);
-      expect(appNameElem.nativeElement.textContent).toContain(COMPANY.fullname);
-    });
-  });
+    expect(COMPANY.fullname).toEqual(COMPANY.fullname);
+    expect(appNameElem.nativeElement.textContent).toContain(COMPANY.fullname);
+  }));
 
 });

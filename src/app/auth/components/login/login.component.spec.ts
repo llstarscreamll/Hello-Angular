@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
@@ -20,12 +20,11 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       imports: [
         ...IMPORTS
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -46,13 +45,11 @@ describe('LoginComponent', () => {
     expect(passwordField).toBeDefined();
   });
 
-  it('should login success', async(() => {
+  it('should login success', fakeAsync(() => {
     // form builder and store selects are executed on ngOnInit() method
     component.ngOnInit();
     fixture.detectChanges();
-    component.appMessage$.subscribe(result => {
-      expect(result).toBeDefined();
-    });
+    tick();
 
     let email = component.loginForm.get('email').value;
     let password = component.loginForm.get('password').value;
@@ -69,6 +66,7 @@ describe('LoginComponent', () => {
     component.loginForm.get('password').setValue('admin');
 
     fixture.detectChanges();
+    tick();
 
     // the form is now valid
     expect(btn.disabled).toBe(false, 'button is now enabled');
@@ -76,12 +74,13 @@ describe('LoginComponent', () => {
 
     spyOn(store, 'dispatch');
     component.onSubmit();
-    
+
     fixture.detectChanges();
-    
+    tick();
+
     // the LOGIN action should be dispatched
     email = component.loginForm.get('email').value;
     password = component.loginForm.get('password').value;
-    expect(store.dispatch).toHaveBeenCalledWith(new authActions.LoginAction({email: email, password: password}));
+    expect(store.dispatch).toHaveBeenCalledWith(new authActions.LoginAction({ email: email, password: password }));
   }));
 });

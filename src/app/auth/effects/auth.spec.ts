@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, getTestBed, async, inject } from '@angular/core/testing';
+import { fakeAsync, TestBed, getTestBed, async, inject, tick } from '@angular/core/testing';
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
@@ -108,25 +108,26 @@ describe('Auth Effects', () => {
       status: 200
     };
 
-    spyOn(console, 'info');
     spyOn(authService, 'logout').and.returnValue(Observable.of(response));
 
     runner.queue(new actions.LogoutAction(null));
 
     authEffects.logout$.subscribe(result => {
-      expect(console.info).toHaveBeenCalled();
       expect(authService.logout).toHaveBeenCalled();
       expect(result.type).toEqual(actions.ActionTypes.LOGOUT_SUCCESS);
     });
   });
 
-  it('should return redirect on LOGOUT_SUCCESS action', () => {
-    spyOn(localStorageService, 'removeUser').and.returnValue(null);
+  it('should redirect on LOGOUT_SUCCESS action', () => {
+    spyOn(localStorage, 'clear');
+    spyOn(sessionStorage, 'clear');
 
     runner.queue(new actions.LogoutSuccessAction(true));
 
     authEffects.logoutSuccess$.subscribe(result => {
-      expect(localStorageService.removeUser).toHaveBeenCalled();
+      expect(localStorage.clear).toHaveBeenCalled();
+      expect(sessionStorage.clear).toHaveBeenCalled();
+
       expect(result.type).toEqual(routerActions.routerActions.GO);
       expect(result.payload.path).toEqual(['/auth/login']);
     });
@@ -134,13 +135,11 @@ describe('Auth Effects', () => {
 
   it('should redirects on LOGIN_SUCCESS action', () => {
     spyOn(localStorageService, 'setUser').and.returnValue(null);
-    spyOn(console, 'info');
 
     runner.queue(new actions.LoginSuccessAction(user as AuthUser));
 
     authEffects.loginSuccess$.subscribe(result => {
       expect(localStorageService.setUser).toHaveBeenCalled();
-      expect(console.info).toHaveBeenCalled();
       expect(result.type).toEqual(routerActions.routerActions.GO);
       expect(result.payload.path).toEqual(['/welcome']);
     });

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -9,7 +9,7 @@ import { IMPORTS } from './../../utils';
 import * as fromRoot from './../../../reducers';
 import { TEST_USER } from './../../../core/tests/util';
 
-describe('UserAccountMenuComponent', () => {
+describe('AdminLTE UserAccountMenuComponent', () => {
   let component: UserAccountMenuComponent;
   let fixture: ComponentFixture<UserAccountMenuComponent>;
   let store: Store<fromRoot.State>;
@@ -17,27 +17,26 @@ describe('UserAccountMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserAccountMenuComponent ],
-      imports: [ IMPORTS ]
+      declarations: [UserAccountMenuComponent],
+      imports: [IMPORTS]
     })
-    .compileComponents();
-  }));
+      .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(UserAccountMenuComponent);
     component = fixture.componentInstance;
     store = fixture.debugElement.injector.get(Store);
     component.user = user;
 
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch LOGOUT_ACTION on click button', () => {
+  it('should dispatch LOGOUT_ACTION on click logout button', () => {
     spyOn(store, 'dispatch');
+    fixture.detectChanges();
     fixture.debugElement.query(By.css('a.logout-btn')).nativeElement.click();
 
     fixture.detectChanges();
@@ -46,12 +45,10 @@ describe('UserAccountMenuComponent', () => {
   });
 
   it('should show the user name', () => {
-    // user name locations
-    let userNameElem1 = fixture.debugElement.query(By.css('.user-menu a span.username')).nativeElement;
-    let userNameElem2 = fixture.debugElement.query(By.css('.dropdown-menu span.username')).nativeElement;
-
-    expect(userNameElem1.textContent).toEqual(user.name);
-    expect(userNameElem2.textContent).toEqual(user.name);
+    fixture.detectChanges();
+    let element = fixture.debugElement.nativeElement;
+    expect(element.querySelector('ul li.user-header span.username').textContent).toContain('Super Admin');
+    expect(element.querySelector('li.dropdown.user-menu span.username').textContent).toContain('Super Admin');
   });
 
 });
