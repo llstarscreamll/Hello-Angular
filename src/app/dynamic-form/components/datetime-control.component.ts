@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Control } from './../models/control';
 import { ControlConfig } from './../models/control-config';
 
 @Component({
-  selector: 'radio-control',
+  selector: 'datetime-control',
   template: `
     <div
       class="form-group"
@@ -21,29 +21,32 @@ import { ControlConfig } from './../models/control-config';
         {{ config.label }}
       </label>
 
-    <div *ngFor="let option of config.options" class="radio">
-      <label>
+      <div [ngClass]="[config.controlWrapperClass || '']">
         <input
-          type="radio"
-          name="trashed"
-          [attr.name]="config.name"
-          formControlName="trashed"
-          [value]="option.value"
+          datetime
+          class="form-control"
+          type="text"
           [attr.disabled]="disabled === true ? true : null"
-          >
-        {{ option.label }}
-        </label>
-    </div>
+          [attr.id]="config.name"
+          [attr.placeholder]="config.placeholder"
+          [ngClass]="[config.controlClass || '']"
+          [attr.name]="config.name"
+          [value]="group.get(config.name).value"
+          [formControlName]="config.name">
+      </div>
     </div>
         `,
-  styles: [`:host { display: block; }`]
+  styleUrls: [
+    './datetime-control.component.css'
+  ],
+  encapsulation: ViewEncapsulation.None
 })
-export class RadioControlComponent implements Control, OnInit {
+export class DatetimeControlComponent implements Control, OnInit {
   public config: ControlConfig;
   public group: FormGroup;
   public errors: Object = {};
   public disabled: boolean = true;
-
+  
   public constructor() { }
 
   public ngOnInit() { }

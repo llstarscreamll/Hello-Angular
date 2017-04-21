@@ -29,6 +29,7 @@ import { ControlConfig } from './../models/control-config';
           [attr.id]="config.name"
           [attr.placeholder]="config.placeholder"
           [ngClass]="[config.controlClass || '']"
+          [attr.name]="config.name"
           [formControlName]="config.name">
       </div>
     </div>

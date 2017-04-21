@@ -6,7 +6,7 @@ import { Control } from './../models/control';
 import { ControlConfig } from './../models/control-config';
 
 @Component({
-  selector: 'input-control',
+  selector: 'checkbox-array-control',
   template: `
     <div
       class="form-group"
@@ -27,7 +27,7 @@ import { ControlConfig } from './../models/control-config';
           <label>
             <input
                 type="checkbox"
-                name="{{config.name}}"
+                [attr.name]="config.name"
                 [checked]="group.get(config.name).value.indexOf(option.value) >= 0"
                 [attr.disabled]="disabled === true ? true : null"
                 [value]="option.value"

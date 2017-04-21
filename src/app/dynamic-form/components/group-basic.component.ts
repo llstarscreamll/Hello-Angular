@@ -5,7 +5,7 @@ import { Group } from './../models/group';
 import { GroupConfig } from './../models/group-config';
 
 @Component({
-  selector: 'input-control',
+  selector: 'group-basic-control',
   template: `
       <label>{{ _options_.label }}</label>
       <div class="">
