@@ -19,10 +19,12 @@ import { Router } from '@angular/router';
 import { go } from '@ngrx/router-store';
 import { of } from 'rxjs/observable/of';
 
+import { AccessToken } from './../interfaces/accessToken';
+
 @Injectable()
 export class AuthEffects {
 
-  public constructor (
+  public constructor(
     private actions$: Actions,
     private authService: AuthService,
     private localStorageService: LocalStorageService
@@ -38,6 +40,9 @@ export class AuthEffects {
     .map((action: Action) => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => {
       return this.authService.login(credentials.email, credentials.password)
+        .do((accessToken: AccessToken) => sessionStorage.setItem('token', accessToken.access_token))
+        .do((accessToken: AccessToken) => sessionStorage.setItem('token_type', accessToken.token_type))
+        .switchMap(() => this.authService.getUser())
         .map((user: AuthUser) => { return new auth.LoginSuccessAction(user) })
         .catch((error) => {
           error.type = 'danger';
