@@ -7,5 +7,5 @@ import { AdminLTEShellModule } from './../app/adminLTE/admin-lte.module';
 export const environment = {
   production: true,
   theme: AdminLTEShellModule,
-  api_url: 'http://api.apiato.dev/api',
+  api_url: 'http://api.apiato.dev/',
 };
