@@ -9,7 +9,6 @@ import { combineReducers } from '@ngrx/store';
 /**
  * Here you can import reducers from other modules
  */ 
-import * as fromLayout from './core/reducers/layout.reducer';
 import * as fromApp from './core/reducers/app.reducer';
 import * as fromAppMessages from './core/reducers/app-message.reducer';
 import * as fromAuth from './auth/reducers/auth.reducer';
@@ -20,7 +19,6 @@ import * as fromAuth from './auth/reducers/auth.reducer';
 export interface State {
   app: fromApp.State;
   appMessages: fromAppMessages.State;
-  layout: fromLayout.State;
   auth: fromAuth.State;
   router: fromRouter.RouterState;
 }
@@ -31,7 +29,6 @@ export interface State {
 const reducers = {
   app: fromApp.reducer,
   appMessages: fromAppMessages.reducer,
-  layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
 };
@@ -46,14 +43,6 @@ export function reducer(state: any, action: any) {
     return developmentReducer(state, action);
   }
 }
-
-/**
- * Layout Selectors
- */
-export const getLayoutState = (state: State) => state.layout;
-
-export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowSidenav);
-export const getShowControlSidebar = createSelector(getLayoutState, fromLayout.getShowControlSidebar);
 
 /**
  * Auth Selectors

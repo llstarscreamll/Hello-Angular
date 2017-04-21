@@ -17,10 +17,11 @@ export abstract class Service {
 
   public constructor() {
     this.headers = new Headers({ 'Accept': 'application/json' });
+    //this.headers.append("content-type", "application/x-www-form-urlencoded");
   }
 
   protected setAuthorizationHeader() {
-    this.headers.set('authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.headers.set('authorization', sessionStorage.getItem('token_type') +' ' + sessionStorage.getItem('token'));
   }
 
   /**

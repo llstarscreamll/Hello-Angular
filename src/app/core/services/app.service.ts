@@ -8,7 +8,7 @@ import { Service } from './abstract.service';
 @Injectable()
 export class AppService extends Service {
 
-  protected API_ENDPOINT: string = "company-info";
+  protected API_ENDPOINT: string = "v1/company-info";
 
   public constructor(private http: Http) {
     super();

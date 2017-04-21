@@ -28,7 +28,7 @@ export class LocalStorageService {
      */
     public setUser(user: AuthUser | null) {
         if (user) {
-            sessionStorage.setItem('token', user.token.token);
+            //sessionStorage.setItem('token', user.token.token);
             sessionStorage.setItem('user', JSON.stringify(user));
         }
     }
@@ -38,8 +38,8 @@ export class LocalStorageService {
     }
 
     public getToken() {
-        let user = (JSON.parse(sessionStorage.getItem('user')) as AuthUser);
-        return user ? user.token.token : '';
+        let token = sessionStorage.getItem('token');
+        return token ? token : '';
     }
 
     /**
