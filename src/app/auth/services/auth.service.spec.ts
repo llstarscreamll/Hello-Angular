@@ -9,12 +9,18 @@ import 'rxjs/add/observable/throw';
 import { AuthService } from './auth.service';
 import { LocalStorageService } from './../../core/services/local-storage.service';
 import { TEST_USER, setupConnections } from './../../core/tests/util';
+import { AccessToken } from './../interfaces/accessToken';
 
 describe('Auth Service', () => {
   let testbet: TestBed;
   let service: AuthService;
   let backend: MockBackend;
   let userData;
+  let accessToken: AccessToken = {
+    access_token: 'sometoken',
+    expires_in: 123456789,
+    token_type: 'Bearer'
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,7 +48,7 @@ describe('Auth Service', () => {
 
   it('should call the API to log in the user on server', () => {
     let response = {
-      body: { data: userData },
+      body: accessToken,
       status: 200
     };
     setupConnections(backend, response);
@@ -50,8 +56,48 @@ describe('Auth Service', () => {
     service
       .login('john@doe.com', '123456')
       .subscribe((res) => {
+        expect(res).toEqual(accessToken);
+      });
+    
+    backend.connections.subscribe((connection: MockConnection) => {
+      expect(connection.request.url).toContain('v1/clients/web/admin/login');
+    });
+  });
+
+  it('should call the API to retrieve the authenticated user data', () => {
+    let response = {
+      body: {data: userData},
+      status: 200
+    };
+    setupConnections(backend, response);
+
+    service
+      .getUser()
+      .subscribe((res) => {
         expect(res).toEqual(userData);
       });
+    
+    backend.connections.subscribe((connection: MockConnection) => {
+      expect(connection.request.url).toContain('v1/userinfo');
+    });
+  });
+
+  it('should call the API to logout the user', () => {
+    let response = {
+      body: {message: 'Token revoked successfully.'},
+      status: 200
+    };
+    setupConnections(backend, response);
+
+    service
+      .logout()
+      .subscribe((res) => {
+        expect(res).toEqual('Token revoked successfully.');
+      });
+    
+    backend.connections.subscribe((connection: MockConnection) => {
+      expect(connection.request.url).toContain('v1/logout');
+    });
   });
 
   it('should handle errors from API', () => {
