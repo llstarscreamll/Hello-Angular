@@ -1,28 +1,187 @@
-# Angular4
+# Hello-Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+This project is a start point to develop Angular apps with [apiato](https://github.com/apiato/apiato) as backend. At the moment the **apiato supported version is 4.0.2**, check apiato, it's a great project!!. This project uses **Angular 4**.
 
-## Development server
+Some libraries used on this project:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- angular2-jwt
+- @ngrx/core
+- @ngrx/effects
+- @ngrx/router-store
+- @ngrx/store
+- @ngx-translate/core
+- @ngrx/store-devtools
+- ngrx-store-freeze
+- ngx-bootstrap
+- bootstrap, css stuffs only
+- admin-lte, css stuffs only
+- jquery, for the [datetime picker](http://eonasdan.github.io/bootstrap-datetimepicker/) plugin only
+- font-awesome
+- ionicons
+- etc...
 
-## Code scaffolding
+There is a lot of work to do, so, at the moment these features are implemented:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+- auth module:
+  - Login, request access token and request authenticate user data
+  - Logout
+  - Register, not complete, only has the view
+  - AuthGuardm to protecting certain routes
+- adminLTE module, basic implementation of the well know Bootstrap AdminLTE template
+  - Right sidebar layout
+  - Top navigation layout
+  - Clean center box layout
+  - Some components that are used on app sections like:
+    - alerts, conected to the app msg system
+    - box (with loading state), box header, box body, box footer and box tools (collapse box, hide box and append more tools)
+    - control sidebar
+    - page header and content
+    - user account menu, displays user info if user is authenticated or signin or signup if isn't authenticated
+- core module
+  - Retrieve app info like name, shortname, website, etc... from the apiato backend. apiato doesn't not provide that functionality, so you need to create a `Container` to derve the required data or use [this one](https://github.com/llstarscreamll/AppData), this is a very basic example, complicate it as you want.
+  - Share come functionalities/classes/interfaces with other modules, like mesagges, etc...
+- front and welcome module
+  - Just a simple concept proof for the AuthGuard stuff
+- dynamic-form-fields module
+  - This module is inspired on this amazing post from Todd Motto: [Configurable Reactive Forms in Angular with dynamic components](https://toddmotto.com/angular-dynamic-components-forms)
+  - Build your form fields from a given config object, the supported fields are:
+    - standart inputs for text, number, date, month, week, time
+    - radiobuttons
+    - checkbox array
+    - datetime, with a [jQuery datetime picker plugin](http://eonasdan.github.io/bootstrap-datetimepicker/) wrapped on a directive
+    - basic group of the above fiels
+  - Service that parses the given object to make usable with the main contaner component
+  - Here is an example of a model, this gives you an idea of what settings are used and what is generated:
+```json
+{
+  "id": {
+    "name": "id",
+    "type": "text",
+    "placeholder": "",
+    "value": "",
+    "min": "",
+    "max": "",
+    "mainWrapperClass": "col-sm-6",
+    "labelClass": "",
+    "controlWrapperClass": "",
+    "controlClass": "",
+    "break": true,
+    "visibility": {
+      "create": false,
+      "details": true,
+      "edit": false,
+      "search": true
+    },
+    "label": "Id"
+  },
+  "name": {
+    "name": "name",
+    "type": "text",
+    "placeholder": "",
+    "value": "",
+    "min": "",
+    "max": "",
+    "mainWrapperClass": "col-sm-6",
+    "labelClass": "",
+    "controlWrapperClass": "",
+    "controlClass": "",
+    "break": false,
+    "visibility": {
+      "create": true,
+      "details": true,
+      "edit": true,
+      "search": true
+    },
+    "validation": [
+      "required",
+      "string"
+    ],
+    "label": "Nombre"
+  },
+  "short_name": {
+    "name": "short_name",
+    "type": "text",
+    "placeholder": "",
+    "value": "",
+    "min": "",
+    "max": "",
+    "mainWrapperClass": "col-sm-6",
+    "labelClass": "",
+    "controlWrapperClass": "",
+    "controlClass": "",
+    "break": false,
+    "visibility": {
+      "create": true,
+      "details": true,
+      "edit": true,
+      "search": true
+    },
+    "validation": [
+      "string"
+    ],
+    "label": "Nombre corto"
+  },
+  "created_at": {
+    "name": "created_at",
+    "type": "datetime-local",
+    "placeholder": "",
+    "value": "",
+    "min": "",
+    "max": "",
+    "mainWrapperClass": "col-sm-6",
+    "labelClass": "",
+    "controlWrapperClass": "",
+    "controlClass": "",
+    "break": false,
+    "visibility": {
+      "create": false,
+      "details": true,
+      "edit": false,
+      "search": true
+    },
+    "label": "Creado en"
+  },
+  "updated_at": {
+    "name": "updated_at",
+    "type": "datetime-local",
+    "placeholder": "",
+    "value": "",
+    "min": "",
+    "max": "",
+    "mainWrapperClass": "col-sm-6",
+    "labelClass": "",
+    "controlWrapperClass": "",
+    "controlClass": "",
+    "break": false,
+    "visibility": {
+      "create": false,
+      "details": true,
+      "edit": false,
+      "search": true
+    },
+    "label": "Actualizado en"
+  },
+  "deleted_at": {
+    "name": "deleted_at",
+    "type": "datetime-local",
+    "placeholder": "",
+    "value": "",
+    "min": "",
+    "max": "",
+    "mainWrapperClass": "col-sm-6",
+    "labelClass": "",
+    "controlWrapperClass": "",
+    "controlClass": "",
+    "break": false,
+    "visibility": {
+      "create": false,
+      "details": true,
+      "edit": false,
+      "search": true
+    },
+    "label": "Eliminado en"
+  }
+}
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+There is a lot of work to do, contributions are welcome!!
