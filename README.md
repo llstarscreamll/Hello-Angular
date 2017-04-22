@@ -26,7 +26,7 @@ There is a lot of work to do, so, at the moment these features are implemented:
   - Login, request access token and request authenticate user data
   - Logout
   - Register, not complete, only has the view
-  - AuthGuardm to protecting certain routes
+  - AuthGuard, to protecting certain routes
 - adminLTE module, basic implementation of the well know Bootstrap AdminLTE template
   - Right sidebar layout
   - Top navigation layout
@@ -36,10 +36,10 @@ There is a lot of work to do, so, at the moment these features are implemented:
     - box (with loading state), box header, box body, box footer and box tools (collapse box, hide box and append more tools)
     - control sidebar
     - page header and content
-    - user account menu, displays user info if user is authenticated or signin or signup if isn't authenticated
+    - user account menu, displays user info if user is authenticated or signin and signup if isn't authenticated
 - core module
-  - Retrieve app info like name, shortname, website, etc... from the apiato backend. apiato doesn't not provide that functionality, so you need to create a `Container` to derve the required data or use [this one](https://github.com/llstarscreamll/AppData), this is a very basic example, complicate it as you want.
-  - Share come functionalities/classes/interfaces with other modules, like mesagges, etc...
+  - Retrieve app info like name, shortname, website, etc... from the apiato backend. apiato doesn't not provide that functionality, so you need to create a `Container` to serve the required data or use [this one](https://github.com/llstarscreamll/AppData), this is a very basic example, complicate it as you want.
+  - Share some functionalities/classes/interfaces with other modules, like mesagges, etc...
 - front and welcome module
   - Just a simple concept proof for the AuthGuard stuff
 - dynamic-form-fields module
@@ -49,7 +49,7 @@ There is a lot of work to do, so, at the moment these features are implemented:
     - radiobuttons
     - checkbox array
     - datetime, with a [jQuery datetime picker plugin](http://eonasdan.github.io/bootstrap-datetimepicker/) wrapped on a directive
-    - basic group of the above fiels
+    - basic group of the above fields
   - Service that parses the given object to make usable with the main contaner component
   - Here is an example of a model, this gives you an idea of what settings are used and what is generated:
 ```json
