@@ -40,8 +40,10 @@ export class AuthEffects {
     .map((action: Action) => action.payload as LoginCredentials)
     .switchMap((credentials: LoginCredentials) => {
       return this.authService.login(credentials.email, credentials.password)
+        // set on session storage the access token data
         .do((accessToken: AccessToken) => sessionStorage.setItem('token', accessToken.access_token))
         .do((accessToken: AccessToken) => sessionStorage.setItem('token_type', accessToken.token_type))
+        // now get the authenticated user info
         .switchMap(() => this.authService.getUser())
         .map((user: AuthUser) => { return new auth.LoginSuccessAction(user) })
         .catch((error) => {
@@ -64,11 +66,10 @@ export class AuthEffects {
   loginFromLocalStorage$: Observable<Action> = this.actions$
     .ofType(auth.ActionTypes.LOGIN_FROM_LOCALSTORAGE)
     .startWith(new auth.LoginFromLocalStorageAction(null))
-    .map(() => {
-      this.authService.loginFromLocalStorage = true;
-      return this.authService.loggedIn()
-        ? new auth.LoginSuccessAction(this.localStorageService.getUser() as AuthUser)
-        : new auth.LogoutSuccessAction(false); // false = no redirect the user to login form
+    .switchMap(() => {
+      return this.authService.getUser()
+      .map((user: AuthUser) => { this.authService.loginFromLocalStorage = true; return new auth.LoginSuccessAction(user)})
+      .catch(error => { return of(new auth.LogoutSuccessAction(false))});
     });
 
   /**
@@ -79,7 +80,8 @@ export class AuthEffects {
     .ofType(auth.ActionTypes.LOGOUT)
     .switchMap(() => {
       return this.authService.logout()
-        .map(() => new auth.LogoutSuccessAction(true)); // true = redirect the user
+        .map(() => new auth.LogoutSuccessAction(true))
+        .catch((error) => of(new auth.LogoutSuccessAction(true))); // true = redirect the user
     });
 
   /**
