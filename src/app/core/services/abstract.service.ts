@@ -1,9 +1,13 @@
-import 'rxjs/add/observable/throw';
 import { Headers, Response, URLSearchParams } from '@angular/http';
-
-import { environment } from './../../../environments/environment';
+import { Store } from '@ngrx/store';
+import { go } from '@ngrx/router-store';
+import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
+
+import { environment } from './../../../environments/environment';
+import * as fromRoot from './../../reducers';
+import * as appMsgActions from './../../core/actions/app-message.actions';
 
 /**
  * Abstract Class Service.
@@ -15,9 +19,10 @@ export abstract class Service {
   protected abstract API_ENDPOINT: string;
   protected required_columns: Array<string> = [];
 
-  public constructor() {
+  public constructor(
+    protected store: Store<fromRoot.State> | null = null,
+  ) {
     this.headers = new Headers({ 'Accept': 'application/json' });
-    //this.headers.append("content-type", "application/x-www-form-urlencoded");
   }
 
   protected setAuthorizationHeader() {
@@ -28,7 +33,7 @@ export abstract class Service {
    * Returns full API endpoint.
    */
   protected apiEndpoint(path: string = ''): string {
-    let url = this.domain + '/';
+    let url = this.domain;
     url += (this.API_ENDPOINT !== '') ? this.API_ENDPOINT + '/' : '';
 
     return url + path;
@@ -43,7 +48,7 @@ export abstract class Service {
 
     if (error instanceof Response) {
       body = error.json() || '';
-      const err = body.message || JSON.stringify(body);
+      let err = body.message || JSON.stringify(body.errors) + ', ' + body.exception;
       errorMsg = `${error.statusText || ''}, ${err}`;
     } else {
       errorMsg = error.statusText ? error.statusText : error.toString();
