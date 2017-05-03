@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -26,6 +26,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
             [group]="form"
             [config]="formModel[field]"
             [errors]="errors"
+            [data]="formData"
             [disabled]="disabled"></ng-container>
         </ng-container>
 
@@ -36,7 +37,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
       </ng-container>
     </div>
         `,
-  styles: [`:host { display: block; } .clearfix { border-bottom: 1px dashed #d3d3d3; margin-bottom: 15px; }`]
+  styles: [`:host { display: block; } .clearfix { border-bottom: 1px dashed #d3d3d3; margin-bottom: 15px; }`],
 })
 export class DynamicFormFieldsComponent implements OnInit {
   @Input()

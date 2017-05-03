@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import {SelectModule} from 'ng2-select';
 
 import { CONTAINERS } from './containers';
 import { COMPONENTS } from './components';
@@ -16,6 +17,7 @@ import { SERVICES } from './services';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SelectModule
   ],
   exports: [...CONTAINERS],
   entryComponents: [...COMPONENTS,],

@@ -249,7 +249,7 @@ export class FormModelParserService {
           break;
 
         default:
-          group[field] = ['', validation];
+          group[field] = [_.get(options, 'value', null), validation];
           break;
       }
     });

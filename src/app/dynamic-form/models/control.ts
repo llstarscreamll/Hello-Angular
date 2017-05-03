@@ -5,5 +5,6 @@ export interface Control {
   config: ControlConfig;
   group: FormGroup;
   disabled: boolean;
+  data?: {};
   errors?: {};
 }

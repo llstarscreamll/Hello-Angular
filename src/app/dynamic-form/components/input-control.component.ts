@@ -11,7 +11,7 @@ import { ControlConfig } from './../models/control-config';
       class="form-group"
       [formGroup]="group"
       [class.has-success]="group.get(config.name).valid && group.get(config.name).touched"
-      [class.has-error]="(!group.get(config.name).valid && group.get(config.name).touched) || (errors[config.name])"
+      [class.has-error]="(!group.get(config.name).valid && group.get(config.name).touched) || errors[config.name]"
       [ngClass]="[config.mainWrapperClass || '']">
 
       <label

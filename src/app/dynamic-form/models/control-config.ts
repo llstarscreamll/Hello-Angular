@@ -8,6 +8,7 @@ export interface ControlConfig {
   placeholder?: string;
   value?: any;
   options?: string[];
+  dynamicOptions?: any;
   step?: number;
   min?: number;
   max?: number;

@@ -5,7 +5,7 @@ import { Control } from './../models/control';
 import { ControlConfig } from './../models/control-config';
 
 @Component({
-  selector: 'radio-control',
+  selector: 'input-control',
   template: `
     <div
       class="form-group"
@@ -21,27 +21,27 @@ import { ControlConfig } from './../models/control-config';
         {{ config.label }}
       </label>
 
-      <div *ngFor="let option of config.options" class="radio">
-        <label>
-          <input
-            type="radio"
-            [attr.name]="config.name"
-            [value]="option.value"
-            [attr.disabled]="disabled === true ? true : null"
-            [formControlName]="config.name">
-          {{ option.label }}
-          </label>
+      <div [ngClass]="[config.controlWrapperClass || '']">
+        <textarea
+          class="form-control"
+          [attr.disabled]="disabled === true ? true : null"
+          [attr.id]="config.name"
+          [attr.placeholder]="config.placeholder"
+          [ngClass]="[config.controlClass || '']"
+          [attr.name]="config.name"
+          [formControlName]="config.name">
+        </textarea>
       </div>
     </div>
         `,
   styles: [`:host { display: block; }`]
 })
-export class RadioControlComponent implements Control, OnInit {
+export class TextAreaControlComponent implements Control, OnInit {
   public config: ControlConfig;
   public group: FormGroup;
   public errors: Object = {};
   public disabled: boolean = true;
-
+  
   public constructor() { }
 
   public ngOnInit() { }
