@@ -5,9 +5,10 @@ export interface ControlConfig {
   type: string;
   label: string;
   // other options
+  id?: string;
   placeholder?: string;
   value?: any;
-  options?: string[];
+  options?: { id: string | number, text: string }[];
   dynamicOptions?: any;
   step?: number;
   min?: number;
@@ -17,4 +18,6 @@ export interface ControlConfig {
   labelClass?: string;
   controlWrapperClass?: string;
   controlClass?: string;
+  break?: boolean;
+  visibility?: any;
 }

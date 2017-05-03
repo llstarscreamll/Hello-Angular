@@ -26,10 +26,10 @@ import { ControlConfig } from './../models/control-config';
           <input
             type="radio"
             [attr.name]="config.name"
-            [value]="option.value"
+            [value]="option.id"
             [attr.disabled]="disabled === true ? true : null"
             [formControlName]="config.name">
-          {{ option.label }}
+          {{ option.text }}
           </label>
       </div>
     </div>

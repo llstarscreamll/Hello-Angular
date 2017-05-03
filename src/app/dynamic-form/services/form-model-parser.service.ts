@@ -33,50 +33,59 @@ export class FormModelParserService {
    */
   public parse(model: Object, langNamespace: string = ''): Object {
     let parsedModel = {};
-    let options = [];
-    let option: any;
+    let option: { id: string | number, text: string };
+    let options: { id: string | number, text: string }[] = [];
 
     // loop over the model fields
-    _.forOwn(model, (value, key) => {
+    _.forOwn(model, (controlOptions: ControlConfig, controlName: string) => {
       // don't parse the form model options
-      if (key == this.optionsKey) return false;
+      if (controlName == this.optionsKey) return false;
 
-      let field = {};
-      Object.assign(field, value);
-      this.translate.get(langNamespace + key).subscribe((res: string) => field['label'] = res);
+      let field: ControlConfig = Object.assign({}, controlOptions);
 
-      // setup the options translations
-      if (_.has(value, 'options')) {
+      // get control labe translation
+      this.translate.get(langNamespace + controlName)
+        .subscribe((res: string) => field.label = res);
+
+      // get translated options
+      if (_.has(controlOptions, 'options')) {
         options = [];
 
-        // loop over the field options to set the option value and translated label
-        _.forEach(value.options, (optValue) => {
-          option = { value: '', label: '' };
-          option.value = optValue;
+        _.forEach(controlOptions.options, (optionValue: string) => {
+          option = { id: '', text: '' };
+          let transKey: string = langNamespace + controlName + '-options.' + optionValue;
+          option.id = optionValue;
 
-          this.translate.get(langNamespace + key + '-options.' + optValue)
-            .subscribe((res: string) => option.label = res);
+          // get option translation
+          this.translate.get(transKey)
+            .subscribe((res: string) => transKey !== res ? option.text = res : optionValue);
 
           options.push(option);
         });
 
-        field['options'] = options;
+        field.options = options;
       }
 
-      parsedModel[key] = field;
+      parsedModel[controlName] = field;
+
+      // the control validation rules
+      let validationRules: string[] = _.get(controlOptions, 'validation', []);
 
       // the field requires confirmation?
-      if (_.includes(_.get(value, 'validation', []), 'confirmed')) {
-        let filteredVal = _.filter(value['validation'], (rule) => {
+      if (_.includes(validationRules, 'confirmed')) {
+        // get filed validation rules without the confirmed rule
+        let cleanedValidationRules = _.filter(controlOptions['validation'], (rule) => {
           return rule != 'confirmed';
         });
 
-        let confirmField = this.parse(
-          { [key + '_confirmation']: Object.assign({}, value, { validation: filteredVal }) },
+        // create new confirmation field config based on the current field options
+        let confirmFieldOptions = { [controlName + '_confirmation']: Object.assign({}, controlOptions, { validation: cleanedValidationRules }) };
+        let confirmFieldParsed = this.parse(
+          confirmFieldOptions,
           langNamespace
         );
 
-        Object.assign(parsedModel, confirmField);
+        Object.assign(parsedModel, confirmFieldParsed);
       }
     });
 
@@ -230,14 +239,23 @@ export class FormModelParserService {
     let validation = [];
 
     _.forOwn(parsedModel, (options, field) => {
+      // setup validation rules
       validation = [];
-
       if (_.has(options, 'validation')) {
         _.each(options['validation'], (validationRule) => {
-          validationRule == "required" ? validation.push(Validators.required) : null;
+          switch(validationRule) {
+            case "required":
+              validation.push(Validators.required);
+            break;
+
+            case "email":
+              validation.push(Validators.email);
+            break;
+          }
         });
       }
 
+      // setup the reactiveForm based on the option type
       switch (options.type) {
         case "group":
           group[field] = this.toFormGroup(options.controls);
@@ -254,8 +272,6 @@ export class FormModelParserService {
       }
     });
 
-    let form = this.formBuilder.group(group);
-
-    return form;
+    return this.formBuilder.group(group);
   }
 }
