@@ -50,7 +50,6 @@ export class FormModelParserService {
       // get translated options
       if (_.has(controlOptions, 'options')) {
         options = [];
-
         _.forEach(controlOptions.options, (optionValue: string) => {
           option = { id: '', text: '' };
           let transKey: string = langNamespace + controlName + '-options.' + optionValue;
@@ -58,7 +57,7 @@ export class FormModelParserService {
 
           // get option translation
           this.translate.get(transKey)
-            .subscribe((res: string) => transKey !== res ? option.text = res : optionValue);
+            .subscribe((res: string) => option.text = (transKey !== res) ? res : optionValue);
 
           options.push(option);
         });
@@ -163,8 +162,8 @@ export class FormModelParserService {
     if (_.has(model, 'deleted_at')) {
 
       let trashedOptions = [
-        { value: 'withTrashed', label: 'Con registros eliminados' },
-        { value: 'onlyTrashed', label: 'Sólo registros eliminados' },
+        { id: 'withTrashed', text: 'Con registros eliminados' },
+        { id: 'onlyTrashed', text: 'Sólo registros eliminados' },
       ];
 
       _.set(optionsGroup, 'controls.trashed', {

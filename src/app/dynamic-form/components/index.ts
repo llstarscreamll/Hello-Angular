@@ -20,6 +20,7 @@ export const COMPONENTS = [
 
 export const Controls = {
   'text': InputControlComponent,
+  'password': InputControlComponent,
   'textarea': TextAreaControlComponent,
   'number': InputControlComponent,
   'date': InputControlComponent,

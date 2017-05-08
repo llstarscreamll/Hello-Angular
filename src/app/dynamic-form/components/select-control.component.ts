@@ -78,6 +78,7 @@ export class SelectControlComponent implements Control, OnInit {
   }
 
   public getItems() {
+    // config for dynamic options based on the given form data (this.data)
     if (_.has(this.config, 'dynamicOptions')) {
       let index: string = _.get(this.config.dynamicOptions, 'data', '');
 
@@ -86,6 +87,11 @@ export class SelectControlComponent implements Control, OnInit {
       if (_.has(this.data, index) && data.length > 0) {
         return _.flatMap(data, (value) => { return { id: value.id, text: value.name } });
       }
+    }
+
+    // config for options given on config (this.config)
+    if (_.has(this.config, 'options')) {
+      return _.get(this.config, 'options', []);
     }
 
     return [{ id: 'null', text: 'No data given...' }];
