@@ -233,11 +233,19 @@ export class FormModelParserService {
    *
    * @param parsedModel The parsed Form Model
    */
-  public toFormGroup(parsedModel: Object): FormGroup {
+  public toFormGroup(parsedModel: Object, formType: string = '*'): FormGroup {
     let group = {};
     let validation = [];
 
-    _.forOwn(parsedModel, (options, field) => {
+    _.forOwn(parsedModel, (options: ControlConfig, field) => {
+
+      // is there a formType specified? if yes, check if the field should be on that specified form
+      if (formType !== '*') {
+        if (_.get(options.visibility, formType, false) === false) {
+          return;
+        }
+      }
+
       // setup validation rules
       validation = [];
       if (_.has(options, 'validation')) {
@@ -264,6 +272,14 @@ export class FormModelParserService {
         case "checkbox-array":
           group[field] = [[], validation];
           break;
+        
+        case "select":
+          if (options.multiple && options.multiple === true) {
+            group[field] = [[], validation];
+          } else {
+            group[field] = [_.get(options, 'value', null), validation];
+          }
+        break;
 
         default:
           group[field] = [_.get(options, 'value', null), validation];

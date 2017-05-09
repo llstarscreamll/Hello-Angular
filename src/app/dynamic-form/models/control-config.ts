@@ -13,6 +13,7 @@ export interface ControlConfig {
   step?: number;
   min?: number;
   max?: number;
+  multiple?: boolean;
   // classes
   mainWrapperClass?: string;
   labelClass?: string;
@@ -20,4 +21,6 @@ export interface ControlConfig {
   controlClass?: string;
   break?: boolean;
   visibility?: any;
+  // this should be removed when the FormModelParser have the refactor for the search stuff
+  controls?: any;
 }

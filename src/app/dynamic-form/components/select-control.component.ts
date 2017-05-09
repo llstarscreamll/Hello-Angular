@@ -25,6 +25,7 @@ import { ControlConfig } from './../models/control-config';
       <div [ngClass]="[config.controlWrapperClass || '']">
         <ng-select
           class="no-ng-validation-border {{ config.controlClass || '' }}"
+          [multiple]="config.multiple === true ? true : false"
           [allowClear]="true"
           [items]="items"
           [active]="getActive()"
@@ -33,9 +34,10 @@ import { ControlConfig } from './../models/control-config';
           [attr.id]="config.name"
           [ngClass]="validationClasses"
           [attr.name]="config.name"
-          [attr.value]="group.get(config.name).value"
+          [attr.value]="getValue()"
           (data)="changed($event)">
         </ng-select>
+        <span *ngIf="noDataGiven" class="text-danger">No data given...</span>
       </div>
     </div>
         `,
@@ -57,6 +59,7 @@ export class SelectControlComponent implements Control, OnInit {
   public data: any = {};
   public items = [{ id: 'null', text: 'No data given...' }];
   public validationClasses: Object;
+  public noDataGiven: boolean = false;
 
   public constructor() { }
 
@@ -77,15 +80,30 @@ export class SelectControlComponent implements Control, OnInit {
       };
   }
 
-  public getItems() {
+  public getValue() {
+    let controlValue = this.group.get(this.config.name).value;
+    if (controlValue) {
+      return this.getItems().filter(value => controlValue.includes(value.id));
+    }
+
+    return controlValue;
+  }
+
+  public getItems(): Array<{id: string, text: string}> {
     // config for dynamic options based on the given form data (this.data)
     if (_.has(this.config, 'dynamicOptions')) {
       let index: string = _.get(this.config.dynamicOptions, 'data', '');
 
       let data = _.get(this.data, index, []);
 
-      if (_.has(this.data, index) && data.length > 0) {
-        return _.flatMap(data, (value) => { return { id: value.id, text: value.name } });
+      if (data.length > 0) {
+        // check if the array has well key and text keys, if no, map that values
+        if (!_.has(data[0], 'text')){
+          return _.flatMap(data, (value) => { return { id: value.id, text: value.name } });
+        }
+        
+        // the key values have good format (id and text)
+        return data;
       }
     }
 
@@ -94,17 +112,29 @@ export class SelectControlComponent implements Control, OnInit {
       return _.get(this.config, 'options', []);
     }
 
-    return [{ id: 'null', text: 'No data given...' }];
+    // no data given
+    this.noDataGiven = true;
+    return [{ id: null, text: 'No data given...' }];
   }
 
   public getActive() {
-    return this.group.get(this.config.name).value
-      ? this.items.filter(value => value.id === this.group.get(this.config.name).value)
-      : null;
+    if (_.isArray(this.group.get(this.config.name).value)) {
+      let controlValue = this.group.get(this.config.name).value;
+      return this.getItems().filter(value => controlValue.includes(value.id));
+    } else {
+      return this.group.get(this.config.name).value
+        ? this.items.filter(value => value.id === this.group.get(this.config.name).value)
+        : null;
+    }
   }
 
-  public changed(data: {id: string, text: string}) {
-    this.group.get(this.config.name).setValue(data.id);
+  public changed(data: any) {
+    if (this.config.multiple) { // set value fom select "multiple"
+      let field = this.config.name;
+      this.group.get(field).patchValue(data.map(item => item.id));
+    } else { // set value for select "unique"
+      this.group.get(this.config.name).setValue(data.id);
+    }
 
     this.group.get(this.config.name).markAsDirty();
     this.group.get(this.config.name).markAsTouched();
