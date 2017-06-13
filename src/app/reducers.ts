@@ -6,19 +6,17 @@ import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
+import * as authActions from './auth/actions/auth.actions';
+
 /**
- * Here you can import reducers from other modules
- */ 
-import * as fromApp from './core/reducers/app.reducer';
-import * as fromAppMessages from './core/reducers/app-message.reducer';
+ * Here you should import reducers from other modules
+ */
 import * as fromAuth from './auth/reducers/auth.reducer';
 
 /**
  * The app state interface
  */
 export interface State {
-  app: fromApp.State;
-  appMessages: fromAppMessages.State;
   auth: fromAuth.State;
   router: fromRouter.RouterState;
 }
@@ -27,11 +25,17 @@ export interface State {
  * Declares the router and modules reducers
  */
 const reducers = {
-  app: fromApp.reducer,
-  appMessages: fromAppMessages.reducer,
   auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
 };
+
+export function rootReducer(state: any, action: any) {
+  if (action.type === authActions.LOGOUT_SUCCESS) {
+    state = undefined;
+  }
+
+  return reducer(state, action);
+}
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
 const productionReducer: ActionReducer<State> = combineReducers(reducers);
@@ -44,22 +48,9 @@ export function reducer(state: any, action: any) {
   }
 }
 
-/**
- * Auth Selectors
- */
+// Auth Selectors
 export const getAuthState = (state: State) => state.auth;
-
-export const getAuthLoading = createSelector(getAuthState, fromAuth.getAuthLoading);
-export const getAuthApiMsg = createSelector(getAuthState, fromAuth.getAuthApiMsg);
-export const getAuthApiErrors = createSelector(getAuthState, fromAuth.getAuthApiErrors);
-export const getAuthUser = createSelector(getAuthState, fromAuth.getAuthUser);
-
-/**
- * App Selectors
- */
-export const getAppState = (state: State) => state.app;
-
-/**
- * App Messages Selector
- */
-export const getAppMessagesState = (state: State) => state.appMessages;
+export const getAuthUser = createSelector(getAuthState, fromAuth.user);
+export const getAuthIsLoggedIn = createSelector(getAuthState, fromAuth.isLoggedIn);
+export const getAuthMessages = createSelector(getAuthState, fromAuth.messages);
+export const getAuthLoading = createSelector(getAuthState, fromAuth.loading);
