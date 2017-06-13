@@ -7,3 +7,6 @@
 [submodule "src/app/dynamic-form"]
 	path = src/app/dynamic-form
 	url = https://github.com/llstarscreamll/ngx-dynamic-form.git
+[submodule "src/app/validation"]
+	path = src/app/validation
+	url = https://github.com/llstarscreamll/ngx-validation.git
