@@ -1,6 +1,12 @@
 # Relsease Notes
 
-## 0.2
+## 0.3 (2017-06-13)
+
+### Added
+
+- Add `CHANGELOG.md` file.
+
+## 0.2 (2017-06-13)
 
 ### Added
 
