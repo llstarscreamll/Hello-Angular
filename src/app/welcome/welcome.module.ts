@@ -2,15 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
-// Theme
 import { environment } from './../../environments/environment';
+import { DynamicFormModule } from './../dynamic-form/dynamic-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    WelcomeRoutingModule,
+    Ng2BootstrapModule.forRoot(),
+    ReactiveFormsModule,
     environment.theme,
+    WelcomeRoutingModule,
+    DynamicFormModule,
   ],
   declarations: [WelcomeComponent]
 })

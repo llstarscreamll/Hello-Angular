@@ -5,20 +5,29 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { AdminLTEShellModule as Shell } from './../../adminLTE/admin-lte.module';
+import { AdminLTEModule as Shell } from './../../adminLTE/admin-lte.module';
 import { reducer } from './../../reducers';
 import { Company } from './../../core/models/company';
 import { AuthUser } from './../../auth/models/authUser';
+import { CoreSharedModule } from "app/core/core.shared.module";
+import { AccessToken } from "app/auth/interfaces/accessToken";
 
 export const IMPORTS = [
   Shell,
   ReactiveFormsModule,
   TranslateModule.forRoot(),
   StoreModule.provideStore(reducer),
-  RouterTestingModule
+  RouterTestingModule,
+  CoreSharedModule,
 ];
 
-export const TEST_USER: AuthUser = {
+export let ACCESS_TOKEN: AccessToken = {
+  access_token: 'foo-token',
+  expires_in: 99999,
+  token_type: 'foo-type'
+};
+
+export let TEST_USER: AuthUser = Object.assign(new AuthUser, {
   "id": 1,
   "name": "Super Admin",
   "email": "admin@admin.com",
@@ -40,10 +49,41 @@ export const TEST_USER: AuthUser = {
   },
   "roles": {
     "data": [
-      { "object": "Role", "name": "admin", "description": "Super Administrator", "display_name": null }
+      {
+        "object": "Role",
+        "name": "admin",
+        "description": "Super Administrator",
+        "display_name": null,
+        permissions: {
+          data: [
+            {
+              object: 'Permission',
+              name: 'manage-users',
+              display_name: 'Manage Users',
+              description: ''
+            }
+          ]
+        }
+      },
+      {
+        "object": "Role",
+        "name": "author",
+        "description": "Posts Author",
+        "display_name": null,
+        permissions: {
+          data: [
+            {
+              object: 'Permission',
+              name: 'create-posts',
+              display_name: 'Create Posts',
+              description: ''
+            }
+          ]
+        }
+      },
     ]
   }
-};
+});
 
 export const COMPANY: Company = {
   fullname: 'ACME Inc.',

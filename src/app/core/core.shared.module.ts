@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-// ng2-boostrap
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-// Shared components
-import { DynamicFormcomponent } from './components/dynamicForm.component';
+import { LocalStorageService } from "app/core/services/local-storage.service";
+
+export const DECLARATIONS = [
+];
 
 /**
  * Here we expose the shared components to another modules.
@@ -12,16 +12,13 @@ import { DynamicFormcomponent } from './components/dynamicForm.component';
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    BsDropdownModule,
   ],
   declarations: [
-    DynamicFormcomponent
+    ...DECLARATIONS,
   ],
   exports: [
-    DynamicFormcomponent
+    ...DECLARATIONS,
   ],
-  providers: []
+  providers: [LocalStorageService]
 })
 export class CoreSharedModule { }
