@@ -1,12 +1,16 @@
 [submodule "src/app/adminLTE"]
 	path = src/app/adminLTE
 	url = https://github.com/llstarscreamll/ngx-adminLte.git
+	branch = master
 [submodule "src/app/auth"]
 	path = src/app/auth
 	url = https://github.com/llstarscreamll/ngx-auth.git
+	branch = master
 [submodule "src/app/dynamic-form"]
 	path = src/app/dynamic-form
 	url = https://github.com/llstarscreamll/ngx-dynamic-form.git
+	branch = master
 [submodule "src/app/validation"]
 	path = src/app/validation
 	url = https://github.com/llstarscreamll/ngx-validation.git
+	branch = master
