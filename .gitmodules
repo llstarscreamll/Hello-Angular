@@ -4,3 +4,6 @@
 [submodule "src/app/auth"]
 	path = src/app/auth
 	url = https://github.com/llstarscreamll/ngx-auth.git
+[submodule "src/app/dynamic-form"]
+	path = src/app/dynamic-form
+	url = https://github.com/llstarscreamll/ngx-dynamic-form.git
