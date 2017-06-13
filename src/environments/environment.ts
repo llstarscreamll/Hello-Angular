@@ -2,10 +2,17 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-import { AdminLTEShellModule } from './../app/adminLTE/admin-lte.module';
+import { AdminLTEModule } from './../app/adminLTE/admin-lte.module';
 
 export const environment = {
   production: false,
-  theme: AdminLTEShellModule,
+  theme: AdminLTEModule,
   api_url: 'http://api.apiato.dev/',
+  // app info
+  app_fullname: 'ACME Inc.',
+  app_short_name: 'ACME',
+  app_version: 0.1,
+  // your company info
+  company_website: 'www.google.com',
+  company_cc_year: '2017',
 };
