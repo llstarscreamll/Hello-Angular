@@ -1,90 +1,17 @@
 <app-nav-top-layout>
 
-  <!-- Content Header (Page header) -->
-  <app-page-header>
-    <h1>
-      Welcome to Angular 2 App
-      <small>Angular 2.4.3</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Landing</a></li>
-      <li><a href="#">Welcome</a></li>
-    </ol>
-  </app-page-header>
+  <div class="col-sm-10 col-sm-offset-1">
+    <app-box>
+      <app-box-body>
+        
+        <h1 class="text-center">Welcome to Hello Angular!!</h1>
 
-  <!-- Main content -->
-  <app-page-content>
+        <div class="text-center m-t-lg">
+          <a [routerLink]="['/auth/login']" class="btn btn-default btn-lg">Login</a> or <a [routerLink]="['/auth/register']" class="btn btn-default btn-lg">Create Account</a>
+        </div>
 
-    <!-- Widgets traducidos a componentes en Angular -->
-    <div class="row">
-      
-      <div class="col-md-4">
-        <app-box #box>
-          <app-box-header>
-            <h5>
-              Foo title
-            </h5>
-            <app-box-tools (collapseBox)="box.toggleCollapse()" (hideBox)="box.hideBox()">
-
-              <div class="dropdown-toggle btn-group" dropdown>
-                <a dropdownToggle class="btn dropdown-toggle" id="single-button" role="button">
-                  <i class="fa fa-wrench"></i>
-                </a>
-                <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                  <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li class="divider dropdown-divider"></li>
-                  <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
-              </div>
-
-            </app-box-tools>
-          </app-box-header>
-
-          <app-box-body>
-            <p>Content!!</p>
-          </app-box-body>
-
-          <app-box-footer>
-            Some footer text!!
-          </app-box-footer>
-        </app-box>
-      </div>
-
-      <div class="col-md-4">
-        <app-box>
-          <app-box-header>
-            <h5 class="box-title">
-              Without header tools
-            </h5>
-          </app-box-header>
-
-          <app-box-body>
-            <p>Content!!</p>
-          </app-box-body>
-        </app-box>
-      </div>
-
-      <div class="col-md-4">
-        <app-box [isLoading]="true">
-          <app-box-header>
-            <h5 class="box-title">
-              Without header tools
-            </h5>
-            <app-box-tools [showCollapseBtn]="false">
-            </app-box-tools>
-          </app-box-header>
-
-          <app-box-body>
-            <p>Content!!</p>
-          </app-box-body>
-        </app-box>
-      </div>
-    </div>
-    <!-- Fin de Widgets traducidos a componentes en Angular -->
-    
-  </app-page-content>
-  <!-- /.content -->
+      </app-box-body>
+    </app-box>
+  </div>
 
 </app-nav-top-layout>
