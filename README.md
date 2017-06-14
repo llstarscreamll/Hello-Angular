@@ -22,8 +22,7 @@ Some libraries used on this project:
 The install is as usual on any [angular-cli](https://github.com/angular/angular-cli) project:
 
 ```bash
-git clone https://github.com/llstarscreamll/Hello-Angular.git
-git submodule init && git submodule update --remote
+git clone --recursive https://github.com/llstarscreamll/Hello-Angular.git
 cd Hello-Angular
 yarn install # or npm install
 ng serve
