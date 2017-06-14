@@ -7,7 +7,7 @@ import { environment } from './../../environments/environment';
 import { FrontRoutingModule } from './front-routing.module';
 // Component
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { CoreSharedModule } from "app/core/core.shared.module";
+import { CoreSharedModule } from 'app/core/core.shared.module';
 
 @NgModule({
   imports: [

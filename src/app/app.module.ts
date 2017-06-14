@@ -8,32 +8,35 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { MODULES } from './modules';
 
-// the main reducer
 import { rootReducer } from './reducers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    BrowserModule,
+    AppRoutingModule,
     StoreModule.provideStore(rootReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterStoreModule.connectRouter(),
     TranslateModule.forRoot(),
-    BrowserModule,
-    HttpModule,
-    AppRoutingModule,
+    Ng2BootstrapModule.forRoot(),
     ...MODULES,
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
   public constructor(translate: TranslateService) {
     translate.setDefaultLang('es');
     translate.use('es');
   }
+
 }

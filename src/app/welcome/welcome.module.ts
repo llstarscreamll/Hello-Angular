@@ -6,7 +6,7 @@ import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from 'environments/environment';
-import { CoreSharedModule } from "app/core/core.shared.module";
+import { CoreSharedModule } from 'app/core/core.shared.module';
 
 @NgModule({
   imports: [

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from "@angular/http";
-import { RouterModule } from "@angular/router";
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
-import { Ng2BootstrapModule } from "ngx-bootstrap";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 import { ES } from './translations/es';
 import { environment } from './../../environments/environment';
-import { ValidationSharedModule } from "app/validation/validation.shared.module";
-import { DynamicFormModule } from "app/dynamic-form/dynamic-form.module";
-import { AuthSharedModule } from "app/auth/auth-shared.module";
+import { ValidationSharedModule } from 'app/validation/validation.shared.module';
+import { DynamicFormModule } from 'app/dynamic-form/dynamic-form.module';
+import { AuthSharedModule } from 'app/auth/auth-shared.module';
 
 export const DECLARATIONS = [];
 

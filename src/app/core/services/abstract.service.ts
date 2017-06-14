@@ -25,7 +25,7 @@ export abstract class AbstractService {
   }
 
   protected setAuthorizationHeader() {
-    let authToken = localStorage.getItem('token_type') + ' ' + localStorage.getItem('token');
+    const authToken = localStorage.getItem('token_type') + ' ' + localStorage.getItem('token');
     this.headers.set('authorization', authToken);
   }
 
@@ -48,7 +48,7 @@ export abstract class AbstractService {
 
     if (error instanceof Response) {
       body = error.json() || '';
-      let err = body.message || JSON.stringify(body.errors) + ', ' + body.exception;
+      const err = body.message || JSON.stringify(body.errors) + ', ' + body.exception;
       errorMsg = `${error.statusText || ''}, ${err}`;
     } else {
       errorMsg = error.statusText ? error.statusText : error.toString();
@@ -67,7 +67,7 @@ export abstract class AbstractService {
    * https://github.com/andersao/l5-repository#using-the-requestcriteria
    */
   protected parseGetParams(query: Object = {}): URLSearchParams {
-    let urlParams: URLSearchParams = new URLSearchParams;
+    const urlParams: URLSearchParams = new URLSearchParams;
 
     // parse for advanced search cases
     if (_.get(query, 'advanced_search', false)) {
@@ -96,7 +96,7 @@ export abstract class AbstractService {
     // parse other query options
     _.forOwn(query, (value, key) => {
       // parse search, sortedBy and page param
-      if (key == "search" || key == "sortedBy" || key == 'page' || key == 'trashed' || key == "orderBy") {
+      if (key == 'search' || key == 'sortedBy' || key == 'page' || key == 'trashed' || key == 'orderBy') {
         urlParams.set(key, value);
       }
 
@@ -106,7 +106,7 @@ export abstract class AbstractService {
       //
       // to this:
       // { filter: "id;name;author_id;published_at;user_id" }
-      if (key == "filter") {
+      if (key == 'filter') {
         // concat the required_columns with the filter columns given query object
         urlParams.set('filter', _.join(this.required_columns.concat(value), ';'));
       }
@@ -130,9 +130,9 @@ export abstract class AbstractService {
       // has relations with User and Author models:
       // Book::first()->author;
       // Book::first()->createdBy;
-      if (key == "include") {
-        let relations: string[] = []; // here we collect the model relations to include
-        let attrsToFilter = _.get(query, 'filter', []); // the inclues
+      if (key == 'include') {
+        const relations: string[] = []; // here we collect the model relations to include
+        const attrsToFilter = _.get(query, 'filter', []); // the inclues
 
         // iterate over the include object
         _.forOwn(value, (relationName, requiredAttr) => {

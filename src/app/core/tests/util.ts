@@ -9,8 +9,8 @@ import { AdminLTEModule as Shell } from './../../adminLTE/admin-lte.module';
 import { reducer } from './../../reducers';
 import { Company } from './../../core/models/company';
 import { AuthUser } from './../../auth/models/authUser';
-import { CoreSharedModule } from "app/core/core.shared.module";
-import { AccessToken } from "app/auth/interfaces/accessToken";
+import { CoreSharedModule } from 'app/core/core.shared.module';
+import { AccessToken } from 'app/auth/interfaces/accessToken';
 
 export const IMPORTS = [
   Shell,
@@ -28,32 +28,32 @@ export let ACCESS_TOKEN: AccessToken = {
 };
 
 export let TEST_USER: AuthUser = Object.assign(new AuthUser, {
-  "id": 1,
-  "name": "Super Admin",
-  "email": "admin@admin.com",
-  "confirmed": true,
-  "nickname": null,
-  "gender": null,
-  "birth": null,
-  "visitor_id": null,
-  "social_auth_provider": null,
-  "social_id": null,
-  "social_avatar": { "avatar": null, "original": null },
-  "created_at": {
-    "date": "2016-12-31 04:20:42.000000",
-    "timezone_type": 3,
-    "timezone": "UTC"
+  'id': 1,
+  'name': 'Super Admin',
+  'email': 'admin@admin.com',
+  'confirmed': true,
+  'nickname': null,
+  'gender': null,
+  'birth': null,
+  'visitor_id': null,
+  'social_auth_provider': null,
+  'social_id': null,
+  'social_avatar': { 'avatar': null, 'original': null },
+  'created_at': {
+    'date': '2016-12-31 04:20:42.000000',
+    'timezone_type': 3,
+    'timezone': 'UTC'
   },
-  "token": {
-    token: "foo-token"
+  'token': {
+    token: 'foo-token'
   },
-  "roles": {
-    "data": [
+  'roles': {
+    'data': [
       {
-        "object": "Role",
-        "name": "admin",
-        "description": "Super Administrator",
-        "display_name": null,
+        'object': 'Role',
+        'name': 'admin',
+        'description': 'Super Administrator',
+        'display_name': null,
         permissions: {
           data: [
             {
@@ -66,10 +66,10 @@ export let TEST_USER: AuthUser = Object.assign(new AuthUser, {
         }
       },
       {
-        "object": "Role",
-        "name": "author",
-        "description": "Posts Author",
-        "display_name": null,
+        'object': 'Role',
+        'name': 'author',
+        'description': 'Posts Author',
+        'display_name': null,
         permissions: {
           data: [
             {
@@ -97,8 +97,8 @@ export const COMPANY: Company = {
 // helper function to MockBackend responses
 export function setupConnections(backend: MockBackend, options: any) {
   backend.connections.subscribe((connection: MockConnection) => {
-    let responseOptions = new ResponseOptions(options);
-    let response = new Response(responseOptions);
+    const responseOptions = new ResponseOptions(options);
+    const response = new Response(responseOptions);
     connection.mockRespond(response);
   });
 }
