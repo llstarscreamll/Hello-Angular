@@ -12,7 +12,7 @@ export const environment = {
   // app info
   app_fullname: 'ACME Inc.',
   app_short_name: 'ACME',
-  app_version: 0.1,
+  app_version: 0.4,
   // your company info
   company_website: 'www.google.com',
   company_cc_year: '2017',

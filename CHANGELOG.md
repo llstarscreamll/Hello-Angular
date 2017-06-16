@@ -1,5 +1,16 @@
 # Relsease Notes
 
+## 0.4 (2017-06-16)
+
+### Added
+
+- Add english translations (for submodules too).
+- The adminLTE theme module has a language switcher (**spanish** and **english**).
+
+### Changed
+
+- Set the default app language from the environment file.
+
 ## 0.3 (2017-06-13)
 
 ### Added
