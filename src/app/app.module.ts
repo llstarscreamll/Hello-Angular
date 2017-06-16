@@ -6,8 +6,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { MODULES } from './modules';
+import { environment } from "environments/environment";
 
+import { MODULES } from './modules';
 import { rootReducer } from './reducers';
 
 import { AppComponent } from './app.component';
@@ -35,7 +36,7 @@ import { Ng2BootstrapModule } from 'ngx-bootstrap';
 export class AppModule {
 
   public constructor(translate: TranslateService) {
-    translate.setDefaultLang('es');
+    translate.setDefaultLang(environment.default_lang);
     translate.use('es');
   }
 
