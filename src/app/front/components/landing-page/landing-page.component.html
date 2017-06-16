@@ -6,9 +6,19 @@
         
         <h1 class="text-center">Welcome to Hello Angular!!</h1>
 
-        <div class="text-center m-t-lg">
+        <!-- buttons to show when user isn't logged in -->
+        <div *ngIf="!(loggedIn | async); else loginStateBtns" class="login-or-register-btns text-center m-t-lg">
           <a [routerLink]="['/auth/login']" class="btn btn-default btn-lg">Login</a> or <a [routerLink]="['/auth/register']" class="btn btn-default btn-lg">Create Account</a>
         </div>
+
+        <!-- buttons to show when user is logged in -->
+        <ng-template #loginStateBtns>
+            <div class="logout-btn text-center m-t-lg">
+              <a (click)="logout()" role="button" class="btn btn-default btn-lg">
+                Logout
+              </a>
+            </div>
+        </ng-template>
 
       </app-box-body>
     </app-box>
