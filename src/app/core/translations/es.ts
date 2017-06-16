@@ -6,11 +6,18 @@ export const ES = {
         'My Account': 'Mi Cuenta',
         'Member since': 'Miembro desde',
         'Search': 'Buscar',
+        'Welcome to': 'Bienvenido a',
+        'Hi': 'Hola',
+        
+        'Dashboard': 'Dashboard',
+
         'alert-danger': 'Error',
         'alert-warning': 'Alerta',
         'alert-success': 'Bien Hecho',
-        'Welcome to': 'Bienvenido a',
-        'Hi': 'Hola',
-        'Dashboard': 'Dashboard',
+
+        // available languages
+        'Lang': 'Idioma',
+        'Spanish': 'Español',
+        'English': 'Inglés',
     }
 };

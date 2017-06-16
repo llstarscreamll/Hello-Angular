@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 import { ES } from './translations/es';
+import { EN } from './translations/en';
 import { environment } from './../../environments/environment';
 import { ValidationSharedModule } from 'app/validation/validation.shared.module';
 import { DynamicFormModule } from 'app/dynamic-form/dynamic-form.module';
@@ -45,6 +46,7 @@ export class CoreSharedModule {
 
   public constructor(translate: TranslateService) {
     translate.setTranslation('es', ES, true);
+    translate.setTranslation('en', EN, true);
   }
 
 }
