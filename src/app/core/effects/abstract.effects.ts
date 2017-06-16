@@ -10,7 +10,7 @@ export abstract class Effects {
   protected abstract setMessages(error: AppMessage): Action;
 
   protected handleError(error: AppMessage): Observable<Action> {
-    let actions: Action[] = [];
+    const actions: Action[] = [];
     error.type = 'danger';
     error.date = new Date();
 
@@ -22,13 +22,13 @@ export abstract class Effects {
       case 422:
         actions.push(this.setMessages(error));
         break;
-      
+
       case 400:
       case 405:
       case 500:
         console.error(error);
         break;
-      
+
       default:
         break;
     }

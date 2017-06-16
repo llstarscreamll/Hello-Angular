@@ -5,17 +5,14 @@ import { WelcomeComponent } from './welcome.component';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { environment } from './../../environments/environment';
-import { DynamicFormModule } from './../dynamic-form/dynamic-form.module';
+import { environment } from 'environments/environment';
+import { CoreSharedModule } from 'app/core/core.shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    Ng2BootstrapModule.forRoot(),
-    ReactiveFormsModule,
+    CoreSharedModule,
     environment.theme,
     WelcomeRoutingModule,
-    DynamicFormModule,
   ],
   declarations: [WelcomeComponent]
 })

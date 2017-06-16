@@ -8,10 +8,11 @@ export const environment = {
   production: true,
   theme: AdminLTEModule,
   api_url: 'http://api.apiato.dev/',
+  default_lang: 'es',
   // app info
   app_fullname: 'ACME Inc.',
   app_short_name: 'ACME',
-  app_version: 0.1,
+  app_version: 0.4,
   // your company info
   company_website: 'www.google.com',
   company_cc_year: '2017',
